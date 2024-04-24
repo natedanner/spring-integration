@@ -45,9 +45,9 @@ public class SmbInboundRemoteFileSystemSynchronizerTests extends AbstractBaseTes
 
 	private SmbSessionFactory smbSessionFactory;
 
-	private String testLocalDir = "test-temp/local-9/";
+	private final String testLocalDir = "test-temp/local-9/";
 
-	private String testRemoteDir = "test-temp/remote-9/";
+	private final String testRemoteDir = "test-temp/remote-9/";
 
 	@BeforeEach
 	public void prepare() {

@@ -248,7 +248,7 @@ public class FileTests {
 	@Test
 	public void testFileSplitterFlow() throws Exception {
 		FileOutputStream file = new FileOutputStream(new File(tmpDir, "foo.tmp"));
-		file.write(("HelloWorld\nÃ¤Ã¶Ã¼ÃŸ").getBytes(Charset.defaultCharset()));
+		file.write("HelloWorld\nÃ¤Ã¶Ã¼ÃŸ".getBytes(Charset.defaultCharset()));
 		file.flush();
 		file.close();
 
@@ -279,13 +279,13 @@ public class FileTests {
 	public void testDynamicFileFlows() throws Exception {
 		File newFolder1 = java.nio.file.Files.createTempDirectory(tmpDir.toPath(), "junit").toFile();
 		FileOutputStream file = new FileOutputStream(new File(newFolder1, "foo"));
-		file.write(("foo").getBytes());
+		file.write("foo".getBytes());
 		file.flush();
 		file.close();
 
 		File newFolder2 = java.nio.file.Files.createTempDirectory(tmpDir.toPath(), "junit").toFile();
 		file = new FileOutputStream(new File(newFolder2, "bar"));
-		file.write(("bar").getBytes());
+		file.write("bar".getBytes());
 		file.flush();
 		file.close();
 
@@ -398,7 +398,7 @@ public class FileTests {
 							.header("directory", new File(tmpDir, "fileWritingFlow")))
 					.handle(Files.outboundGateway(m -> m.getHeaders().get("directory"))
 							.preserveTimestamp(true)
-							.chmod(0777))
+							.chmod(511))
 					.channel(MessageChannels.queue("fileWritingResultChannel"))
 					.get();
 		}

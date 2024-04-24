@@ -72,7 +72,7 @@ public class TcpNetConnectionTests {
 		TcpNetConnection connection = new TcpNetConnection(socket, true, false, e -> {
 		}, null);
 		connection.setDeserializer(new ByteArrayStxEtxSerializer());
-		final AtomicReference<Object> log = new AtomicReference<Object>();
+		final AtomicReference<Object> log = new AtomicReference<>();
 		Log logger = mock(Log.class);
 		given(logger.isErrorEnabled()).willReturn(true);
 		doAnswer(invocation -> {
@@ -136,7 +136,7 @@ public class TcpNetConnectionTests {
 		out.write(baos.toByteArray());
 		out.close();
 
-		final AtomicReference<Message<?>> inboundMessage = new AtomicReference<Message<?>>();
+		final AtomicReference<Message<?>> inboundMessage = new AtomicReference<>();
 		TcpListener listener = message1 -> {
 			if (!(message1 instanceof ErrorMessage)) {
 				inboundMessage.set(message1);
@@ -162,16 +162,14 @@ public class TcpNetConnectionTests {
 			}
 		};
 		server.setApplicationEventPublisher(publisher);
-		server.registerListener(message -> {
-			return false;
-		});
+		server.registerListener(message -> false);
 		server.afterPropertiesSet();
 		server.start();
 		assertThat(latch.await(10, TimeUnit.SECONDS)).isTrue();
 		Socket socket = SocketFactory.getDefault().createSocket("localhost", port.get());
 		TcpNetConnection connection = new TcpNetConnection(socket, false, false, publisher, "socketClosedNextRead");
 		socket.close();
-		assertThatThrownBy(() -> connection.getPayload())
+		assertThatThrownBy(connection::getPayload)
 				.isInstanceOf(SoftEndOfStreamException.class);
 		server.stop();
 	}

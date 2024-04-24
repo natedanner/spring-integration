@@ -50,25 +50,25 @@ import static org.mockito.Mockito.when;
  */
 public class OutboundGatewayFunctionTests extends ActiveMQMultiContextTests {
 
-	private static Destination requestQueue1 = new ActiveMQQueue("request1");
+	private static final Destination requestQueue1 = new ActiveMQQueue("request1");
 
-	private static Destination replyQueue1 = new ActiveMQQueue("reply1");
+	private static final Destination replyQueue1 = new ActiveMQQueue("reply1");
 
-	private static Destination requestQueue2 = new ActiveMQQueue("request2");
+	private static final Destination requestQueue2 = new ActiveMQQueue("request2");
 
-	private static Destination replyQueue2 = new ActiveMQQueue("reply2");
+	private static final Destination replyQueue2 = new ActiveMQQueue("reply2");
 
-	private static Destination requestQueue3 = new ActiveMQQueue("request3");
+	private static final Destination requestQueue3 = new ActiveMQQueue("request3");
 
-	private static Destination requestQueue4 = new ActiveMQQueue("request4");
+	private static final Destination requestQueue4 = new ActiveMQQueue("request4");
 
-	private static Destination requestQueue5 = new ActiveMQQueue("request5");
+	private static final Destination requestQueue5 = new ActiveMQQueue("request5");
 
-	private static Destination requestQueue6 = new ActiveMQQueue("request6");
+	private static final Destination requestQueue6 = new ActiveMQQueue("request6");
 
-	private static Destination requestQueue7 = new ActiveMQQueue("request7");
+	private static final Destination requestQueue7 = new ActiveMQQueue("request7");
 
-	private static Destination replyQueue7 = new ActiveMQQueue("reply7");
+	private static final Destination replyQueue7 = new ActiveMQQueue("reply7");
 
 	@Test
 	public void testContainerWithDest() throws Exception {

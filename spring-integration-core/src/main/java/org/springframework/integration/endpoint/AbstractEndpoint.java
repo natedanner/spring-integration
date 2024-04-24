@@ -61,7 +61,7 @@ public abstract class AbstractEndpoint extends IntegrationObjectSupport
 
 	private boolean autoStartupSetExplicitly;
 
-	private int phase = 0;
+	private int phase;
 
 	private volatile boolean running;
 

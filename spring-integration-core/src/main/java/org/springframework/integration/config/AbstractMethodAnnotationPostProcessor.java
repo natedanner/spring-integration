@@ -202,7 +202,7 @@ public abstract class AbstractMethodAnnotationPostProcessor<T extends Annotation
 				if (isClassIn(handlerBeanClass, Orderable.class, AbstractSimpleMessageHandlerFactoryBean.class)) {
 					mergedAnnotations.get(Order.class)
 							.getValue(AnnotationUtils.VALUE, String.class).
-							ifPresent((order) -> handlerBeanDefinition.getPropertyValues().add("order", order));
+							ifPresent(order -> handlerBeanDefinition.getPropertyValues().add("order", order));
 				}
 
 				if (isClassIn(handlerBeanClass, AbstractMessageProducingHandler.class, AbstractMessageRouter.class,
@@ -265,7 +265,7 @@ public abstract class AbstractMethodAnnotationPostProcessor<T extends Annotation
 
 		mergedAnnotations.get(Role.class)
 				.getValue(AnnotationUtils.VALUE, String.class).
-				ifPresent((role) -> endpointBeanDefinition.getPropertyValues().add("role", role));
+				ifPresent(role -> endpointBeanDefinition.getPropertyValues().add("role", role));
 
 		String endpointBeanName =
 				generateHandlerBeanName(beanName, mergedAnnotations)

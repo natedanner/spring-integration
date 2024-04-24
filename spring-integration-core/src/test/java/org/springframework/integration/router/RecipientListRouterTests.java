@@ -53,7 +53,7 @@ public class RecipientListRouterTests {
 	public void channelConfig() {
 		QueueChannel channel1 = new QueueChannel();
 		QueueChannel channel2 = new QueueChannel();
-		List<MessageChannel> channels = new ArrayList<MessageChannel>();
+		List<MessageChannel> channels = new ArrayList<>();
 		channels.add(channel1);
 		channels.add(channel2);
 		RecipientListRouter router = new RecipientListRouter();
@@ -71,14 +71,14 @@ public class RecipientListRouterTests {
 	public void routeWithChannelList() {
 		QueueChannel channel1 = new QueueChannel();
 		QueueChannel channel2 = new QueueChannel();
-		List<MessageChannel> channels = new ArrayList<MessageChannel>();
+		List<MessageChannel> channels = new ArrayList<>();
 		channels.add(channel1);
 		channels.add(channel2);
 		RecipientListRouter router = new RecipientListRouter();
 		router.setChannels(channels);
 		router.setBeanFactory(mock(BeanFactory.class));
 		router.afterPropertiesSet();
-		Message<String> message = new GenericMessage<String>("test");
+		Message<String> message = new GenericMessage<>("test");
 		router.handleMessage(message);
 		Message<?> result1 = channel1.receive(25);
 		assertThat(result1).isNotNull();
@@ -94,7 +94,7 @@ public class RecipientListRouterTests {
 		channel.setBeanName("channel");
 		RecipientListRouter router = new RecipientListRouter();
 		router.setChannels(Collections.singletonList((MessageChannel) channel));
-		Message<String> message = new GenericMessage<String>("test");
+		Message<String> message = new GenericMessage<>("test");
 		router.handleMessage(message);
 		Message<?> result1 = channel.receive(25);
 		assertThat(result1).isNotNull();
@@ -113,13 +113,13 @@ public class RecipientListRouterTests {
 		channelC.setBeanName("channelC");
 		RecipientListRouter router = new RecipientListRouter();
 		router.setSendTimeout(0);
-		List<MessageChannel> channels = new ArrayList<MessageChannel>();
+		List<MessageChannel> channels = new ArrayList<>();
 		channels.add(channelA);
 		channels.add(channelB);
 		channels.add(channelC);
 		router.setChannels(channels);
 		channelA.send(new GenericMessage<String>("blocker"));
-		Message<String> message = new GenericMessage<String>("test");
+		Message<String> message = new GenericMessage<>("test");
 		try {
 			router.handleMessage(message);
 		}
@@ -143,13 +143,13 @@ public class RecipientListRouterTests {
 		channelC.setBeanName("channelC");
 		RecipientListRouter router = new RecipientListRouter();
 		router.setSendTimeout(0);
-		List<MessageChannel> channels = new ArrayList<MessageChannel>();
+		List<MessageChannel> channels = new ArrayList<>();
 		channels.add(channelA);
 		channels.add(channelB);
 		channels.add(channelC);
 		router.setChannels(channels);
 		channelB.send(new GenericMessage<String>("blocker"));
-		Message<String> message = new GenericMessage<String>("test");
+		Message<String> message = new GenericMessage<>("test");
 		try {
 			router.handleMessage(message);
 		}
@@ -175,13 +175,13 @@ public class RecipientListRouterTests {
 		channelC.setBeanName("channelC");
 		RecipientListRouter router = new RecipientListRouter();
 		router.setSendTimeout(0);
-		List<MessageChannel> channels = new ArrayList<MessageChannel>();
+		List<MessageChannel> channels = new ArrayList<>();
 		channels.add(channelA);
 		channels.add(channelB);
 		channels.add(channelC);
 		router.setChannels(channels);
 		channelC.send(new GenericMessage<String>("blocker"));
-		Message<String> message = new GenericMessage<String>("test");
+		Message<String> message = new GenericMessage<>("test");
 		try {
 			router.handleMessage(message);
 		}
@@ -210,13 +210,13 @@ public class RecipientListRouterTests {
 		RecipientListRouter router = new RecipientListRouter();
 		router.setIgnoreSendFailures(true);
 		router.setSendTimeout(0);
-		List<MessageChannel> channels = new ArrayList<MessageChannel>();
+		List<MessageChannel> channels = new ArrayList<>();
 		channels.add(channelA);
 		channels.add(channelB);
 		channels.add(channelC);
 		router.setChannels(channels);
 		channelA.send(new GenericMessage<String>("blocker"));
-		Message<String> message = new GenericMessage<String>("test");
+		Message<String> message = new GenericMessage<>("test");
 		router.handleMessage(message);
 		Message<?> result1a = channelA.receive(0);
 		Message<?> result1b = channelB.receive(0);
@@ -240,13 +240,13 @@ public class RecipientListRouterTests {
 		RecipientListRouter router = new RecipientListRouter();
 		router.setIgnoreSendFailures(true);
 		router.setSendTimeout(0);
-		List<MessageChannel> channels = new ArrayList<MessageChannel>();
+		List<MessageChannel> channels = new ArrayList<>();
 		channels.add(channelA);
 		channels.add(channelB);
 		channels.add(channelC);
 		router.setChannels(channels);
 		channelB.send(new GenericMessage<String>("blocker"));
-		Message<String> message = new GenericMessage<String>("test");
+		Message<String> message = new GenericMessage<>("test");
 		router.handleMessage(message);
 		Message<?> result1a = channelA.receive(0);
 		Message<?> result1b = channelB.receive(0);
@@ -270,13 +270,13 @@ public class RecipientListRouterTests {
 		RecipientListRouter router = new RecipientListRouter();
 		router.setIgnoreSendFailures(true);
 		router.setSendTimeout(0);
-		List<MessageChannel> channels = new ArrayList<MessageChannel>();
+		List<MessageChannel> channels = new ArrayList<>();
 		channels.add(channelA);
 		channels.add(channelB);
 		channels.add(channelC);
 		router.setChannels(channels);
 		channelC.send(new GenericMessage<String>("blocker"));
-		Message<String> message = new GenericMessage<String>("test");
+		Message<String> message = new GenericMessage<>("test");
 		router.handleMessage(message);
 		Message<?> result1a = channelA.receive(0);
 		Message<?> result1b = channelB.receive(0);
@@ -296,11 +296,11 @@ public class RecipientListRouterTests {
 		channelA.setBeanName("channelA");
 		channelB.setBeanName("channelB");
 		RecipientListRouter router = new RecipientListRouter();
-		List<MessageChannel> channels = new ArrayList<MessageChannel>();
+		List<MessageChannel> channels = new ArrayList<>();
 		channels.add(channelA);
 		channels.add(channelB);
 		router.setChannels(channels);
-		Message<String> message = new GenericMessage<String>("test");
+		Message<String> message = new GenericMessage<>("test");
 		router.handleMessage(message);
 		Message<?> result1a = channelA.receive(0);
 		Message<?> result1b = channelB.receive(0);
@@ -324,11 +324,11 @@ public class RecipientListRouterTests {
 		channelB.setBeanName("channelB");
 		RecipientListRouter router = new RecipientListRouter();
 		router.setApplySequence(true);
-		List<MessageChannel> channels = new ArrayList<MessageChannel>();
+		List<MessageChannel> channels = new ArrayList<>();
 		channels.add(channelA);
 		channels.add(channelB);
 		router.setChannels(channels);
-		Message<String> message = new GenericMessage<String>("test");
+		Message<String> message = new GenericMessage<>("test");
 		router.handleMessage(message);
 		Message<?> result1a = channelA.receive(0);
 		Message<?> result1b = channelB.receive(0);
@@ -355,7 +355,7 @@ public class RecipientListRouterTests {
 	@Test(expected = IllegalArgumentException.class)
 	public void emptyChannelListRejected() {
 		RecipientListRouter router = new RecipientListRouter();
-		List<MessageChannel> channels = new ArrayList<MessageChannel>();
+		List<MessageChannel> channels = new ArrayList<>();
 		router.setChannels(channels);
 	}
 
@@ -378,7 +378,7 @@ public class RecipientListRouterTests {
 		QueueChannel channel3 = new QueueChannel();
 		QueueChannel channel4 = new QueueChannel();
 		QueueChannel channel5 = new QueueChannel();
-		List<Recipient> recipients = new ArrayList<Recipient>();
+		List<Recipient> recipients = new ArrayList<>();
 		recipients.add(new Recipient(channel1, new AlwaysTrueSelector()));
 		recipients.add(new Recipient(channel2, new AlwaysFalseSelector()));
 		recipients.add(new Recipient(channel3));
@@ -406,12 +406,12 @@ public class RecipientListRouterTests {
 		channel.setBeanName("channel");
 		QueueChannel defaultChannel = new QueueChannel();
 		channel.setBeanName("default");
-		List<Recipient> recipients = new ArrayList<Recipient>();
+		List<Recipient> recipients = new ArrayList<>();
 		recipients.add(new Recipient(channel, new AlwaysFalseSelector()));
 		RecipientListRouter router = new RecipientListRouter();
 		router.setRecipients(recipients);
 		router.setDefaultOutputChannel(defaultChannel);
-		Message<String> message = new GenericMessage<String>("test");
+		Message<String> message = new GenericMessage<>("test");
 		router.handleMessage(message);
 		Message<?> result1 = defaultChannel.receive(25);
 		assertThat(result1).isNotNull();
@@ -423,7 +423,7 @@ public class RecipientListRouterTests {
 	@Test
 	public void testDefaultChannelResolutionFromName() {
 		QueueChannel defaultChannel = new QueueChannel();
-		List<Recipient> recipients = new ArrayList<Recipient>();
+		List<Recipient> recipients = new ArrayList<>();
 		recipients.add(new Recipient(new DirectChannel(), new AlwaysFalseSelector()));
 		RecipientListRouter router = new RecipientListRouter();
 		router.setRecipients(recipients);

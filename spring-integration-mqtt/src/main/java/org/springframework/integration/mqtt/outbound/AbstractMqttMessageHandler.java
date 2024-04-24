@@ -64,7 +64,7 @@ public abstract class AbstractMqttMessageHandler<T, C> extends AbstractMessageHa
 	public static final long DEFAULT_COMPLETION_TIMEOUT = 30_000L;
 
 	private static final MessageProcessor<String> DEFAULT_TOPIC_PROCESSOR =
-			(message) -> message.getHeaders().get(MqttHeaders.TOPIC, String.class);
+			message -> message.getHeaders().get(MqttHeaders.TOPIC, String.class);
 
 	protected final Lock lock = new ReentrantLock();
 
@@ -84,7 +84,7 @@ public abstract class AbstractMqttMessageHandler<T, C> extends AbstractMessageHa
 
 	private MessageProcessor<String> topicProcessor = DEFAULT_TOPIC_PROCESSOR;
 
-	private int defaultQos = 0;
+	private int defaultQos;
 
 	private MessageProcessor<Integer> qosProcessor = MqttMessageConverter.defaultQosProcessor();
 

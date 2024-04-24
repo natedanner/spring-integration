@@ -68,7 +68,7 @@ public class R2dbcMessageHandler extends AbstractReactiveMessageHandler {
 	@Nullable
 	private Expression criteriaExpression;
 
-	private volatile boolean initialized = false;
+	private volatile boolean initialized;
 
 	/**
 	 * Construct this instance using a fully created and initialized instance of provided

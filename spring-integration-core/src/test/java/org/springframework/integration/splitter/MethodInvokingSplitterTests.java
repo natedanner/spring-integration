@@ -379,7 +379,7 @@ public class MethodInvokingSplitterTests {
 		ProxyFactory pf = new ProxyFactory(stream);
 		AtomicBoolean closed = new AtomicBoolean();
 		MethodInterceptor interceptor = i -> {
-			if (i.getMethod().getName().equals("close")) {
+			if ("close".equals(i.getMethod().getName())) {
 				closed.set(true);
 			}
 			return i.proceed();

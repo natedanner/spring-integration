@@ -56,7 +56,7 @@ public class ServerWebSocketContainerParser extends AbstractSingleBeanDefinition
 		builder.addConstructorArgValue(element.getAttribute("path"));
 
 		String handshakeInterceptors = element.getAttribute("handshake-interceptors");
-		List<BeanReference> handshakeInterceptorList = new ManagedList<BeanReference>();
+		List<BeanReference> handshakeInterceptorList = new ManagedList<>();
 		String[] ids = StringUtils.commaDelimitedListToStringArray(handshakeInterceptors);
 		for (String id : ids) {
 			handshakeInterceptorList.add(new RuntimeBeanReference(id));
@@ -64,7 +64,7 @@ public class ServerWebSocketContainerParser extends AbstractSingleBeanDefinition
 		builder.addPropertyValue("interceptors", handshakeInterceptorList);
 
 		String decoratorFactories = element.getAttribute("decorator-factories");
-		List<BeanReference> decoratorFactoryList = new ManagedList<BeanReference>();
+		List<BeanReference> decoratorFactoryList = new ManagedList<>();
 		ids = StringUtils.commaDelimitedListToStringArray(decoratorFactories);
 		for (String id : ids) {
 			decoratorFactoryList.add(new RuntimeBeanReference(id));
@@ -92,7 +92,7 @@ public class ServerWebSocketContainerParser extends AbstractSingleBeanDefinition
 
 			String transportHandlers = sockjs.getAttribute("transport-handlers");
 			if (StringUtils.hasText(transportHandlers)) {
-				List<BeanReference> transportHandlerList = new ManagedList<BeanReference>();
+				List<BeanReference> transportHandlerList = new ManagedList<>();
 				ids = StringUtils.commaDelimitedListToStringArray(transportHandlers);
 				for (String id : ids) {
 					transportHandlerList.add(new RuntimeBeanReference(id));

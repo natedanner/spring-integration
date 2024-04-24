@@ -168,7 +168,7 @@ public abstract class AbstractKeyValueMessageStore extends AbstractMessageGroupS
 	@ManagedAttribute
 	public long getMessageCount() {
 		Collection<?> messageIds = doListKeys(this.messagePrefix + '*');
-		return (messageIds != null) ? messageIds.size() : 0;
+		return messageIds != null ? messageIds.size() : 0;
 	}
 
 	// MessageGroupStore methods
@@ -425,7 +425,7 @@ public abstract class AbstractKeyValueMessageStore extends AbstractMessageGroupS
 		return getGroupMetadata(groupId)
 				.getMessageIds()
 				.stream()
-				.map((messageId) -> getMessageFromGroup(messageId, groupId));
+				.map(messageId -> getMessageFromGroup(messageId, groupId));
 	}
 
 	@Override

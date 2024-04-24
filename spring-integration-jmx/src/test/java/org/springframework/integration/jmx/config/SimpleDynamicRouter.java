@@ -35,7 +35,7 @@ import org.springframework.util.Assert;
 @ManagedResource
 public class SimpleDynamicRouter {
 
-	private final Map<String, String> channelMappings = new HashMap<String, String>();
+	private final Map<String, String> channelMappings = new HashMap<>();
 
 	/**
 	 *

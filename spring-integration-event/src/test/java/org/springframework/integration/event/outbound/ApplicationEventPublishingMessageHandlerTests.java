@@ -55,7 +55,7 @@ public class ApplicationEventPublishingMessageHandlerTests {
 		handler.handleMessage(message);
 		ApplicationEvent event = publisher.getLastEvent();
 		assertThat(event.getClass()).isEqualTo(TestEvent.class);
-		assertThat((event).getSource()).isEqualTo("foo");
+		assertThat(event.getSource()).isEqualTo("foo");
 	}
 
 	private static class TestApplicationEventPublisher implements ApplicationEventPublisher {

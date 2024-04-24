@@ -283,7 +283,7 @@ public class ExecutorChannelTests {
 		public Message<?> beforeHandle(Message<?> message, MessageChannel channel, MessageHandler handler) {
 			assertThat(message).isNotNull();
 			this.counter.incrementAndGet();
-			return (this.messageToReturn != null ? this.messageToReturn : message);
+			return this.messageToReturn != null ? this.messageToReturn : message;
 		}
 
 		@Override

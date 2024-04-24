@@ -96,7 +96,7 @@ public class EventDrivenConsumer extends AbstractEndpoint implements Integration
 			componentType = StringUtils.hasText(componentType) ? componentType : "";
 			String componentName = getComponentName();
 			componentName =
-					(StringUtils.hasText(componentName) && componentName.contains("#")) ? "" : ":" + componentName;
+					StringUtils.hasText(componentName) && componentName.contains("#") ? "" : ":" + componentName;
 			StringBuilder buffer = new StringBuilder();
 			buffer.append("{")
 					.append(componentType)

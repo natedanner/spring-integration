@@ -28,7 +28,7 @@ public class SingleScenarioTests extends SingleRequestResponseScenarioTests {
 
 	@Override
 	protected RequestResponseScenario defineRequestResponseScenario() {
-		RequestResponseScenario scenario = new RequestResponseScenario(
+		return new RequestResponseScenario(
 				"inputChannel", "outputChannel")
 				.setPayload("hello")
 				.setResponseValidator(new PayloadValidator<String>() {
@@ -38,7 +38,6 @@ public class SingleScenarioTests extends SingleRequestResponseScenarioTests {
 						assertThat(response).isEqualTo("HELLO");
 					}
 				});
-		return scenario;
 	}
 
 }

@@ -34,7 +34,7 @@ public class PayloadTypeConvertingTransformerTests {
 	 */
 	@Test
 	public void testTransformPayloadObject() throws Exception {
-		PayloadTypeConvertingTransformer<String, String> tx = new PayloadTypeConvertingTransformer<String, String>();
+		PayloadTypeConvertingTransformer<String, String> tx = new PayloadTypeConvertingTransformer<>();
 		tx.setConverter(source -> source.toUpperCase());
 		String in = "abcd";
 		String out = tx.transformPayload(in);

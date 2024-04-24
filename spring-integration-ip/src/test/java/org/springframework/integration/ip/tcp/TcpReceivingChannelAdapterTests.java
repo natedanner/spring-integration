@@ -172,7 +172,7 @@ public class TcpReceivingChannelAdapterTests extends AbstractTcpChannelAdapterTe
 		for (int i = 0; i < 1000; i++) {
 			socket.getOutputStream().write(("Test" + i + "\r\n").getBytes());
 		}
-		Set<String> results = new HashSet<String>();
+		Set<String> results = new HashSet<>();
 		for (int i = 0; i < 1000; i++) {
 			Message<?> message = channel.receive(10000);
 			assertThat(message).isNotNull();
@@ -274,7 +274,7 @@ public class TcpReceivingChannelAdapterTests extends AbstractTcpChannelAdapterTe
 		Message<?> message = channel.receive(10000);
 		assertThat(message).isNotNull();
 		// with single use, results may come back in a different order
-		Set<String> results = new HashSet<String>();
+		Set<String> results = new HashSet<>();
 		results.add(new String((byte[]) message.getPayload()));
 		message = channel.receive(10000);
 		assertThat(message).isNotNull();
@@ -306,7 +306,7 @@ public class TcpReceivingChannelAdapterTests extends AbstractTcpChannelAdapterTe
 		Message<?> message = channel.receive(60000);
 		assertThat(message).isNotNull();
 		// with single use, results may come back in a different order
-		Set<String> results = new HashSet<String>();
+		Set<String> results = new HashSet<>();
 		results.add(new String((byte[]) message.getPayload()));
 		message = channel.receive(10000);
 		assertThat(message).isNotNull();
@@ -420,7 +420,7 @@ public class TcpReceivingChannelAdapterTests extends AbstractTcpChannelAdapterTe
 		adapter.setOutputChannel(channel);
 		TestingUtilities.waitListening(scf, null);
 		int port = scf.getPort();
-		List<Socket> sockets = new LinkedList<Socket>();
+		List<Socket> sockets = new LinkedList<>();
 		for (int i = 100; i < 200; i++) {
 			Socket socket1 = SocketFactory.getDefault().createSocket("localhost", port);
 			socket1.setSoTimeout(2000);
@@ -514,7 +514,7 @@ public class TcpReceivingChannelAdapterTests extends AbstractTcpChannelAdapterTe
 		assertThat(new ObjectInputStream(socket.getInputStream()).readObject()).isEqualTo("world!");
 		new ObjectOutputStream(socket.getOutputStream()).writeObject("Test1");
 		new ObjectOutputStream(socket.getOutputStream()).writeObject("Test2");
-		Set<String> results = new HashSet<String>();
+		Set<String> results = new HashSet<>();
 		Message<?> message = channel.receive(10000);
 		assertThat(message).isNotNull();
 		results.add((String) message.getPayload());
@@ -560,7 +560,7 @@ public class TcpReceivingChannelAdapterTests extends AbstractTcpChannelAdapterTe
 		Message<?> message = channel.receive(10000);
 		assertThat(message).isNotNull();
 		// with single use, results may come back in a different order
-		Set<Object> results = new HashSet<Object>();
+		Set<Object> results = new HashSet<>();
 		results.add(message.getPayload());
 		message = channel.receive(10000);
 		assertThat(message).isNotNull();

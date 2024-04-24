@@ -23,7 +23,7 @@ package org.springframework.integration.xml.config;
  * @author Gary Russell
  * @author Artem Bilan
  */
-public class TestXmlApplicationContextHelper {
+public final class TestXmlApplicationContextHelper {
 
 	private static final String header =
 			"""

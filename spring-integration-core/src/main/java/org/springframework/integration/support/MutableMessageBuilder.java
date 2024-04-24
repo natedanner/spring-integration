@@ -63,7 +63,7 @@ public final class MutableMessageBuilder<T> extends AbstractIntegrationMessageBu
 			this.mutableMessage = (MutableMessage<T>) message;
 		}
 		else {
-			this.mutableMessage = new MutableMessage<T>(message.getPayload(), message.getHeaders());
+			this.mutableMessage = new MutableMessage<>(message.getPayload(), message.getHeaders());
 		}
 		this.headers = this.mutableMessage.getRawHeaders();
 	}
@@ -135,7 +135,7 @@ public final class MutableMessageBuilder<T> extends AbstractIntegrationMessageBu
 	 */
 	public static <T> MutableMessageBuilder<T> fromMessage(Message<T> message) {
 		Assert.notNull(message, "'message' must not be null");
-		return new MutableMessageBuilder<T>(message);
+		return new MutableMessageBuilder<>(message);
 	}
 
 	@Override

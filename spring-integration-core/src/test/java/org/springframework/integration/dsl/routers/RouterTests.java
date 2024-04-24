@@ -610,7 +610,7 @@ public class RouterTests {
 				.containsAllEntriesOf(
 						headers1.entrySet()
 								.stream()
-								.filter((entry) ->
+								.filter(entry ->
 										!MessageHeaders.ID.equals(entry.getKey())
 												&& !MessageHeaders.TIMESTAMP.equals(entry.getKey()))
 								.collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue)));
@@ -743,7 +743,7 @@ public class RouterTests {
 		@Bean
 		public IntegrationFlow routeMultiMethodInvocationFlow() {
 			return IntegrationFlow.from("routerMultiInput")
-					.route(String.class, p -> p.equals("foo") || p.equals("bar")
+					.route(String.class, p -> "foo".equals(p) || "bar".equals(p)
 									? new String[] {"foo", "bar"}
 									: null,
 							s -> s.suffix("-channel"))

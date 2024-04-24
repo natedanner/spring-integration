@@ -27,7 +27,7 @@ public class TestBean {
 
 	private CountDownLatch latch;
 
-	private String replyMessageText = null;
+	private String replyMessageText;
 
 	public TestBean() {
 		this(1);

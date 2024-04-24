@@ -124,9 +124,9 @@ public class JdbcMessageStoreChannelTests {
 
 	public static class Service {
 
-		private static boolean fail = false;
+		private static boolean fail;
 
-		private static boolean alreadyFailed = false;
+		private static boolean alreadyFailed;
 
 		private static List<String> messages = new CopyOnWriteArrayList<>();
 

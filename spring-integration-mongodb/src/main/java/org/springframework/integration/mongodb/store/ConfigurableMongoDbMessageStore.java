@@ -104,7 +104,7 @@ public class ConfigurableMongoDbMessageStore extends AbstractConfigurableMongoDb
 		Query query = Query.query(Criteria.where(MessageDocumentFields.MESSAGE_ID).is(id)
 				.and(MessageDocumentFields.GROUP_ID).exists(false));
 		MessageDocument document = getMongoTemplate().findAndRemove(query, MessageDocument.class, this.collectionName);
-		return (document != null) ? document.getMessage() : null;
+		return document != null ? document.getMessage() : null;
 	}
 
 	@Override
@@ -194,7 +194,7 @@ public class ConfigurableMongoDbMessageStore extends AbstractConfigurableMongoDb
 				ids.clear();
 			}
 		}
-		if (ids.size() > 0) {
+		if (!ids.isEmpty()) {
 			removeMessages(groupId, ids);
 		}
 		updateGroup(groupId, lastModifiedUpdate());

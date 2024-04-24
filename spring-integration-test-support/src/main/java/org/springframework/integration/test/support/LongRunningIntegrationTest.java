@@ -39,7 +39,7 @@ public class LongRunningIntegrationTest extends TestWatcher {
 
 	private static final String RUN_LONG_PROP = "RUN_LONG_INTEGRATION_TESTS";
 
-	private boolean shouldRun = false;
+	private boolean shouldRun;
 
 	public LongRunningIntegrationTest() {
 		for (String value : new String[] {System.getenv(RUN_LONG_PROP), System.getProperty(RUN_LONG_PROP)}) {

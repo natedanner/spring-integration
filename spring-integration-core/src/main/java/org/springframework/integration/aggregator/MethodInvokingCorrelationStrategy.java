@@ -39,14 +39,14 @@ public class MethodInvokingCorrelationStrategy implements CorrelationStrategy, B
 	private final MethodInvokingMessageProcessor<?> processor;
 
 	public MethodInvokingCorrelationStrategy(Object object, String methodName) {
-		this.processor = new MethodInvokingMessageProcessor<Object>(object, methodName);
+		this.processor = new MethodInvokingMessageProcessor<>(object, methodName);
 	}
 
 	public MethodInvokingCorrelationStrategy(Object object, Method method) {
 		Assert.notNull(object, "'object' must not be null");
 		Assert.notNull(method, "'method' must not be null");
 		Assert.isTrue(!Void.TYPE.equals(method.getReturnType()), "Method return type must not be void");
-		this.processor = new MethodInvokingMessageProcessor<Object>(object, method);
+		this.processor = new MethodInvokingMessageProcessor<>(object, method);
 	}
 
 	@Override

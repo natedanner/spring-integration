@@ -36,7 +36,7 @@ public class CompositeKryoRegistrar extends AbstractKryoRegistrar {
 	private final List<KryoRegistrar> delegates;
 
 	public CompositeKryoRegistrar(List<KryoRegistrar> delegates) {
-		this.delegates = new ArrayList<KryoRegistrar>(delegates);
+		this.delegates = new ArrayList<>(delegates);
 
 		if (!CollectionUtils.isEmpty(this.delegates)) {
 			validateRegistrations();
@@ -52,7 +52,7 @@ public class CompositeKryoRegistrar extends AbstractKryoRegistrar {
 
 	@Override
 	public final List<Registration> getRegistrations() {
-		List<Registration> registrations = new ArrayList<Registration>();
+		List<Registration> registrations = new ArrayList<>();
 		for (KryoRegistrar registrar : this.delegates) {
 			registrations.addAll(registrar.getRegistrations());
 		}
@@ -60,8 +60,8 @@ public class CompositeKryoRegistrar extends AbstractKryoRegistrar {
 	}
 
 	private void validateRegistrations() {
-		List<Integer> ids = new ArrayList<Integer>();
-		List<Class<?>> types = new ArrayList<Class<?>>();
+		List<Integer> ids = new ArrayList<>();
+		List<Class<?>> types = new ArrayList<>();
 
 		for (Registration registration : getRegistrations()) {
 			Assert.isTrue(registration.getId() >= MIN_REGISTRATION_VALUE,

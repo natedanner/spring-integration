@@ -176,7 +176,7 @@ public class CorrelationHandlerTests {
 	@Test
 	public void testFluxAggregator() {
 		IntegrationFlow testFlow =
-				(flow) -> flow
+				flow -> flow
 						.split()
 						.channel(MessageChannels.flux())
 						.handle(new FluxAggregatorMessageHandler());
@@ -234,7 +234,7 @@ public class CorrelationHandlerTests {
 					.channel(executorChannel)
 					.splitWith(s -> s
 							.applySequence(false)
-							.<Message>function(Message::getPayload)
+							.function(Message::getPayload)
 							.expectedType(Message.class))
 					.channel(MessageChannels.executor(taskExecutor))
 					.splitWith(s -> s
@@ -252,9 +252,9 @@ public class CorrelationHandlerTests {
 		public IntegrationFlow splitAggregateFlow() {
 			return IntegrationFlow.from("splitAggregateInput", true)
 					.transform(Transformers.toJson(ObjectToJsonTransformer.ResultType.NODE))
-					.splitWith((splitter) -> splitter
-							.discardFlow((subFlow) -> subFlow
-									.channel((c) -> c.queue("discardChannel"))))
+					.splitWith(splitter -> splitter
+							.discardFlow(subFlow -> subFlow
+									.channel(c -> c.queue("discardChannel"))))
 					.channel(MessageChannels.flux())
 					.resequence()
 					.aggregate()
@@ -279,12 +279,12 @@ public class CorrelationHandlerTests {
 		public IntegrationFlow publishSubscribeAggregateFlow() {
 			return flow -> flow
 					.aggregate(a -> a
-							.outputProcessor((group) -> group
+							.outputProcessor(group -> group
 									.getMessages()
 									.stream()
 									.map(m -> (String) m.getPayload())
 									.collect(Collectors.joining(" ")))
-							.headersFunction((group) -> Collections.singletonMap("foo", "bar")))
+							.headersFunction(group -> Collections.singletonMap("foo", "bar")))
 					.channel(MessageChannels.queue("subscriberAggregateResult"));
 		}
 

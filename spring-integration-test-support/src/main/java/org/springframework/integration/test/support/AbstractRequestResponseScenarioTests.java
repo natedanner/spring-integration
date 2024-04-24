@@ -50,7 +50,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @RunWith(SpringJUnit4ClassRunner.class)
 public abstract class AbstractRequestResponseScenarioTests {
 
-	private List<RequestResponseScenario> scenarios = null;
+	private List<RequestResponseScenario> scenarios;
 
 	@Autowired
 	private ApplicationContext applicationContext;

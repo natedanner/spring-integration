@@ -169,7 +169,7 @@ public class StreamingSplitterTests {
 
 		@Splitter
 		public Iterator<String> annotatedMethod(String input) {
-			return new Iterator<String>() {
+			return new Iterator<>() {
 
 				@Override
 				public boolean hasNext() {
@@ -207,12 +207,12 @@ public class StreamingSplitterTests {
 
 		@Splitter
 		public Iterable<String> annotatedMethod(String input) {
-			return new Iterable<String>() {
+			return new Iterable<>() {
 
 				@Override
 				public Iterator<String> iterator() {
 
-					return new Iterator<String>() {
+					return new Iterator<>() {
 
 						@Override
 						public boolean hasNext() {

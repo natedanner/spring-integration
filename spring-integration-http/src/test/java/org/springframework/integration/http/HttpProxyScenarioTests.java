@@ -85,22 +85,22 @@ public class HttpProxyScenarioTests {
 
 	@Test
 	public void testHttpProxyScenario() throws Exception {
-		ZoneId GMT = ZoneId.of("GMT");
+		ZoneId gmt = ZoneId.of("GMT");
 		DateTimeFormatter dateTimeFormatter =
-				DateTimeFormatter.ofPattern("EEE, dd MMM yyyy HH:mm:ss zzz", Locale.US).withZone(GMT);
+				DateTimeFormatter.ofPattern("EEE, dd MMM yyyy HH:mm:ss zzz", Locale.US).withZone(gmt);
 
 		Calendar c = Calendar.getInstance();
 		c.set(Calendar.MILLISECOND, 0);
 
 		final long ifModifiedSince = c.getTimeInMillis();
 		Instant instant = Instant.ofEpochMilli(ifModifiedSince);
-		ZonedDateTime zonedDateTime = ZonedDateTime.ofInstant(instant, GMT);
+		ZonedDateTime zonedDateTime = ZonedDateTime.ofInstant(instant, gmt);
 		String ifModifiedSinceValue = dateTimeFormatter.format(zonedDateTime);
 
 		c.add(Calendar.DATE, -1);
 		long ifUnmodifiedSince = c.getTimeInMillis();
 		instant = Instant.ofEpochMilli(ifUnmodifiedSince);
-		zonedDateTime = ZonedDateTime.ofInstant(instant, GMT);
+		zonedDateTime = ZonedDateTime.ofInstant(instant, gmt);
 		final String ifUnmodifiedSinceValue = dateTimeFormatter.format(zonedDateTime);
 
 		MockHttpServletRequest request = new MockHttpServletRequest("GET", "/test");

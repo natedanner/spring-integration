@@ -554,7 +554,7 @@ public class InboundEndpointTests {
 		Message<?> received = out.receive(0);
 		assertThat(received).isNotNull();
 		assertThat(((List<Message<String>>) received.getPayload()))
-				.extracting(message -> message.getPayload())
+				.extracting(Message::getPayload)
 				.contains("test1", "test2");
 	}
 

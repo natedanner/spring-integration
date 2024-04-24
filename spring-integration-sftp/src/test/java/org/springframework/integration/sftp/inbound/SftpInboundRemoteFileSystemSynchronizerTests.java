@@ -172,7 +172,7 @@ public class SftpInboundRemoteFileSystemSynchronizerTests {
 			calendar.add(Calendar.DATE, 1);
 			this.sftpEntries =
 					Arrays.stream(files)
-							.map((file) -> {
+							.map(file -> {
 								SftpClient.Attributes attributes = spy(new SftpClient.Attributes());
 								attributes.setModifyTime(FileTime.fromMillis(calendar.getTimeInMillis()));
 								given(attributes.isRegularFile()).willReturn(true);

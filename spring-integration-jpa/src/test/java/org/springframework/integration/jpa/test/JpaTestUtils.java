@@ -46,14 +46,12 @@ public final class JpaTestUtils {
 		Calendar dateOfBirth = Calendar.getInstance();
 		dateOfBirth.set(1984, 0, 31);
 
-		StudentDomain student = new StudentDomain()
+		return new StudentDomain()
 				.withFirstName("First Executor")
 				.withLastName("Last Executor")
 				.withGender(Gender.MALE)
 				.withDateOfBirth(dateOfBirth.getTime())
 				.withLastUpdated(new Date());
-
-		return student;
 	}
 
 	public static SourcePollingChannelAdapter getSourcePollingChannelAdapter(MessageSource<?> adapter,

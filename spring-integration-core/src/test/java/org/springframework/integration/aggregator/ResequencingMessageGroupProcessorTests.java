@@ -39,7 +39,7 @@ public class ResequencingMessageGroupProcessorTests {
 	@Test
 	public void shouldProcessSequence() {
 		Message prototypeMessage = MessageBuilder.withPayload("foo").setCorrelationId("x").setSequenceNumber(1).setSequenceSize(3).build();
-		List<Message<?>> messages = new ArrayList<Message<?>>();
+		List<Message<?>> messages = new ArrayList<>();
 		Message message1 = MessageBuilder.fromMessage(prototypeMessage).setSequenceNumber(1).build();
 		Message message2 = MessageBuilder.fromMessage(prototypeMessage).setSequenceNumber(2).build();
 		Message message3 = MessageBuilder.fromMessage(prototypeMessage).setSequenceNumber(3).build();
@@ -55,7 +55,7 @@ public class ResequencingMessageGroupProcessorTests {
 	@Test
 	public void shouldPartiallProcessIncompleteSequence() {
 		Message prototypeMessage = MessageBuilder.withPayload("foo").setCorrelationId("x").setSequenceNumber(1).setSequenceSize(4).build();
-		List<Message<?>> messages = new ArrayList<Message<?>>();
+		List<Message<?>> messages = new ArrayList<>();
 		Message message2 = MessageBuilder.fromMessage(prototypeMessage).setSequenceNumber(4).build();
 		Message message1 = MessageBuilder.fromMessage(prototypeMessage).setSequenceNumber(1).build();
 		Message message3 = MessageBuilder.fromMessage(prototypeMessage).setSequenceNumber(3).build();

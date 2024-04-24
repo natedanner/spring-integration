@@ -55,7 +55,7 @@ public class CorrelatingMessageHandlerTests {
 
 	private CorrelationStrategy correlationStrategy;
 
-	private final ReleaseStrategy ReleaseStrategy = new SequenceSizeReleaseStrategy();
+	private final ReleaseStrategy releaseStrategy = new SequenceSizeReleaseStrategy();
 
 	private MessageGroupProcessor processor;
 
@@ -68,7 +68,7 @@ public class CorrelatingMessageHandlerTests {
 		correlationStrategy = mock(CorrelationStrategy.class);
 		processor = mock(MessageGroupProcessor.class);
 		outputChannel = mock(MessageChannel.class);
-		handler = new AggregatingMessageHandler(processor, store, correlationStrategy, ReleaseStrategy);
+		handler = new AggregatingMessageHandler(processor, store, correlationStrategy, releaseStrategy);
 		handler.setOutputChannel(outputChannel);
 		handler.setBeanFactory(mock());
 		handler.afterPropertiesSet();

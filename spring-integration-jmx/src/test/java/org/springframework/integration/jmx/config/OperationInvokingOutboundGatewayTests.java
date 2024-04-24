@@ -99,13 +99,13 @@ public class OperationInvokingOutboundGatewayTests {
 	public void gatewayWithPrimitiveArgs() throws Exception {
 		primitiveChannel.send(new GenericMessage<Object[]>(new Object[] {true, 0L, 1}));
 		assertThat(testBean.messages.size()).isEqualTo(1);
-		List<Object> argList = new ArrayList<Object>();
+		List<Object> argList = new ArrayList<>();
 		argList.add(false);
 		argList.add(123L);
 		argList.add(42);
 		primitiveChannel.send(new GenericMessage<List<Object>>(argList));
 		assertThat(testBean.messages.size()).isEqualTo(2);
-		Map<String, Object> argMap = new HashMap<String, Object>();
+		Map<String, Object> argMap = new HashMap<>();
 		argMap.put("p1", true);
 		argMap.put("p2", 0L);
 		argMap.put("p3", 42);
@@ -123,7 +123,7 @@ public class OperationInvokingOutboundGatewayTests {
 			assertThat(e.getMessage()).contains("failed to find JMX operation");
 		}
 		// Args are named starting with Spring 3.2.3
-		argMap = new HashMap<String, Object>();
+		argMap = new HashMap<>();
 		argMap.put("bool", true);
 		argMap.put("time", 0L);
 		argMap.put("foo", 42);

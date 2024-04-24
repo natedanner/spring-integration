@@ -126,7 +126,7 @@ public abstract class AbstractPollingEndpoint extends AbstractEndpoint implement
 	}
 
 	public void setTaskExecutor(Executor taskExecutor) {
-		this.taskExecutor = (taskExecutor != null ? taskExecutor : new SyncTaskExecutor());
+		this.taskExecutor = taskExecutor != null ? taskExecutor : new SyncTaskExecutor();
 		this.syncExecutor = this.taskExecutor instanceof SyncTaskExecutor
 				|| (this.taskExecutor instanceof ErrorHandlingTaskExecutor
 				&& ((ErrorHandlingTaskExecutor) this.taskExecutor).isSyncExecutor());
@@ -141,7 +141,7 @@ public abstract class AbstractPollingEndpoint extends AbstractEndpoint implement
 	}
 
 	public void setTrigger(Trigger trigger) {
-		this.trigger = (trigger != null ? trigger : new PeriodicTrigger(Duration.ofMillis(DEFAULT_POLLING_PERIOD)));
+		this.trigger = trigger != null ? trigger : new PeriodicTrigger(Duration.ofMillis(DEFAULT_POLLING_PERIOD));
 	}
 
 	public void setAdviceChain(List<Advice> adviceChain) {

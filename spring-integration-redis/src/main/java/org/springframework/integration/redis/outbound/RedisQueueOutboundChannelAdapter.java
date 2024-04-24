@@ -63,7 +63,7 @@ public class RedisQueueOutboundChannelAdapter extends AbstractMessageHandler {
 		Assert.hasText(queueNameExpression.getExpressionString(), "'queueNameExpression.getExpressionString()' is required");
 		Assert.notNull(connectionFactory, "'connectionFactory' must not be null");
 		this.queueNameExpression = queueNameExpression;
-		this.template = new RedisTemplate<String, Object>();
+		this.template = new RedisTemplate<>();
 		this.template.setConnectionFactory(connectionFactory);
 		this.template.setEnableDefaultSerializer(false);
 		this.template.setKeySerializer(new StringRedisSerializer());

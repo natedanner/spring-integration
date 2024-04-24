@@ -71,7 +71,7 @@ public class ExpressionEvaluatingMessageHandlerTests {
 		ExpressionEvaluatingMessageHandler handler = new ExpressionEvaluatingMessageHandler(expression);
 		handler.setBeanFactory(mock(BeanFactory.class));
 		handler.afterPropertiesSet();
-		HashMap<String, Object> headers = new HashMap<String, Object>();
+		HashMap<String, Object> headers = new HashMap<>();
 		headers.put("offset", 4);
 		handler.handleMessage(new GenericMessage<String>("testtest", headers));
 	}

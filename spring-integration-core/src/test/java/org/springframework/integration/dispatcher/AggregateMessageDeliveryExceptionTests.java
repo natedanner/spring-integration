@@ -35,9 +35,9 @@ import static org.assertj.core.api.Assertions.assertThat;
  */
 public class AggregateMessageDeliveryExceptionTests {
 
-	private Message<?> message = new GenericMessage<>("foo");
+	private final Message<?> message = new GenericMessage<>("foo");
 
-	private AggregateMessageDeliveryException exception =
+	private final AggregateMessageDeliveryException exception =
 			new AggregateMessageDeliveryException(this.message, "something went wrong", exceptionsList());
 
 	private MessageDeliveryException firstProblem;

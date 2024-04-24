@@ -31,7 +31,7 @@ public class PathRemovedEvent extends ApacheMinaSftpEvent {
 
 	private static final long serialVersionUID = 1L;
 
-	private transient Path path;
+	private final transient Path path;
 
 	private final boolean isDirectory;
 

@@ -464,7 +464,7 @@ public class CachingClientConnectionFactoryTests {
 		BlockingQueue<?> connections = TestUtils
 				.getPropertyValue(this.gatewayCF, "pool.available", BlockingQueue.class);
 		// wait until the connection is returned to the pool
-		await().atMost(Duration.ofSeconds(10)).until(() -> connections.size() > 0);
+		await().atMost(Duration.ofSeconds(10)).until(() -> !connections.isEmpty());
 
 		// assert we use the same connection from the pool
 		toGateway.send(new GenericMessage<>("Hello, world2!"));

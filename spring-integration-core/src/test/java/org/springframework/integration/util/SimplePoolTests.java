@@ -332,7 +332,7 @@ public class SimplePoolTests {
 	}
 
 	private SimplePool<String> stringPool(int size, Set<String> strings, AtomicBoolean stale) {
-		return new SimplePool<String>(size, new SimplePool.PoolItemCallback<String>() {
+		return new SimplePool<>(size, new SimplePool.PoolItemCallback<String>() {
 
 			private int i;
 

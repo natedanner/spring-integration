@@ -95,7 +95,7 @@ class RedisStoreInboundChannelAdapterIntegrationTests implements RedisContainerT
 		assertThat(message).isNull();
 
 		int n = 0;
-		while (n++ < 100 && template.keys("bar").size() == 0) {
+		while (n++ < 100 && template.keys("bar").isEmpty()) {
 			Thread.sleep(100);
 		}
 		assertThat(n < 100).as("Rename didn't occur").isTrue();
@@ -127,7 +127,7 @@ class RedisStoreInboundChannelAdapterIntegrationTests implements RedisContainerT
 		spca.start();
 		assertThat(latch.await(10, TimeUnit.SECONDS)).isTrue();
 		int n = 0;
-		while (n++ < 100 && template.keys("baz").size() == 0) {
+		while (n++ < 100 && template.keys("baz").isEmpty()) {
 			Thread.sleep(100);
 		}
 		assertThat(n < 100).as("Rename didn't occur").isTrue();
@@ -161,7 +161,7 @@ class RedisStoreInboundChannelAdapterIntegrationTests implements RedisContainerT
 		assertThat(message).isNull();
 
 		int n = 0;
-		while (n++ < 100 && template.keys("bar").size() == 0) {
+		while (n++ < 100 && template.keys("bar").isEmpty()) {
 			Thread.sleep(100);
 		}
 		assertThat(n < 100).as("Rename didn't occur").isTrue();

@@ -70,7 +70,7 @@ public class RecursiveDirectoryScanner extends DefaultDirectoryScanner {
 	public List<File> listFiles(File directory) throws IllegalArgumentException {
 		FileListFilter<File> filter = getFilter();
 		boolean supportAcceptFilter = filter instanceof AbstractFileListFilter;
-		try (Stream<Path> pathStream = Files.walk(directory.toPath(), this.maxDepth, this.fileVisitOptions);) {
+		try (Stream<Path> pathStream = Files.walk(directory.toPath(), this.maxDepth, this.fileVisitOptions)) {
 			Stream<File> fileStream =
 					pathStream
 							.skip(1) // NOSONAR

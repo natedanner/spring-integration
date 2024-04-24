@@ -168,7 +168,7 @@ public class TcpConfigOutboundGatewayTests {
 		});
 		Map<String, ConsumerEndpointFactoryBean> consumers =
 				this.ctx.getBeansOfType(ConsumerEndpointFactoryBean.class);
-		consumers.values().forEach(g -> g.start());
+		consumers.values().forEach(ConsumerEndpointFactoryBean::start);
 		initializedFactories = true;
 	}
 

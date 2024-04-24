@@ -137,7 +137,7 @@ public class StoredProcExecutorTests {
 		DataSource datasource = mock(DataSource.class);
 		StoredProcExecutor storedProcExecutor = new StoredProcExecutor(datasource);
 
-		Map<String, RowMapper<?>> rowmappers = new HashMap<String, RowMapper<?>>();
+		Map<String, RowMapper<?>> rowmappers = new HashMap<>();
 
 		storedProcExecutor.setReturningResultSetRowMappers(rowmappers);
 

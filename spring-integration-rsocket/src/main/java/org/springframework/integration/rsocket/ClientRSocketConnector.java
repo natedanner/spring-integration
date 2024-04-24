@@ -46,7 +46,7 @@ public class ClientRSocketConnector extends AbstractRSocketConnector {
 
 	private final Map<Object, MimeType> setupMetadata = new LinkedHashMap<>(4);
 
-	private RSocketConnectorConfigurer connectorConfigurer = (connector) -> {
+	private RSocketConnectorConfigurer connectorConfigurer = connector -> {
 	};
 
 	private Object setupData;
@@ -160,9 +160,9 @@ public class ClientRSocketConnector extends AbstractRSocketConnector {
 				.setupData(this.setupData)
 				.setupRoute(this.setupRoute, this.setupRouteVars)
 				.rsocketConnector(this.connectorConfigurer)
-				.rsocketConnector((connector) ->
+				.rsocketConnector(connector ->
 						connector.acceptor(this.rSocketMessageHandler.responder()))
-				.apply((builder) -> this.setupMetadata.forEach(builder::setupMetadata))
+				.apply(builder -> this.setupMetadata.forEach(builder::setupMetadata))
 				.transport(this.clientTransport);
 	}
 

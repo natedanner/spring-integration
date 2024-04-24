@@ -87,7 +87,7 @@ public class MessagingAnnotationPostProcessor implements BeanDefinitionRegistryP
 		this.postProcessors.values().stream()
 				.filter(BeanFactoryAware.class::isInstance)
 				.map(BeanFactoryAware.class::cast)
-				.forEach((processor) -> processor.setBeanFactory((BeanFactory) this.registry));
+				.forEach(processor -> processor.setBeanFactory((BeanFactory) this.registry));
 
 		String[] beanNames = registry.getBeanDefinitionNames();
 

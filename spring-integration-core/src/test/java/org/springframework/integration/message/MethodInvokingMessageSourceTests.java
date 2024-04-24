@@ -52,7 +52,7 @@ public class MethodInvokingMessageSourceTests {
 
 	@Test
 	public void testHeaderExpressions() {
-		Map<String, Expression> headerExpressions = new HashMap<String, Expression>();
+		Map<String, Expression> headerExpressions = new HashMap<>();
 		headerExpressions.put("foo", new LiteralExpression("abc"));
 		headerExpressions.put("bar", new SpelExpressionParser().parseExpression("new Integer(123)"));
 		MethodInvokingMessageSource source = new MethodInvokingMessageSource();

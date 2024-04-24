@@ -109,7 +109,7 @@ public class MongoDbChangeStreamMessageProducerTests {
 		StepVerifier stepVerifier =
 				Flux.from(this.fluxMessageChannel)
 						.as(StepVerifier::create)
-						.assertNext((message) -> {
+						.assertNext(message -> {
 							assertThat(message.getPayload())
 									.isInstanceOf(ChangeStreamEvent.class)
 									.extracting("body")
@@ -121,11 +121,11 @@ public class MongoDbChangeStreamMessageProducerTests {
 									.containsKeys(MongoHeaders.CHANGE_STREAM_TIMESTAMP,
 											MongoHeaders.CHANGE_STREAM_RESUME_TOKEN);
 						})
-						.assertNext((message) ->
+						.assertNext(message ->
 								assertThat(message.getPayload())
 										.extracting("body")
 										.isEqualTo(person2))
-						.assertNext((message) ->
+						.assertNext(message ->
 								assertThat(message.getPayload())
 										.extracting("body")
 										.isEqualTo(person3))

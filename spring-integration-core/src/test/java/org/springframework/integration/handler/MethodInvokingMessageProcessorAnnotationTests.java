@@ -61,7 +61,7 @@ public class MethodInvokingMessageProcessorAnnotationTests {
 
 	private final Employee employee = new Employee("oleg", "zhurakousky");
 
-	private static volatile int concurrencyFailures = 0;
+	private static volatile int concurrencyFailures;
 
 	@Test
 	public void multiThreadsUUIDToStringConversion() throws Exception {
@@ -445,7 +445,7 @@ public class MethodInvokingMessageProcessorAnnotationTests {
 		}
 
 		public Object mapHeadersAndPayload(Map<String, Object> headers, Object payload) {
-			Map<String, Object> map = new HashMap<String, Object>(headers);
+			Map<String, Object> map = new HashMap<>(headers);
 			map.put("payload", payload);
 			return map;
 		}

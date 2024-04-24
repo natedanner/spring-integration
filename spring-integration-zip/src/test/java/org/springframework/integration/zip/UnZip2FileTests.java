@@ -111,20 +111,20 @@ public class UnZip2FileTests {
 		boolean pl = false;
 
 		for (File file : files) {
-			if (file.getName().equals("continents")) {
+			if ("continents".equals(file.getName())) {
 				continents = true;
 				assertThat(file).isDirectory();
 				assertThat(file.list()).hasSize(2);
 			}
-			if (file.getName().equals("de.txt")) {
+			if ("de.txt".equals(file.getName())) {
 				de = true;
 				assertThat(file).isFile();
 			}
-			if (file.getName().equals("fr.txt")) {
+			if ("fr.txt".equals(file.getName())) {
 				fr = true;
 				assertThat(file).isFile();
 			}
-			if (file.getName().equals("pl.txt")) {
+			if ("pl.txt".equals(file.getName())) {
 				pl = true;
 				assertThat(file).isFile();
 			}

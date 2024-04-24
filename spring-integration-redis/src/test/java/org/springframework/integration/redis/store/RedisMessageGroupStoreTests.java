@@ -316,7 +316,7 @@ class RedisMessageGroupStoreTests implements RedisContainerTest {
 			executor.execute(() -> {
 				store2.removeMessagesFromGroup(this.groupId, message);
 				MessageGroup group = store2.getMessageGroup(this.groupId);
-				if (group.getMessages().size() != 0) {
+				if (!group.getMessages().isEmpty()) {
 					failures.add("REMOVE");
 					throw new AssertionFailedError("Failed on Remove");
 				}

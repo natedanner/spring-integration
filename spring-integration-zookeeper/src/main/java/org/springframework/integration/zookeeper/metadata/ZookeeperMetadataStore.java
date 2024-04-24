@@ -372,7 +372,7 @@ public class ZookeeperMetadataStore implements ListenableMetadataStore, SmartLif
 
 						ZookeeperMetadataStore.this.updateMap.remove(eventPath);
 					}
-					ZookeeperMetadataStore.this.listeners.forEach((listener) -> listener.onAdd(eventKey, value));
+					ZookeeperMetadataStore.this.listeners.forEach(listener -> listener.onAdd(eventKey, value));
 				}
 				case NODE_CHANGED -> {
 					if (ZookeeperMetadataStore.this.updateMap.containsKey(eventKey) &&
@@ -381,11 +381,11 @@ public class ZookeeperMetadataStore implements ListenableMetadataStore, SmartLif
 
 						ZookeeperMetadataStore.this.updateMap.remove(eventPath);
 					}
-					ZookeeperMetadataStore.this.listeners.forEach((listener) -> listener.onUpdate(eventKey, value));
+					ZookeeperMetadataStore.this.listeners.forEach(listener -> listener.onUpdate(eventKey, value));
 				}
 				case NODE_DELETED -> {
 					ZookeeperMetadataStore.this.updateMap.remove(eventKey);
-					ZookeeperMetadataStore.this.listeners.forEach((listener) -> listener.onRemove(eventKey, value));
+					ZookeeperMetadataStore.this.listeners.forEach(listener -> listener.onRemove(eventKey, value));
 				}
 			}
 		}

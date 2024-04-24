@@ -49,7 +49,7 @@ public class ExpressionEvaluatingHeaderValueMessageProcessor<T> extends Abstract
 	 * @param expectedType the type for return value of {@code expression} evaluation result.
 	 */
 	public ExpressionEvaluatingHeaderValueMessageProcessor(Expression expression, Class<T> expectedType) {
-		this.targetProcessor = new ExpressionEvaluatingMessageProcessor<T>(expression, expectedType);
+		this.targetProcessor = new ExpressionEvaluatingMessageProcessor<>(expression, expectedType);
 	}
 
 	/**
@@ -61,7 +61,7 @@ public class ExpressionEvaluatingHeaderValueMessageProcessor<T> extends Abstract
 	 */
 	public ExpressionEvaluatingHeaderValueMessageProcessor(String expressionString, Class<T> expectedType) {
 		Expression expression = EXPRESSION_PARSER.parseExpression(expressionString);
-		this.targetProcessor = new ExpressionEvaluatingMessageProcessor<T>(expression, expectedType);
+		this.targetProcessor = new ExpressionEvaluatingMessageProcessor<>(expression, expectedType);
 	}
 
 	public void setBeanFactory(BeanFactory beanFactory) {

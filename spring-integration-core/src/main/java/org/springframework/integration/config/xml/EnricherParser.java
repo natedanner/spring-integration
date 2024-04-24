@@ -81,8 +81,8 @@ public class EnricherParser extends AbstractConsumerEndpointParser {
 			final BeanDefinitionBuilder builder) {
 		List<Element> subElements = DomUtils.getChildElementsByTagName(element, "property");
 		if (!CollectionUtils.isEmpty(subElements)) {
-			ManagedMap<String, Object> expressions = new ManagedMap<String, Object>();
-			ManagedMap<String, Object> nullResultExpressions = new ManagedMap<String, Object>();
+			ManagedMap<String, Object> expressions = new ManagedMap<>();
+			ManagedMap<String, Object> nullResultExpressions = new ManagedMap<>();
 			for (Element subElement : subElements) {
 				String name = subElement.getAttribute("name");
 
@@ -160,8 +160,8 @@ public class EnricherParser extends AbstractConsumerEndpointParser {
 		List<Element> subElements;
 		subElements = DomUtils.getChildElementsByTagName(element, "header");
 		if (!CollectionUtils.isEmpty(subElements)) {
-			ManagedMap<String, Object> expressions = new ManagedMap<String, Object>();
-			ManagedMap<String, Object> nullResultHeaderExpressions = new ManagedMap<String, Object>();
+			ManagedMap<String, Object> expressions = new ManagedMap<>();
+			ManagedMap<String, Object> nullResultHeaderExpressions = new ManagedMap<>();
 			for (Element subElement : subElements) {
 				String name = subElement.getAttribute("name");
 				String nullResultHeaderExpression = subElement.getAttribute("null-result-expression");

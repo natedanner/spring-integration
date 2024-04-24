@@ -193,7 +193,7 @@ public class OutboundEndpointTests {
 	/**
 	 * Increase method visibility
 	 */
-	private class TestRabbitTemplate extends RabbitTemplate {
+	private final class TestRabbitTemplate extends RabbitTemplate {
 
 		private TestRabbitTemplate(ConnectionFactory connectionFactory) {
 			super(connectionFactory);

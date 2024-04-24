@@ -21,7 +21,7 @@ import java.util.List;
 
 public class MaxValueReleaseStrategy {
 
-	private long maxValue;
+	private final long maxValue;
 
 	public MaxValueReleaseStrategy(long maxValue) {
 		this.maxValue = maxValue;

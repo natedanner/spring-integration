@@ -64,13 +64,13 @@ public class GlobalChannelInterceptorTests {
 		Map<String, InterceptableChannel> channels = applicationContext.getBeansOfType(InterceptableChannel.class);
 		for (String channelName : channels.keySet()) {
 			InterceptableChannel channel = channels.get(channelName);
-			if (channelName.equals("nullChannel")) {
+			if ("nullChannel".equals(channelName)) {
 				continue;
 			}
 
 			ChannelInterceptor[] interceptors = channel.getInterceptors()
 					.toArray(new ChannelInterceptor[channel.getInterceptors().size()]);
-			if (channelName.equals("inputA")) { // 328741
+			if ("inputA".equals(channelName)) { // 328741
 				assertThat(interceptors.length == 10).isTrue();
 				assertThat(interceptors[0].toString()).isEqualTo("interceptor-three");
 				assertThat(interceptors[1].toString()).isEqualTo("interceptor-two");
@@ -83,7 +83,7 @@ public class GlobalChannelInterceptorTests {
 				assertThat(interceptors[8].toString()).isEqualTo("interceptor-four");
 				assertThat(interceptors[9].toString()).isEqualTo("interceptor-one");
 			}
-			else if (channelName.equals("inputB")) {
+			else if ("inputB".equals(channelName)) {
 				assertThat(interceptors.length == 6).isTrue();
 				assertThat(interceptors[0].toString()).isEqualTo("interceptor-three");
 				assertThat(interceptors[1].toString()).isEqualTo("interceptor-two");
@@ -92,7 +92,7 @@ public class GlobalChannelInterceptorTests {
 				assertThat(interceptors[4].toString()).isEqualTo("interceptor-four");
 				assertThat(interceptors[5].toString()).isEqualTo("interceptor-one");
 			}
-			else if (channelName.equals("foo")) {
+			else if ("foo".equals(channelName)) {
 				assertThat(interceptors.length == 6).isTrue();
 				assertThat(interceptors[0].toString()).isEqualTo("interceptor-two");
 				assertThat(interceptors[1].toString()).isEqualTo("interceptor-five");
@@ -101,25 +101,25 @@ public class GlobalChannelInterceptorTests {
 				assertThat(interceptors[4].toString()).isEqualTo("interceptor-four");
 				assertThat(interceptors[5].toString()).isEqualTo("interceptor-one");
 			}
-			else if (channelName.equals("bar")) {
+			else if ("bar".equals(channelName)) {
 				assertThat(interceptors.length == 4).isTrue();
 				assertThat(interceptors[0].toString()).isEqualTo("interceptor-eight");
 				assertThat(interceptors[1].toString()).isEqualTo("interceptor-seven");
 				assertThat(interceptors[2].toString()).isEqualTo("interceptor-ten");
 				assertThat(interceptors[3].toString()).isEqualTo("interceptor-eleven");
 			}
-			else if (channelName.equals("baz")) {
+			else if ("baz".equals(channelName)) {
 				assertThat(interceptors.length == 2).isTrue();
 				assertThat(interceptors[0].toString()).isEqualTo("interceptor-ten");
 				assertThat(interceptors[1].toString()).isEqualTo("interceptor-eleven");
 			}
-			else if (channelName.equals("inputWithProxy")) {
+			else if ("inputWithProxy".equals(channelName)) {
 				assertThat(interceptors.length == 6).isTrue();
 			}
-			else if (channelName.equals("test")) {
+			else if ("test".equals(channelName)) {
 				assertThat(interceptors).isNotNull();
 				assertThat(interceptors.length == 2).isTrue();
-				List<String> interceptorNames = new ArrayList<String>();
+				List<String> interceptorNames = new ArrayList<>();
 				for (ChannelInterceptor interceptor : interceptors) {
 					interceptorNames.add(interceptor.toString());
 				}
@@ -133,7 +133,7 @@ public class GlobalChannelInterceptorTests {
 	public void testWildCardPatternMatch() {
 
 		List<ChannelInterceptor> channelInterceptors = this.inputCChannel.getInterceptors();
-		List<String> interceptorNames = new ArrayList<String>();
+		List<String> interceptorNames = new ArrayList<>();
 		for (ChannelInterceptor interceptor : channelInterceptors) {
 			interceptorNames.add(interceptor.toString());
 		}

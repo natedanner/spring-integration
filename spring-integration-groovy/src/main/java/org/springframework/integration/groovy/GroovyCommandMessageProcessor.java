@@ -140,7 +140,7 @@ public class GroovyCommandMessageProcessor extends AbstractScriptExecutingMessag
 		factory.setBeanFactory(getBeanFactory());
 		try {
 			Object result = factory.getScriptedObject(scriptSource);
-			return (result instanceof GString) ? result.toString() : result;
+			return result instanceof GString ? result.toString() : result;
 		}
 		catch (IOException e) {
 			throw new UncheckedIOException(e);

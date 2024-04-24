@@ -30,7 +30,7 @@ public class StubProducer implements MessageProducer {
 
 	private Message lastMessageSent;
 
-	private Destination staticDestination;
+	private final Destination staticDestination;
 
 	private long deliveryDelay;
 

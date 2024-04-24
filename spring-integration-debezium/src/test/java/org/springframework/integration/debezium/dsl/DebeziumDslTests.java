@@ -85,9 +85,8 @@ public class DebeziumDslTests implements DebeziumMySqlTestContainer {
 
 		config.batchHeaderKeys.stream()
 				.filter(headerNames -> !CollectionUtils.isEmpty(headerNames))
-				.forEach(headerNames -> {
-					assertThat(headerNames).contains("__name", "__db", "__table");
-				});
+				.forEach(headerNames ->
+					assertThat(headerNames).contains("__name", "__db", "__table"));
 	}
 
 	@Configuration
@@ -106,7 +105,7 @@ public class DebeziumDslTests implements DebeziumMySqlTestContainer {
 
 		private final List<List<String>> batchHeaderKeys = new ArrayList<>();
 
-		private int batchMessageCount = 0;
+		private int batchMessageCount;
 
 		@Bean
 		public IntegrationFlow streamFlowFromBuilder(DebeziumEngine.Builder<ChangeEvent<byte[], byte[]>> builder) {

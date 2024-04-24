@@ -347,7 +347,7 @@ public class AmqpChannelFactoryBean extends AbstractFactoryBean<AbstractAmqpChan
 
 	@Override
 	public Class<?> getObjectType() {
-		return (this.channel != null) ? this.channel.getClass() : AbstractAmqpChannel.class;
+		return this.channel != null ? this.channel.getClass() : AbstractAmqpChannel.class;
 	}
 
 	@Override
@@ -445,7 +445,7 @@ public class AmqpChannelFactoryBean extends AbstractFactoryBean<AbstractAmqpChan
 
 	@Override
 	public int getPhase() {
-		return (this.channel instanceof SmartLifecycle) ?
+		return this.channel instanceof SmartLifecycle ?
 				((SmartLifecycle) this.channel).getPhase() : 0;
 	}
 

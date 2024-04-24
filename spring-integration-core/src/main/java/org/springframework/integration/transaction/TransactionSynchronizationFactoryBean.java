@@ -187,11 +187,11 @@ public class TransactionSynchronizationFactoryBean implements FactoryBean<Defaul
 				new ExpressionEvaluatingTransactionSynchronizationProcessor();
 
 		JavaUtils.INSTANCE
-				.acceptIfHasText(this.beforeCommitExpression, (expression) ->
+				.acceptIfHasText(this.beforeCommitExpression, expression ->
 						processor.setBeforeCommitExpression(PARSER.parseExpression(expression)))
-				.acceptIfHasText(this.afterCommitExpression, (expression) ->
+				.acceptIfHasText(this.afterCommitExpression, expression ->
 						processor.setAfterCommitExpression(PARSER.parseExpression(expression)))
-				.acceptIfHasText(this.afterRollbackExpression, (expression) ->
+				.acceptIfHasText(this.afterRollbackExpression, expression ->
 						processor.setAfterRollbackExpression(PARSER.parseExpression(expression)))
 				.acceptIfNotNull(this.beforeCommitChannel, processor::setBeforeCommitChannel)
 				.acceptIfNotNull(this.afterCommitChannel, processor::setAfterCommitChannel)

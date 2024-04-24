@@ -134,9 +134,9 @@ public class WebFluxRequestExecutingMessageHandler extends AbstractHttpRequestEx
 		super(uriExpression);
 		this.webClientExplicitlySet = webClient != null;
 		this.webClient =
-				!this.webClientExplicitlySet
-						? WebClient.builder().uriBuilderFactory(this.uriFactory).build()
-						: webClient;
+				this.webClientExplicitlySet
+						? webClient
+						: WebClient.builder().uriBuilderFactory(this.uriFactory).build();
 		this.setAsync(true);
 	}
 
@@ -216,7 +216,7 @@ public class WebFluxRequestExecutingMessageHandler extends AbstractHttpRequestEx
 
 	@Override
 	public String getComponentType() {
-		return (isExpectReply() ? "webflux:outbound-gateway" : "webflux:outbound-channel-adapter");
+		return isExpectReply() ? "webflux:outbound-gateway" : "webflux:outbound-channel-adapter";
 	}
 
 	@Override

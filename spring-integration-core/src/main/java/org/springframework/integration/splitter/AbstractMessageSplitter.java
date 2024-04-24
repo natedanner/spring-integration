@@ -158,7 +158,7 @@ public abstract class AbstractMessageSplitter extends AbstractReplyProducingMess
 			flux = Flux.fromIterable(() -> iter);
 		}
 		else if (result instanceof Stream<?>) {
-			Stream<Object> stream = ((Stream<Object>) result);
+			Stream<Object> stream = (Stream<Object>) result;
 			sequenceSize = 0;
 			flux = Flux.fromStream(stream);
 		}
@@ -203,7 +203,7 @@ public abstract class AbstractMessageSplitter extends AbstractReplyProducingMess
 			iterator = iter;
 		}
 		else if (result instanceof Stream<?>) {
-			Stream<Object> stream = ((Stream<Object>) result);
+			Stream<Object> stream = (Stream<Object>) result;
 			sequenceSize = 0;
 			iterator = stream.iterator();
 		}

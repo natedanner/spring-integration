@@ -27,7 +27,7 @@ package org.springframework.integration.transformer.support;
 public abstract class AbstractHeaderValueMessageProcessor<T> implements HeaderValueMessageProcessor<T> {
 
 	// null indicates no explicit setting
-	private Boolean overwrite = null;
+	private Boolean overwrite;
 
 	public void setOverwrite(Boolean overwrite) {
 		this.overwrite = overwrite;

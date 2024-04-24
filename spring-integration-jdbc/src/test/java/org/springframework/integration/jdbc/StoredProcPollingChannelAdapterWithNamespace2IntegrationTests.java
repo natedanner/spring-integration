@@ -53,7 +53,7 @@ public class StoredProcPollingChannelAdapterWithNamespace2IntegrationTests {
 
 	@Test
 	public void pollH2DatabaseUsingStoredProcedureCall() throws Exception {
-		List<Message<List<Integer>>> received = new ArrayList<Message<List<Integer>>>();
+		List<Message<List<Integer>>> received = new ArrayList<>();
 
 		received.add(consumer.poll(60000));
 
@@ -85,7 +85,7 @@ public class StoredProcPollingChannelAdapterWithNamespace2IntegrationTests {
 
 	static class Consumer {
 
-		private final BlockingQueue<Message<List<Integer>>> messages = new LinkedBlockingQueue<Message<List<Integer>>>();
+		private final BlockingQueue<Message<List<Integer>>> messages = new LinkedBlockingQueue<>();
 
 		@ServiceActivator
 		public void receive(Message<List<Integer>> message) {

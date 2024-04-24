@@ -55,7 +55,7 @@ public class FtpInboundFileSynchronizer extends AbstractInboundFileSynchronizer<
 
 	@Override
 	protected String getFilename(FTPFile file) {
-		return (file != null ? file.getName() : null);
+		return file != null ? file.getName() : null;
 	}
 
 	@Override

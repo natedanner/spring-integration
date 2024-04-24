@@ -302,7 +302,7 @@ public abstract class HttpInboundEndpointSupportSpec<S extends HttpInboundEndpoi
 	@Override
 	public Map<Object, String> getComponentsToRegister() {
 		HeaderMapper<HttpHeaders> headerMapperToRegister =
-				(this.explicitHeaderMapper != null ? this.explicitHeaderMapper : this.headerMapper);
+				this.explicitHeaderMapper != null ? this.explicitHeaderMapper : this.headerMapper;
 		return Collections.singletonMap(headerMapperToRegister, null);
 	}
 

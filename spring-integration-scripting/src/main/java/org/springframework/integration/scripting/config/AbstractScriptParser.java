@@ -63,7 +63,7 @@ public abstract class AbstractScriptParser extends AbstractSingleBeanDefinitionP
 		List<Element> variableElements = DomUtils.getChildElementsByTagName(element, "variable");
 		String scriptVariableGeneratorName = element.getAttribute("script-variable-generator");
 
-		if (StringUtils.hasText(scriptVariableGeneratorName) && variableElements.size() > 0) {
+		if (StringUtils.hasText(scriptVariableGeneratorName) && !variableElements.isEmpty()) {
 			parserContext.getReaderContext().error(
 					"'script-variable-generator' and 'variable' sub-elements are mutually exclusive.", element);
 			return;
@@ -122,7 +122,7 @@ public abstract class AbstractScriptParser extends AbstractSingleBeanDefinitionP
 			List<Element> variableElements) {
 
 		@SuppressWarnings("serial")
-		ManagedMap<String, Object> variableMap = new ManagedMap<String, Object>() {
+		ManagedMap<String, Object> variableMap = new ManagedMap<>() {
 
 			@Override
 			public Object put(String key, Object value) {

@@ -90,7 +90,7 @@ public class RoutingSlipHeaderValueMessageProcessor
 				slip = this.routingSlip;
 				if (slip == null) {
 					List<Object> slipPath = this.routingSlipPath;
-					List<Object> routingSlipValues = new ArrayList<Object>(slipPath.size());
+					List<Object> routingSlipValues = new ArrayList<>(slipPath.size());
 					for (Object path : slipPath) {
 						if (path instanceof String) {
 							String entry = (String) path;

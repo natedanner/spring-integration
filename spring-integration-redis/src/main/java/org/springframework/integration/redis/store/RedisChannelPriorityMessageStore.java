@@ -76,7 +76,7 @@ public class RedisChannelPriorityMessageStore extends RedisChannelMessageStore
 	@Override
 	public MessageGroup getMessageGroup(Object groupId) {
 		Assert.isInstanceOf(String.class, groupId);
-		List<Message<?>> allMessages = new LinkedList<Message<?>>();
+		List<Message<?>> allMessages = new LinkedList<>();
 		List<String> list = sortedKeys((String) groupId);
 		for (String key : list) {
 			List<Message<?>> messages = this.getRedisTemplate().boundListOps(key).range(0, -1);

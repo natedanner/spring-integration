@@ -48,7 +48,7 @@ public class AnnotatedTests {
 	@Test
 	public void testHistoryWithAnnotatedComponents() throws Exception {
 		ClassPathXmlApplicationContext ac = new ClassPathXmlApplicationContext("annotated-config.xml", this.getClass());
-		ApplicationListener<ApplicationEvent> listener = new ApplicationListener<ApplicationEvent>() {
+		ApplicationListener<ApplicationEvent> listener = new ApplicationListener<>() {
 
 			@Override
 			public void onApplicationEvent(ApplicationEvent event) {

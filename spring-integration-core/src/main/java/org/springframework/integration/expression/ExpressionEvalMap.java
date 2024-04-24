@@ -109,7 +109,7 @@ public final class ExpressionEvalMap extends AbstractMap<String, Object> {
 	public Set<Map.Entry<String, Object>> entrySet() {
 		return this.original.keySet()
 				.stream()
-				.map((key) -> new SimpleImmutableEntry<>(key, get(key)))
+				.map(key -> new SimpleImmutableEntry<>(key, get(key)))
 				.collect(Collectors.toSet());
 	}
 

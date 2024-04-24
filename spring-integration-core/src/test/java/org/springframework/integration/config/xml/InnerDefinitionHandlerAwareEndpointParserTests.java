@@ -232,7 +232,7 @@ public class InnerDefinitionHandlerAwareEndpointParserTests {
 		inChannel.send(inMessage);
 		PollableChannel outChannel = this.applicationContext.getBean("outChannel", PollableChannel.class);
 		String payload = (String) outChannel.receive().getPayload();
-		assertThat(payload.equals("One,Two")).isTrue();
+		assertThat("One,Two".equals(payload)).isTrue();
 	}
 
 	private void testRouterDefinitionSuccess(String configProperty) {
@@ -324,7 +324,7 @@ public class InnerDefinitionHandlerAwareEndpointParserTests {
 	public static class TestRouter {
 
 		public String route(String value) {
-			return (value.equals("1")) ? "channel1" : "channel2";
+			return "1".equals(value) ? "channel1" : "channel2";
 		}
 
 	}
@@ -352,7 +352,7 @@ public class InnerDefinitionHandlerAwareEndpointParserTests {
 	public static class TestMessageFilter {
 
 		public boolean filter(String value) {
-			return value.equals("foo");
+			return "foo".equals(value);
 		}
 
 	}

@@ -190,7 +190,7 @@ public class TcpConfigInboundGatewayTests {
 		socket.setSoTimeout(5000);
 		String greetings = "Hello World!";
 		socket.getOutputStream().write(ByteArrayStxEtxSerializer.STX);
-		socket.getOutputStream().write((greetings).getBytes());
+		socket.getOutputStream().write(greetings.getBytes());
 		socket.getOutputStream().write(ByteArrayStxEtxSerializer.ETX);
 		StringBuilder sb = new StringBuilder();
 		int c;
@@ -249,7 +249,7 @@ public class TcpConfigInboundGatewayTests {
 		byte[] header = new byte[4];
 		header[3] = (byte) greetings.length();
 		socket.getOutputStream().write(header);
-		socket.getOutputStream().write((greetings).getBytes());
+		socket.getOutputStream().write(greetings.getBytes());
 		StringBuilder sb = new StringBuilder();
 		int c;
 		int n = 0;

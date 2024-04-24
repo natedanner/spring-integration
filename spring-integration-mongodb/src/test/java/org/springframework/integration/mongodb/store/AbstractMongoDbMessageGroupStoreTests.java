@@ -86,7 +86,7 @@ public abstract class AbstractMongoDbMessageGroupStoreTests implements MongoDbCo
 	@Test
 	void testNonExistingEmptyMessageGroup() {
 		MessageGroupStore store = getMessageGroupStore();
-		store.addMessagesToGroup(1, new GenericMessage<Object>("foo"));
+		store.addMessagesToGroup(1, new GenericMessage<>("foo"));
 		MessageGroup messageGroup = store.getMessageGroup(1);
 		assertThat(messageGroup).isNotNull();
 		assertThat(messageGroup.getClass().getName()).contains("PersistentMessageGroup");

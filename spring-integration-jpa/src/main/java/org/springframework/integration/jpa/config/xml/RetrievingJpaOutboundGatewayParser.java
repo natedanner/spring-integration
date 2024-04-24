@@ -93,7 +93,7 @@ public class RetrievingJpaOutboundGatewayParser extends AbstractJpaOutboundGatew
 
 			String others =
 					Arrays.stream(otherAttributes)
-							.filter((attr) -> gatewayElement.hasAttribute(attr) &&
+							.filter(attr -> gatewayElement.hasAttribute(attr) &&
 									StringUtils.hasText(gatewayElement.getAttribute(attr)))
 							.collect(Collectors.joining(","));
 

@@ -63,7 +63,7 @@ public abstract class AbstractKryoCodec implements Codec {
 		Assert.notNull(outputStream, "'outputSteam' cannot be null");
 
 		Kryo kryo = this.pool.obtain();
-		try (Output output = (outputStream instanceof Output ? (Output) outputStream : new Output(outputStream))) {
+		try (Output output = outputStream instanceof Output ? (Output) outputStream : new Output(outputStream)) {
 			doEncode(kryo, object, output);
 		}
 		finally {
@@ -86,7 +86,7 @@ public abstract class AbstractKryoCodec implements Codec {
 		Assert.notNull(type, "'type' cannot be null");
 
 		Kryo kryo = this.pool.obtain();
-		try (Input input = (inputStream instanceof Input ? (Input) inputStream : new Input(inputStream))) {
+		try (Input input = inputStream instanceof Input ? (Input) inputStream : new Input(inputStream)) {
 			return doDecode(kryo, input, type);
 		}
 		finally {

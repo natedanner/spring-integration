@@ -57,9 +57,9 @@ import static org.mockito.Mockito.spy;
  */
 public class LockRegistryLeaderInitiatorTests {
 
-	private CountDownLatch granted = new CountDownLatch(1);
+	private final CountDownLatch granted = new CountDownLatch(1);
 
-	private CountDownLatch revoked = new CountDownLatch(1);
+	private final CountDownLatch revoked = new CountDownLatch(1);
 
 	private final LockRegistry registry = new DefaultLockRegistry();
 

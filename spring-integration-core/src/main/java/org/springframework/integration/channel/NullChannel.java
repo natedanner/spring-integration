@@ -211,7 +211,7 @@ public class NullChannel implements PollableChannel,
 
 	@Override
 	public String toString() {
-		return (this.beanName != null) ? this.beanName : super.toString();
+		return this.beanName != null ? this.beanName : super.toString();
 	}
 
 	@Override

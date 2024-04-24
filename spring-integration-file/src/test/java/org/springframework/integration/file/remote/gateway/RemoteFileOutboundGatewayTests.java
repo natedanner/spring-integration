@@ -770,7 +770,7 @@ public class RemoteFileOutboundGatewayTests {
 		SessionFactory<TestLsEntry> sessionFactory = mock(SessionFactory.class);
 		@SuppressWarnings("unchecked")
 		Session<TestLsEntry> session = mock(Session.class);
-		RemoteFileTemplate<TestLsEntry> template = new RemoteFileTemplate<TestLsEntry>(sessionFactory) {
+		RemoteFileTemplate<TestLsEntry> template = new RemoteFileTemplate<>(sessionFactory) {
 
 			@Override
 			public boolean exists(String path) {

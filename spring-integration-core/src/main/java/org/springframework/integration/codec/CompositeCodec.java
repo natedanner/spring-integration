@@ -40,7 +40,7 @@ public class CompositeCodec implements Codec {
 	public CompositeCodec(Map<Class<?>, Codec> delegates, Codec defaultCodec) {
 		Assert.notNull(defaultCodec, "'defaultCodec' cannot be null");
 		this.defaultCodec = defaultCodec;
-		this.delegates = new HashMap<Class<?>, Codec>(delegates);
+		this.delegates = new HashMap<>(delegates);
 	}
 
 	public CompositeCodec(Codec defaultCodec) {

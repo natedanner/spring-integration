@@ -80,9 +80,9 @@ public class UnicastSendingMessageHandler extends
 	/**
 	 * If true adds headers to instruct receiving adapter to return an ack.
 	 */
-	private boolean waitForAck = false;
+	private boolean waitForAck;
 
-	private boolean acknowledge = false;
+	private boolean acknowledge;
 
 	private String ackHost;
 
@@ -106,7 +106,7 @@ public class UnicastSendingMessageHandler extends
 
 	private EvaluationContext evaluationContext;
 
-	private SocketCustomizer socketCustomizer = (aSocket) -> {
+	private SocketCustomizer socketCustomizer = aSocket -> {
 	};
 
 	private volatile CountDownLatch ackLatch;

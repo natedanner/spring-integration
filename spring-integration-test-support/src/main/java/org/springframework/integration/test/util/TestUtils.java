@@ -200,7 +200,7 @@ public abstract class TestUtils {
 						catch (InvocationTargetException e) {
 							throw new IllegalArgumentException(e);
 						}
-					}, method -> method.getName().equals("getComponentName"));
+					}, method -> "getComponentName".equals(method.getName()));
 					break;
 				}
 			}

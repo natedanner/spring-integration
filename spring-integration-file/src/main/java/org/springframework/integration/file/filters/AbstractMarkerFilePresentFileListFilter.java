@@ -125,7 +125,7 @@ public abstract class AbstractMarkerFilePresentFileListFilter<F> implements File
 			boolean anyMatch = this.filtersAndFunctions.entrySet().stream().anyMatch(entry -> {
 				F[] fileToCheck = (F[]) Array.newInstance(file.getClass(), 1);
 				fileToCheck[0] = file;
-				if (entry.getKey().filterFiles(fileToCheck).size() > 0) {
+				if (!entry.getKey().filterFiles(fileToCheck).isEmpty()) {
 					String markerName = entry.getValue().apply(getFilename(file));
 					return markerName != null && candidates.contains(markerName);
 				}

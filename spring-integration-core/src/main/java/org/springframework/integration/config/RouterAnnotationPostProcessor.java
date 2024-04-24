@@ -99,7 +99,7 @@ public class RouterAnnotationPostProcessor extends AbstractMethodAnnotationPostP
 		if (!ObjectUtils.isEmpty(channelMappings)) {
 			Map<String, String> mappings =
 					Arrays.stream(channelMappings)
-							.map((mapping) -> {
+							.map(mapping -> {
 								String[] keyValue = mapping.split("=");
 								return Map.entry(keyValue[0], keyValue[1]);
 							})

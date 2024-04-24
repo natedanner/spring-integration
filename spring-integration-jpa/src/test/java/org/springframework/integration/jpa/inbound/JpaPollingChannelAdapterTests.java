@@ -292,7 +292,7 @@ public class JpaPollingChannelAdapterTests {
 		assertThat(students.size()).isEqualTo(3);
 
 		await().until(() -> entityManager.createQuery("select count(*) from Student", Long.class).getSingleResult(),
-				(count) -> count == 0);
+				count -> count == 0);
 	}
 
 	@Test
@@ -364,7 +364,7 @@ public class JpaPollingChannelAdapterTests {
 		assertThat(students.size()).isEqualTo(3);
 
 		await().until(() -> entityManager.createQuery("select count(*) from Student", Long.class).getSingleResult(),
-				(count) -> count == 0);
+				count -> count == 0);
 	}
 
 	/**

@@ -240,13 +240,13 @@ public final class ClientWebSocketContainer extends IntegrationWebSocketContaine
 		IntegrationWebSocketConnectionManager(WebSocketClient client, String uriTemplate, Object... uriVariables) {
 			super(uriTemplate, uriVariables);
 			this.client = client;
-			this.syncClientLifecycle = ((client instanceof Lifecycle) && !((Lifecycle) client).isRunning());
+			this.syncClientLifecycle = (client instanceof Lifecycle) && !((Lifecycle) client).isRunning();
 		}
 
 		IntegrationWebSocketConnectionManager(WebSocketClient client, URI uri) {
 			super(uri);
 			this.client = client;
-			this.syncClientLifecycle = ((client instanceof Lifecycle) && !((Lifecycle) client).isRunning());
+			this.syncClientLifecycle = (client instanceof Lifecycle) && !((Lifecycle) client).isRunning();
 		}
 
 		@Override
@@ -305,8 +305,8 @@ public final class ClientWebSocketContainer extends IntegrationWebSocketContaine
 
 		@Override
 		public boolean isConnected() {
-			return ((ClientWebSocketContainer.this.clientSession != null)
-					&& (ClientWebSocketContainer.this.clientSession.isOpen()));
+			return (ClientWebSocketContainer.this.clientSession != null)
+					&& (ClientWebSocketContainer.this.clientSession.isOpen());
 		}
 
 	}

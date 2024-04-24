@@ -117,7 +117,7 @@ class ReactiveRedisStreamMessageProducerTests implements RedisContainerTest {
 				.groups(STREAM_KEY)
 				.next()
 				.as(StepVerifier::create)
-				.assertNext((infoGroup) ->
+				.assertNext(infoGroup ->
 						assertThat(infoGroup.groupName()).isEqualTo(this.reactiveRedisStreamProducer.getBeanName()))
 				.thenCancel()
 				.verify(Duration.ofSeconds(10));

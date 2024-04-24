@@ -239,7 +239,7 @@ public class AggregatorFactoryBean extends AbstractSimpleMessageHandlerFactoryBe
 				.acceptIfNotNull(this.popSequence, aggregator::setPopSequence)
 				.acceptIfNotNull(this.releaseLockBeforeSend, aggregator::setReleaseLockBeforeSend)
 				.acceptIfNotNull(this.expireDuration,
-						(duration) -> aggregator.setExpireDuration(Duration.ofMillis(duration)))
+						duration -> aggregator.setExpireDuration(Duration.ofMillis(duration)))
 				.acceptIfNotNull(this.groupConditionSupplier, aggregator::setGroupConditionSupplier)
 				.acceptIfNotNull(this.expireTimeout, aggregator::setExpireTimeout);
 

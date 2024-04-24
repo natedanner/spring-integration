@@ -307,7 +307,7 @@ public class SftpOutboundTests {
 				String[] files = new File("remote-test-dir").list();
 				List<SftpClient.DirEntry> dirEntries =
 						Arrays.stream(files)
-								.map((file) -> new SftpClient.DirEntry(file, file, new SftpClient.Attributes()))
+								.map(file -> new SftpClient.DirEntry(file, file, new SftpClient.Attributes()))
 								.toList();
 				when(sftpClient.readDir("/remote-test-dir")).thenReturn(dirEntries);
 

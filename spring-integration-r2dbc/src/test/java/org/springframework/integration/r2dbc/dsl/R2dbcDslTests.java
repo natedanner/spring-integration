@@ -101,7 +101,7 @@ public class R2dbcDslTests {
 		IntegrationFlow r2dbcDslFlow(R2dbcEntityTemplate r2dbcEntityTemplate) {
 			return IntegrationFlow
 					.from(R2dbc.inboundChannelAdapter(r2dbcEntityTemplate,
-											(selectCreator) ->
+											selectCreator ->
 													selectCreator.createSelect("person")
 															.withProjection("*")
 															.withCriteria(Criteria.where("id").is(1)))
@@ -117,7 +117,7 @@ public class R2dbcDslTests {
 							R2dbc.outboundChannelAdapter(r2dbcEntityTemplate)
 									.queryType(R2dbcMessageHandler.Type.UPDATE)
 									.tableNameExpression("payload.class.simpleName")
-									.criteria((message) -> Criteria.where("id").is(2))
+									.criteria(message -> Criteria.where("id").is(2))
 									.values("{age:36}"));
 		}
 

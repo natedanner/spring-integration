@@ -47,7 +47,7 @@ public class GatewayProxyMessageMappingTests {
 
 	private final QueueChannel channel = new QueueChannel();
 
-	private volatile TestGateway gateway = null;
+	private volatile TestGateway gateway;
 
 	@BeforeEach
 	public void initializeGateway() {

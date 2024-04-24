@@ -221,11 +221,11 @@ public class AmqpMessageSourceIntegrationTests {
 
 				@Override
 				public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
-					if (beanName.equals("interceptedSource")) {
+					if ("interceptedSource".equals(beanName)) {
 						ProxyFactory pf = new ProxyFactory(bean);
 						pf.addAdvice((MethodInterceptor) invocation -> {
 
-							if (invocation.getMethod().getName().equals("receive")) {
+							if ("receive".equals(invocation.getMethod().getName())) {
 								org.springframework.messaging.Message<?> message =
 										(org.springframework.messaging.Message<?>) invocation.proceed();
 								if (message == null) {

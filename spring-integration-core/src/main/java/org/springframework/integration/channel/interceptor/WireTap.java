@@ -56,7 +56,7 @@ public class WireTap implements ChannelInterceptor, ManageableLifecycle, VetoCap
 
 	private String channelName;
 
-	private long timeout = 0;
+	private long timeout;
 
 	private BeanFactory beanFactory;
 
@@ -175,7 +175,7 @@ public class WireTap implements ChannelInterceptor, ManageableLifecycle, VetoCap
 								.build();
 			}
 			boolean sent =
-					(this.timeout >= 0)
+					this.timeout >= 0
 							? wireTapChannel.send(messageToSend, this.timeout)
 							: wireTapChannel.send(messageToSend);
 

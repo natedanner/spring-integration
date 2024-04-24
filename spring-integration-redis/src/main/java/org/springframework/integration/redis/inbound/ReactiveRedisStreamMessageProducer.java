@@ -313,7 +313,7 @@ public class ReactiveRedisStreamMessageProducer extends MessageProducerSupport {
 		}
 
 		Flux<? extends Message<?>> messageFlux =
-				events.map((record) -> buildMessageFromRecord(record, this.extractPayload));
+				events.map(record -> buildMessageFromRecord(record, this.extractPayload));
 		subscribeToPublisher(messageFlux);
 	}
 

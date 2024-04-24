@@ -337,7 +337,7 @@ public class DefaultHttpHeaderMapper implements HeaderMapper<HttpHeaders>, BeanF
 	 * @param userDefinedHeaderPrefix The user defined header prefix.
 	 */
 	public void setUserDefinedHeaderPrefix(String userDefinedHeaderPrefix) {
-		this.userDefinedHeaderPrefix = (userDefinedHeaderPrefix != null) ? userDefinedHeaderPrefix : "";
+		this.userDefinedHeaderPrefix = userDefinedHeaderPrefix != null ? userDefinedHeaderPrefix : "";
 	}
 
 	@Override
@@ -819,37 +819,37 @@ public class DefaultHttpHeaderMapper implements HeaderMapper<HttpHeaders>, BeanF
 				return source.getAllow();
 			case CACHE_CONTROL_LOWER:
 				String cacheControl = source.getCacheControl();
-				return (StringUtils.hasText(cacheControl)) ? cacheControl : null;
+				return StringUtils.hasText(cacheControl) ? cacheControl : null;
 			case CONTENT_LENGTH_LOWER:
 				long contentLength = source.getContentLength();
-				return (contentLength > -1) ? contentLength : null;
+				return contentLength > -1 ? contentLength : null;
 			case CONTENT_TYPE_LOWER:
 				return source.getContentType();
 			case DATE_LOWER:
 				long date = source.getDate();
-				return (date > -1) ? date : null;
+				return date > -1 ? date : null;
 			case ETAG_LOWER:
 				String eTag = source.getETag();
-				return (StringUtils.hasText(eTag)) ? eTag : null;
+				return StringUtils.hasText(eTag) ? eTag : null;
 			case EXPIRES_LOWER:
 				long expires = source.getExpires();
-				return (expires > -1) ? expires : null;
+				return expires > -1 ? expires : null;
 			case IF_NONE_MATCH_LOWER:
 				return source.getIfNoneMatch();
 			case IF_MODIFIED_SINCE_LOWER:
 				long modifiedSince = source.getIfModifiedSince();
-				return (modifiedSince > -1) ? modifiedSince : null;
+				return modifiedSince > -1 ? modifiedSince : null;
 			case IF_UNMODIFIED_SINCE_LOWER:
 				long unmodifiedSince = source.getIfUnmodifiedSince();
-				return (unmodifiedSince > -1) ? unmodifiedSince : null;
+				return unmodifiedSince > -1 ? unmodifiedSince : null;
 			case LAST_MODIFIED_LOWER:
 				long lastModified = source.getLastModified();
-				return (lastModified > -1) ? lastModified : null;
+				return lastModified > -1 ? lastModified : null;
 			case LOCATION_LOWER:
 				return source.getLocation();
 			case PRAGMA_LOWER:
 				String pragma = source.getPragma();
-				return (StringUtils.hasText(pragma)) ? pragma : null;
+				return StringUtils.hasText(pragma) ? pragma : null;
 			default:
 				return source.get(name);
 		}

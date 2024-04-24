@@ -244,7 +244,7 @@ public class HeaderMapperTests {
 	public void fromHeadersToRequestWithStandardRequestPatternAndNegatives() {
 		this.mapper.setRequestHeaderNames("foo", "!foo", "bar", "!baz", "\\!qux", "!fiz*",
 				GenericTestHeaderMapper.STANDARD_REQUEST_HEADER_NAME_PATTERN);
-		Map<String, Object> headers = new HashMap<String, Object>();
+		Map<String, Object> headers = new HashMap<>();
 		headers.put(GenericTestHeaders.APP_ID, "myAppId");
 		headers.put(GenericTestHeaders.REDELIVERED, true);
 		headers.put(GenericTestHeaders.REQUEST_ONLY, "request-456");
@@ -528,7 +528,7 @@ public class HeaderMapperTests {
 
 		private String replyOnly;
 
-		private final Map<String, Object> userDefinedHeaders = new HashMap<String, Object>();
+		private final Map<String, Object> userDefinedHeaders = new HashMap<>();
 
 		GenericTestProperties() {
 			super();

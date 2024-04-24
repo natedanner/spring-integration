@@ -185,19 +185,19 @@ public class IntegrationManagementConfigurer
 	private void registerComponentGauges() {
 		this.gauges.add(
 				this.metricsCaptor.gaugeBuilder("spring.integration.channels", this,
-								(c) -> this.applicationContext.getBeansOfType(MessageChannel.class).size())
+								c -> this.applicationContext.getBeansOfType(MessageChannel.class).size())
 						.description("The number of message channels")
 						.build());
 
 		this.gauges.add(
 				this.metricsCaptor.gaugeBuilder("spring.integration.handlers", this,
-								(c) -> this.applicationContext.getBeansOfType(MessageHandler.class).size())
+								c -> this.applicationContext.getBeansOfType(MessageHandler.class).size())
 						.description("The number of message handlers")
 						.build());
 
 		this.gauges.add(
 				this.metricsCaptor.gaugeBuilder("spring.integration.sources", this,
-								(c) -> this.applicationContext.getBeansOfType(MessageSource.class).size())
+								c -> this.applicationContext.getBeansOfType(MessageSource.class).size())
 						.description("The number of message sources")
 						.build());
 	}

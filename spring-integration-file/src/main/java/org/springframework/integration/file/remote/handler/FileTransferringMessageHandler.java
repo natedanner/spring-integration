@@ -50,7 +50,7 @@ public class FileTransferringMessageHandler<F> extends AbstractMessageHandler {
 
 	public FileTransferringMessageHandler(SessionFactory<F> sessionFactory) {
 		Assert.notNull(sessionFactory, "sessionFactory must not be null");
-		this.remoteFileTemplate = new RemoteFileTemplate<F>(sessionFactory);
+		this.remoteFileTemplate = new RemoteFileTemplate<>(sessionFactory);
 		this.mode = FileExistsMode.REPLACE;
 	}
 

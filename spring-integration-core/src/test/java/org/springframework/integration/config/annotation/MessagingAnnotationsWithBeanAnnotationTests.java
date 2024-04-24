@@ -442,7 +442,7 @@ public class MessagingAnnotationsWithBeanAnnotationTests {
 		@Bean
 		@ServiceActivator(inputChannel = "functionMessageServiceChannel")
 		public Function<Message<String>, String> messageFunctionAsService() {
-			return (message) -> message.getPayload().toLowerCase();
+			return message -> message.getPayload().toLowerCase();
 		}
 
 		@Bean
@@ -472,7 +472,7 @@ public class MessagingAnnotationsWithBeanAnnotationTests {
 		@Bean
 		@ServiceActivator(inputChannel = "reactiveMessageHandlerChannel")
 		public ReactiveMessageHandler reactiveMessageHandlerService() {
-			return (message) -> {
+			return message -> {
 				messageMono.tryEmitValue(message);
 				return Mono.empty();
 			};

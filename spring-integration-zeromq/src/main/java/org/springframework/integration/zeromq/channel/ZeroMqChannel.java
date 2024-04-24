@@ -93,10 +93,10 @@ public class ZeroMqChannel extends AbstractMessageChannel implements Subscribabl
 
 	private BytesMessageMapper messageMapper = new EmbeddedJsonHeadersMessageMapper();
 
-	private Consumer<ZMQ.Socket> sendSocketConfigurer = (socket) -> {
+	private Consumer<ZMQ.Socket> sendSocketConfigurer = socket -> {
 	};
 
-	private Consumer<ZMQ.Socket> subscribeSocketConfigurer = (socket) -> {
+	private Consumer<ZMQ.Socket> subscribeSocketConfigurer = socket -> {
 	};
 
 	@Nullable
@@ -145,12 +145,12 @@ public class ZeroMqChannel extends AbstractMessageChannel implements Subscribabl
 		return Mono.defer(() -> {
 					if (this.zeroMqProxy != null) {
 						return Mono.fromCallable(() -> this.zeroMqProxy.getBackendPort())
-								.filter((proxyPort) -> proxyPort > 0)
-								.repeatWhenEmpty(100, (repeat) -> repeat.delayElements(Duration.ofMillis(100))) // NOSONAR
-								.doOnNext((proxyPort) ->
+								.filter(proxyPort -> proxyPort > 0)
+								.repeatWhenEmpty(100, repeat -> repeat.delayElements(Duration.ofMillis(100))) // NOSONAR
+								.doOnNext(proxyPort ->
 										setConnectUrl("tcp://localhost:" + this.zeroMqProxy.getFrontendPort() +
 												':' + this.zeroMqProxy.getBackendPort()))
-								.doOnError((error) ->
+								.doOnError(error ->
 										logger.error(error,
 												() -> "The provided '" + this.zeroMqProxy + "' has not been started"));
 					}
@@ -169,8 +169,8 @@ public class ZeroMqChannel extends AbstractMessageChannel implements Subscribabl
 										? SocketType.PAIR
 										: (this.pubSub ? SocketType.PUB : SocketType.PUSH))
 				))
-				.doOnNext((socket) -> this.sendSocketConfigurer.accept(socket))
-				.doOnNext((socket) ->
+				.doOnNext(socket -> this.sendSocketConfigurer.accept(socket))
+				.doOnNext(socket ->
 						socket.connect(this.connectSendUrl != null
 								? this.connectSendUrl
 								: localPairConnection.get()))
@@ -185,8 +185,8 @@ public class ZeroMqChannel extends AbstractMessageChannel implements Subscribabl
 								this.connectSubscribeUrl == null
 										? SocketType.PAIR
 										: (this.pubSub ? SocketType.SUB : SocketType.PULL))))
-				.doOnNext((socket) -> this.subscribeSocketConfigurer.accept(socket))
-				.doOnNext((socket) -> {
+				.doOnNext(socket -> this.subscribeSocketConfigurer.accept(socket))
+				.doOnNext(socket -> {
 					if (this.connectSubscribeUrl != null) {
 						if (this.pubSub) {
 							socket.subscribe(ZMQ.SUBSCRIPTION_ALL);
@@ -204,7 +204,7 @@ public class ZeroMqChannel extends AbstractMessageChannel implements Subscribabl
 	private Flux<? extends Message<?>> prepareSubscriberDataFlux() {
 		Flux<? extends Message<?>> receiveData =
 				this.subscribeSocket
-						.flatMap((socket) -> {
+						.flatMap(socket -> {
 							if (this.initialized) {
 								byte[] data = socket.recv(ZMQ.NOBLOCK);
 								if (data != null) {
@@ -214,10 +214,10 @@ public class ZeroMqChannel extends AbstractMessageChannel implements Subscribabl
 							return Mono.empty();
 						})
 						.publishOn(Schedulers.parallel())
-						.map((data) -> this.messageMapper.toMessage(data))
-						.doOnError((error) -> logger.error(error,
+						.map(data -> this.messageMapper.toMessage(data))
+						.doOnError(error -> logger.error(error,
 								() -> "Error processing ZeroMQ message in the " + this))
-						.repeatWhenEmpty((repeat) ->
+						.repeatWhenEmpty(repeat ->
 								this.initialized
 										? repeat.delayElements(this.consumeDelay)
 										: repeat)
@@ -226,7 +226,7 @@ public class ZeroMqChannel extends AbstractMessageChannel implements Subscribabl
 		if (this.pubSub) {
 			receiveData =
 					receiveData.publish()
-							.autoConnect(1, (disposable) -> this.subscriberDataDisposable = disposable);
+							.autoConnect(1, disposable -> this.subscriberDataDisposable = disposable);
 		}
 		return receiveData;
 	}
@@ -313,7 +313,7 @@ public class ZeroMqChannel extends AbstractMessageChannel implements Subscribabl
 		byte[] data = this.messageMapper.fromMessage(message);
 		Assert.state(data != null, () -> "The '" + this.messageMapper + "' returned null for '" + message + '\'');
 
-		Mono<Boolean> sendMono = this.sendSocket.map((socket) -> socket.send(data));
+		Mono<Boolean> sendMono = this.sendSocket.map(socket -> socket.send(data));
 		Boolean sent =
 				timeout > 0
 						? sendMono.block(Duration.ofMillis(timeout))
@@ -325,7 +325,7 @@ public class ZeroMqChannel extends AbstractMessageChannel implements Subscribabl
 	@Override
 	public boolean subscribe(MessageHandler handler) {
 		Assert.state(this.initialized, "the channel is not initialized yet or already destroyed");
-		this.subscribers.computeIfAbsent(handler, (key) -> this.subscriberData.subscribe(handler::handleMessage));
+		this.subscribers.computeIfAbsent(handler, key -> this.subscriberData.subscribe(handler::handleMessage));
 		return true;
 	}
 

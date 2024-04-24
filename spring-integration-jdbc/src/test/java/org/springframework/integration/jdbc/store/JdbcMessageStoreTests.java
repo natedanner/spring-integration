@@ -262,7 +262,7 @@ public class JdbcMessageStoreTests {
 
 		String uuidGroupId = UUIDConverter.getUUID(groupId).toString();
 		assertThat(template.queryForList(
-				"SELECT * from INT_GROUP_TO_MESSAGE where GROUP_KEY = ?", uuidGroupId).size() == 0).isTrue();
+				"SELECT * from INT_GROUP_TO_MESSAGE where GROUP_KEY = ?", uuidGroupId).isEmpty()).isTrue();
 	}
 
 	@Test

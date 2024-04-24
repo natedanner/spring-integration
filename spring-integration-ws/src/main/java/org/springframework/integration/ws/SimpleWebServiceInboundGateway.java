@@ -54,7 +54,7 @@ public class SimpleWebServiceInboundGateway extends AbstractWebServiceInboundGat
 		Assert.notNull(request, "Invalid message context: request was null.");
 
 		AbstractIntegrationMessageBuilder<?> builder = getMessageBuilderFactory().withPayload(
-				(this.extractPayload) ? request.getPayloadSource() : request);
+				this.extractPayload ? request.getPayloadSource() : request);
 
 		fromSoapHeaders(messageContext, builder);
 

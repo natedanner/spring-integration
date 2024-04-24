@@ -96,7 +96,7 @@ public class SftpSessionFactoryTests {
 			}
 
 			n = 0;
-			while (n++ < 100 && server.getActiveSessions().size() > 0) {
+			while (n++ < 100 && !server.getActiveSessions().isEmpty()) {
 				Thread.sleep(100);
 			}
 

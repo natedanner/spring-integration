@@ -74,7 +74,7 @@ public class RedisQueueMessageDrivenEndpoint extends MessageProducerSupport
 
 	private boolean serializerExplicitlySet;
 
-	private boolean expectMessage = false;
+	private boolean expectMessage;
 
 	private long receiveTimeout = DEFAULT_RECEIVE_TIMEOUT;
 

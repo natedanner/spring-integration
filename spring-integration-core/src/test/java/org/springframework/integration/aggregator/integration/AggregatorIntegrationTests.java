@@ -258,7 +258,7 @@ public class AggregatorIntegrationTests {
 	}
 
 	public static Function<MessageGroup, Map<String, Object>> firstMessageHeaders() {
-		return (messageGroup) -> messageGroup.getOne().getHeaders();
+		return messageGroup -> messageGroup.getOne().getHeaders();
 	}
 
 	public static class SummingAggregator {

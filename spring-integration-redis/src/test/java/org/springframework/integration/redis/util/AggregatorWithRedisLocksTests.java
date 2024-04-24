@@ -147,7 +147,7 @@ class AggregatorWithRedisLocksTests implements RedisContainerTest {
 
 	private void assertNoLocksAfterTest() throws Exception {
 		int n = 0;
-		while (n++ < 100 && this.template.keys("aggregatorWithRedisLocksTests:*").size() > 0) {
+		while (n++ < 100 && !this.template.keys("aggregatorWithRedisLocksTests:*").isEmpty()) {
 			Thread.sleep(100);
 		}
 		assertThat(this.template.keys("aggregatorWithRedisLocksTests:*")).isEmpty();

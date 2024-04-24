@@ -66,7 +66,7 @@ public class ChatMessageSendingMessageHandlerTests {
 
 		verify(connection, times(1))
 				.sendStanza(Mockito.argThat((org.jivesoftware.smack.packet.Message smackMessage) -> {
-					boolean bodyMatches = smackMessage.getBody().equals("Test Message");
+					boolean bodyMatches = "Test Message".equals(smackMessage.getBody());
 					boolean toMatches = smackMessage.getTo().equals("kermit@frog.com");
 					return bodyMatches & toMatches;
 				}));
@@ -83,9 +83,9 @@ public class ChatMessageSendingMessageHandlerTests {
 		// in threaded conversation we need to look for existing chat
 		verify(connection, times(1))
 				.sendStanza(Mockito.argThat((org.jivesoftware.smack.packet.Message smackMessage) -> {
-					boolean bodyMatches = smackMessage.getBody().equals("Hello Kitty");
+					boolean bodyMatches = "Hello Kitty".equals(smackMessage.getBody());
 					boolean toMatches = smackMessage.getTo().equals("kermit@frog.com");
-					boolean threadIdMatches = smackMessage.getThread().equals("123");
+					boolean threadIdMatches = "123".equals(smackMessage.getThread());
 					return bodyMatches & toMatches & threadIdMatches;
 				}));
 
@@ -125,7 +125,7 @@ public class ChatMessageSendingMessageHandlerTests {
 		verify(connection).isConnected();
 		verify(connection).sendStanza(Mockito.argThat((org.jivesoftware.smack.packet.Message m) -> {
 			boolean bodyMatches = "Test Message".equals(m.getBody());
-			boolean toMatches = m.getTo().toString().equals("kermit@frog.com");
+			boolean toMatches = "kermit@frog.com".equals(m.getTo().toString());
 			return bodyMatches && toMatches;
 		}));
 

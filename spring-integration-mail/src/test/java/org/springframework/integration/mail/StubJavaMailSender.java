@@ -36,9 +36,9 @@ public class StubJavaMailSender implements JavaMailSender {
 
 	private final MimeMessage uniqueMessage;
 
-	private final List<MimeMessage> sentMimeMessages = new ArrayList<MimeMessage>();
+	private final List<MimeMessage> sentMimeMessages = new ArrayList<>();
 
-	private final List<SimpleMailMessage> sentSimpleMailMessages = new ArrayList<SimpleMailMessage>();
+	private final List<SimpleMailMessage> sentSimpleMailMessages = new ArrayList<>();
 
 	public StubJavaMailSender(MimeMessage uniqueMessage) {
 		this.uniqueMessage = uniqueMessage;

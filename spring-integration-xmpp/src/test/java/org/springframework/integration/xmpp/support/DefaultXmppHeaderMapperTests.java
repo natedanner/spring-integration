@@ -75,7 +75,7 @@ public class DefaultXmppHeaderMapperTests {
 	public void fromHeadersUserDefinedOnly() {
 		DefaultXmppHeaderMapper mapper = new DefaultXmppHeaderMapper();
 		mapper.setRequestHeaderNames("userDefined1", "userDefined2");
-		Map<String, Object> headerMap = new HashMap<String, Object>();
+		Map<String, Object> headerMap = new HashMap<>();
 		headerMap.put("userDefined1", "foo");
 		headerMap.put("userDefined2", "bar");
 		headerMap.put("userDefined3", "baz");

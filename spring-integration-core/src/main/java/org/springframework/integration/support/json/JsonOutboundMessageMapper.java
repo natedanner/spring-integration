@@ -38,7 +38,7 @@ import org.springframework.util.Assert;
  */
 public class JsonOutboundMessageMapper implements OutboundMessageMapper<String> {
 
-	private volatile boolean shouldExtractPayload = false;
+	private volatile boolean shouldExtractPayload;
 
 	private volatile JsonObjectMapper<?, ?> jsonObjectMapper;
 

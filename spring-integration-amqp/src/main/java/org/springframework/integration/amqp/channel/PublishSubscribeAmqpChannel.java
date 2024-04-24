@@ -90,7 +90,7 @@ public class PublishSubscribeAmqpChannel extends AbstractSubscribableAmqpChannel
 
 	@Override
 	protected String getExchangeName() {
-		return (this.exchange != null) ? this.exchange.getName() : "";
+		return this.exchange != null ? this.exchange.getName() : "";
 	}
 
 	@Override

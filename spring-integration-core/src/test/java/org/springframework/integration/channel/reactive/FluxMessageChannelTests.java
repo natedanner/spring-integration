@@ -96,7 +96,7 @@ public class FluxMessageChannelTests {
 		assertThat(((MessagingException) error.getPayload()).getFailedMessage().getPayload()).isEqualTo(5);
 
 		List<Message<?>> messages = this.queueChannel.clear();
-		assertThat(messages).extracting((message) -> (Integer) message.getPayload())
+		assertThat(messages).extracting(message -> (Integer) message.getPayload())
 				.containsAll(IntStream.range(0, 10).boxed().collect(Collectors.toList()));
 	}
 

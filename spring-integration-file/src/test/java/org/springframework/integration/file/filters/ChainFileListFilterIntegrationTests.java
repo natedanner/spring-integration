@@ -35,9 +35,9 @@ public class ChainFileListFilterIntegrationTests {
 
 	private static final String PATTERN_ANY_TEXT_FILES = "*.txt";
 
-	private File[] noFiles = new File[0];
+	private final File[] noFiles = new File[0];
 
-	private File[] oneFile = new File[] {new MockOldFile("file.txt")};
+	private final File[] oneFile = new File[]{new MockOldFile("file.txt")};
 
 	@Test
 	public void singleModifiedFilterNoFiles() throws IOException {

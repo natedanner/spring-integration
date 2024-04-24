@@ -104,7 +104,7 @@ public class ConnectionEventTests {
 		assertThatExceptionOfType(Exception.class)
 				.isThrownBy(() -> conn.send(new GenericMessage<>("bar")));
 
-		assertThat(theEvent.size() > 0).isTrue();
+		assertThat(!theEvent.isEmpty()).isTrue();
 		assertThat(theEvent.get(0)).isNotNull();
 		assertThat(theEvent.get(0)).isInstanceOf(TcpConnectionExceptionEvent.class);
 		assertThat(theEvent.get(0).toString().endsWith("[factory=foo, connectionId=" + conn.getConnectionId() + "]"))

@@ -29,7 +29,7 @@ import org.springframework.util.Assert;
  */
 public class TestChannelResolver implements DestinationResolver<MessageChannel> {
 
-	private volatile Map<String, MessageChannel> channels = new ConcurrentHashMap<String, MessageChannel>();
+	private volatile Map<String, MessageChannel> channels = new ConcurrentHashMap<>();
 
 	public MessageChannel resolveDestination(String channelName) {
 		return this.channels.get(channelName);

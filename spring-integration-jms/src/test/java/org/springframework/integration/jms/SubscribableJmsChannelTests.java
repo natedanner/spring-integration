@@ -311,9 +311,9 @@ public class SubscribableJmsChannelTests extends ActiveMQMultiContextTests {
 	}
 
 	private void verifyLogReceived(final List<String> logList) {
-		assertThat(logList.size() > 0).as("Failed to get expected exception").isTrue();
+		assertThat(!logList.isEmpty()).as("Failed to get expected exception").isTrue();
 		boolean expectedExceptionFound = false;
-		while (logList.size() > 0) {
+		while (!logList.isEmpty()) {
 			String message = logList.remove(0);
 			assertThat(message).as("Failed to get expected exception").isNotNull();
 			if (message.startsWith("Dispatcher has no subscribers")) {

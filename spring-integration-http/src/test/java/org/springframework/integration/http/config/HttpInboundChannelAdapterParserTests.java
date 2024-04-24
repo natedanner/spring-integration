@@ -200,7 +200,7 @@ public class HttpInboundChannelAdapterParserTests extends AbstractHttpInboundTes
 
 		assertThatExceptionOfType(HttpRequestMethodNotSupportedException.class)
 				.isThrownBy(() -> this.integrationRequestMappingHandlerMapping.getHandler(request))
-				.satisfies((ex) -> {
+				.satisfies(ex -> {
 					assertThat(ex.getMethod()).isEqualTo("GET");
 					assertThat(ex.getSupportedMethods()).containsExactly("POST");
 				});

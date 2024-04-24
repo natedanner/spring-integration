@@ -79,7 +79,7 @@ public class ThreadLocalChannelParserTests {
 		channelWithInterceptor.send(new GenericMessage<String>("test-2.1"));
 		channelWithInterceptor.send(new GenericMessage<String>("test-2.2"));
 		Executor otherThreadExecutor = Executors.newSingleThreadExecutor();
-		final List<Object> otherThreadResults = new ArrayList<Object>();
+		final List<Object> otherThreadResults = new ArrayList<>();
 		final CountDownLatch latch = new CountDownLatch(2);
 		otherThreadExecutor.execute(() -> {
 			otherThreadResults.add(simpleChannel.receive(0));

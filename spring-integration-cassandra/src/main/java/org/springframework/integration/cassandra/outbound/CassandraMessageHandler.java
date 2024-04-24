@@ -320,7 +320,7 @@ public class CassandraMessageHandler extends AbstractReplyProducingMessageHandle
 		/**
 		 * Set a {@link CassandraMessageHandler} into a {@code statement} mode.
 		 */
-		STATEMENT;
+		STATEMENT
 
 	}
 

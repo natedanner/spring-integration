@@ -34,7 +34,7 @@ public class GlobalChannelInterceptorWrapper implements Ordered {
 
 	private volatile String[] patterns = {"*"}; // default
 
-	private volatile int order = 0;
+	private volatile int order;
 
 	public GlobalChannelInterceptorWrapper(ChannelInterceptor channelInterceptor) {
 		Assert.notNull(channelInterceptor, "channelInterceptor must not be null");

@@ -282,7 +282,7 @@ public class SftpServerOutboundTests extends SftpTestSupport {
 		List<SftpFileInfo> files = (List<SftpFileInfo>) result.getPayload();
 		assertThat(files).hasSize(4);
 		assertThat(files.stream()
-				.map(fi -> fi.getFilename())
+				.map(SftpFileInfo::getFilename)
 				.collect(Collectors.toList())).contains(
 				" sftpSource1.txt",
 				"sftpSource2.txt",
@@ -300,7 +300,7 @@ public class SftpServerOutboundTests extends SftpTestSupport {
 		List<SftpFileInfo> files = (List<SftpFileInfo>) result.getPayload();
 		assertThat(files).hasSize(8);
 		assertThat(files.stream()
-				.map(fi -> fi.getFilename())
+				.map(SftpFileInfo::getFilename)
 				.collect(Collectors.toList())).contains(
 				" sftpSource1.txt",
 				"sftpSource2.txt",
@@ -322,7 +322,7 @@ public class SftpServerOutboundTests extends SftpTestSupport {
 		List<SftpFileInfo> files = (List<SftpFileInfo>) result.getPayload();
 		assertThat(files).hasSize(3);
 		assertThat(files.stream()
-				.map(fi -> fi.getFilename())
+				.map(SftpFileInfo::getFilename)
 				.collect(Collectors.toList())).contains(
 				" sftpSource1.txt",
 				"sftpSource2.txt",
@@ -750,7 +750,7 @@ public class SftpServerOutboundTests extends SftpTestSupport {
 		public MessageChannel eventChannel() {
 			return (msg, timeout) -> {
 				if (this.latch != null) {
-					if (this.events.size() > 0 || msg.getPayload() instanceof SessionOpenedEvent) {
+					if (!this.events.isEmpty() || msg.getPayload() instanceof SessionOpenedEvent) {
 						this.events.add((ApacheMinaSftpEvent) msg.getPayload());
 						if (msg.getPayload() instanceof SessionClosedEvent) {
 							this.latch.countDown();

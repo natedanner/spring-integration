@@ -73,7 +73,7 @@ public class WebSocketOutboundMessageHandler extends AbstractMessageHandler {
 
 	private List<MessageConverter> messageConverters;
 
-	private boolean mergeWithDefaultConverters = false;
+	private boolean mergeWithDefaultConverters;
 
 	public WebSocketOutboundMessageHandler(IntegrationWebSocketContainer webSocketContainer) {
 		this(webSocketContainer, new SubProtocolHandlerRegistry(new PassThruSubProtocolHandler()));

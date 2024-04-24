@@ -110,7 +110,7 @@ class RedisQueueOutboundChannelAdapterTests implements RedisContainerTest {
 		Message<String> message = MessageBuilder.withPayload("testing").build();
 		handler.handleMessage(message);
 
-		RedisTemplate<String, Object> redisTemplate = new RedisTemplate<String, Object>();
+		RedisTemplate<String, Object> redisTemplate = new RedisTemplate<>();
 		redisTemplate.setConnectionFactory(this.connectionFactory);
 		redisTemplate.setEnableDefaultSerializer(false);
 		redisTemplate.setKeySerializer(new StringRedisSerializer());
@@ -157,7 +157,7 @@ class RedisQueueOutboundChannelAdapterTests implements RedisContainerTest {
 
 		final String queueName = "si.test.Int3017IntegrationOutbound";
 
-		GenericMessage<Object> message = new GenericMessage<Object>(queueName);
+		GenericMessage<Object> message = new GenericMessage<>(queueName);
 		this.sendChannel.send(message);
 
 		RedisTemplate<String, String> redisTemplate = new StringRedisTemplate();

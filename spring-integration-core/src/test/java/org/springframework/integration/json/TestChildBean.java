@@ -20,9 +20,9 @@ public class TestChildBean {
 
 	private String value = "bar";
 
-	private String baz = null;
+	private String baz;
 
-	private TestBean parent = null;
+	private TestBean parent;
 
 	public String getValue() {
 		return value;
@@ -52,10 +52,10 @@ public class TestChildBean {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((baz == null) ? 0 : baz.hashCode());
+		result = prime * result + (baz == null ? 0 : baz.hashCode());
 		result = prime * result
-				+ ((parent == null) ? 0 : parent.hashCode());
-		result = prime * result + ((value == null) ? 0 : value.hashCode());
+				+ (parent == null ? 0 : parent.hashCode());
+		result = prime * result + (value == null ? 0 : value.hashCode());
 		return result;
 	}
 

@@ -74,7 +74,7 @@ class MongoDbOutboundGatewayTests implements MongoDbContainerTest {
 	private MongoConverter mongoConverter;
 
 	@Autowired
-	private MongoDatabaseFactory MONGO_DATABASE_FACTORY;
+	private MongoDatabaseFactory mongoDatabaseFactory;
 
 	@BeforeEach
 	public void setUp() {
@@ -160,7 +160,7 @@ class MongoDbOutboundGatewayTests implements MongoDbContainerTest {
 
 	@Test
 	void testListOfResultsWithQueryExpressionNotInitialized() {
-		MongoDbOutboundGateway gateway = new MongoDbOutboundGateway(MONGO_DATABASE_FACTORY);
+		MongoDbOutboundGateway gateway = new MongoDbOutboundGateway(mongoDatabaseFactory);
 		gateway.setBeanFactory(beanFactory);
 		gateway.setMongoConverter(mongoConverter);
 		try {
@@ -247,7 +247,7 @@ class MongoDbOutboundGatewayTests implements MongoDbContainerTest {
 
 	@Test
 	void testWithNullCollectionNameExpression() {
-		MongoDbOutboundGateway gateway = new MongoDbOutboundGateway(MONGO_DATABASE_FACTORY);
+		MongoDbOutboundGateway gateway = new MongoDbOutboundGateway(mongoDatabaseFactory);
 		gateway.setBeanFactory(beanFactory);
 		gateway.setQueryExpression(new LiteralExpression("{name : 'Xavi'}"));
 		gateway.setExpectSingleResult(true);
@@ -312,7 +312,7 @@ class MongoDbOutboundGatewayTests implements MongoDbContainerTest {
 
 		List<Person> persons = this.mongoTemplate.find(new Query(), Person.class, COLLECTION_NAME);
 		assertThat(persons).hasSize(5);
-		assertThat(persons.stream().anyMatch(p -> p.getName().equals("Mike"))).isTrue();
+		assertThat(persons.stream().anyMatch(p -> "Mike".equals(p.getName()))).isTrue();
 	}
 
 	@SuppressWarnings("unchecked")
@@ -321,7 +321,7 @@ class MongoDbOutboundGatewayTests implements MongoDbContainerTest {
 	}
 
 	private MongoDbOutboundGateway createGateway() {
-		MongoDbOutboundGateway gateway = new MongoDbOutboundGateway(MONGO_DATABASE_FACTORY);
+		MongoDbOutboundGateway gateway = new MongoDbOutboundGateway(mongoDatabaseFactory);
 		gateway.setBeanFactory(beanFactory);
 		gateway.setCollectionNameExpression(new LiteralExpression("data"));
 

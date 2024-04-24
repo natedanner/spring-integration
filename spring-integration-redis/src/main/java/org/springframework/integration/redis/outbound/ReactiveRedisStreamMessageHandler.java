@@ -135,7 +135,7 @@ public class ReactiveRedisStreamMessageHandler extends AbstractReactiveMessageHa
 					Assert.notNull(streamKey, "'streamKey' must not be null");
 					return streamKey;
 				})
-				.flatMap((streamKey) -> {
+				.flatMap(streamKey -> {
 					Object value = message;
 					if (this.extractPayload) {
 						value = message.getPayload();

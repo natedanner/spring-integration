@@ -206,7 +206,7 @@ public class RSocketInboundGateway extends MessagingGatewaySupport implements In
 		if (replyTo != null) {
 			return requestMono
 					.flatMap(this::sendAndReceiveMessageReactive)
-					.flatMap((replyMessage) -> {
+					.flatMap(replyMessage -> {
 						Flux<DataBuffer> reply = createReply(replyMessage.getPayload(), requestMessage);
 						replyTo.set(reply);
 						return Mono.empty();
@@ -214,8 +214,8 @@ public class RSocketInboundGateway extends MessagingGatewaySupport implements In
 		}
 		else {
 			return requestMono
-					.flatMap((message) ->
-							Mono.deferContextual((context) ->
+					.flatMap(message ->
+							Mono.deferContextual(context ->
 									Mono.just(message)
 											.handle((messageToSend, sink) ->
 													send(messageWithReactorContextIfAny(messageToSend, context)))));
@@ -239,7 +239,7 @@ public class RSocketInboundGateway extends MessagingGatewaySupport implements In
 		}
 		else {
 			return Mono.just(data)
-					.map((payload) ->
+					.map(payload ->
 							MessageBuilder.withPayload(payload)
 									.copyHeaders(requestMessage.getHeaders())
 									.build());
@@ -313,7 +313,7 @@ public class RSocketInboundGateway extends MessagingGatewaySupport implements In
 		}
 
 		return Flux.from((Publisher<?>) publisher)
-				.map((value) -> encodeValue(value, bufferFactory, mimeType));
+				.map(value -> encodeValue(value, bufferFactory, mimeType));
 	}
 
 	private DataBuffer encodeValue(Object element, DataBufferFactory bufferFactory, @Nullable MimeType mimeType) {

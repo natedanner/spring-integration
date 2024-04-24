@@ -247,7 +247,7 @@ public class TcpInboundGatewayTests {
 		socket.getOutputStream().write("Test2\r\n".getBytes());
 		handler.handleMessage(channel.receive(10000));
 		handler.handleMessage(channel.receive(10000));
-		Set<String> results = new HashSet<String>();
+		Set<String> results = new HashSet<>();
 		byte[] bytes = new byte[12];
 		readFully(socket.getInputStream(), bytes);
 		results.add(new String(bytes));

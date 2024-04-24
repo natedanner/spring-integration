@@ -117,10 +117,10 @@ public class SmbSendingMessageHandlerTests extends AbstractBaseTests {
 				when(smbSession.remove(Mockito.anyString())).thenReturn(true);
 				when(smbSession.list(Mockito.anyString())).thenReturn(new SmbFile[0]);
 
-				doAnswer(_invocation -> {
+				doAnswer(invocation -> {
 
-					String path = _invocation.getArgument(0);
-					OutputStream os = _invocation.getArgument(1);
+					String path = invocation.getArgument(0);
+					OutputStream os = invocation.getArgument(1);
 					writeToFile((this.getClass().getSimpleName() + " : TEST : " + path).getBytes(), os);
 					return null;
 				}).when(smbSession).read(Mockito.anyString(), Mockito.any(OutputStream.class));

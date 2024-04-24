@@ -45,7 +45,7 @@ import static org.assertj.core.api.Assertions.assertThat;
  */
 public class MessageProducerSupportTests {
 
-	private TestApplicationContext context = TestUtils.createTestApplicationContext();
+	private final TestApplicationContext context = TestUtils.createTestApplicationContext();
 
 	@After
 	public void tearDown() {

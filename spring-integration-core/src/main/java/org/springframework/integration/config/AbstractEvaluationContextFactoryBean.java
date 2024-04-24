@@ -45,9 +45,9 @@ import org.springframework.util.Assert;
  */
 public abstract class AbstractEvaluationContextFactoryBean implements ApplicationContextAware, InitializingBean {
 
-	private Map<String, PropertyAccessor> propertyAccessors = new LinkedHashMap<String, PropertyAccessor>();
+	private Map<String, PropertyAccessor> propertyAccessors = new LinkedHashMap<>();
 
-	private Map<String, Method> functions = new LinkedHashMap<String, Method>();
+	private Map<String, Method> functions = new LinkedHashMap<>();
 
 	private TypeConverter typeConverter = new StandardTypeConverter();
 
@@ -72,7 +72,7 @@ public abstract class AbstractEvaluationContextFactoryBean implements Applicatio
 		Assert.isTrue(!this.initialized, "'propertyAccessors' can't be changed after initialization.");
 		Assert.notNull(accessors, "'accessors' must not be null.");
 		Assert.noNullElements(accessors.values().toArray(), "'accessors' cannot have null values.");
-		this.propertyAccessors = new LinkedHashMap<String, PropertyAccessor>(accessors);
+		this.propertyAccessors = new LinkedHashMap<>(accessors);
 	}
 
 	public Map<String, PropertyAccessor> getPropertyAccessors() {
@@ -83,7 +83,7 @@ public abstract class AbstractEvaluationContextFactoryBean implements Applicatio
 		Assert.isTrue(!this.initialized, "'functions' can't be changed after initialization.");
 		Assert.notNull(functionsArg, "'functions' must not be null.");
 		Assert.noNullElements(functionsArg.values().toArray(), "'functions' cannot have null values.");
-		this.functions = new LinkedHashMap<String, Method>(functionsArg);
+		this.functions = new LinkedHashMap<>(functionsArg);
 	}
 
 	public Map<String, Method> getFunctions() {

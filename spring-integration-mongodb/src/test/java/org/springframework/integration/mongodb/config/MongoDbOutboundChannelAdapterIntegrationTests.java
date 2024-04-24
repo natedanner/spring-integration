@@ -52,7 +52,7 @@ class MongoDbOutboundChannelAdapterIntegrationTests implements MongoDbContainerT
 				new ClassPathXmlApplicationContext("outbound-adapter-config.xml", this.getClass());
 
 		MessageChannel channel = context.getBean("simpleAdapter", MessageChannel.class);
-		Message<Person> message = new GenericMessage<MongoDbContainerTest.Person>(MongoDbContainerTest.createPerson("Bob"));
+		Message<Person> message = new GenericMessage<>(MongoDbContainerTest.createPerson("Bob"));
 		channel.send(message);
 
 		MongoDbContainerTest.prepareMongoData(MONGO_DATABASE_FACTORY);
@@ -150,7 +150,7 @@ class MongoDbOutboundChannelAdapterIntegrationTests implements MongoDbContainerT
 				new ClassPathXmlApplicationContext("outbound-adapter-config.xml", this.getClass());
 
 		MessageChannel channel = context.getBean("simpleAdapterWithConverter", MessageChannel.class);
-		Message<Person> message = new GenericMessage<MongoDbContainerTest.Person>(MongoDbContainerTest.createPerson("Bob"));
+		Message<Person> message = new GenericMessage<>(MongoDbContainerTest.createPerson("Bob"));
 		channel.send(message);
 
 		MongoDbContainerTest.prepareMongoData(MONGO_DATABASE_FACTORY);

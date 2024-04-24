@@ -90,7 +90,7 @@ public class DynamicRouterTests {
 		assertThat(processAChannel.receive(0).getPayload()).isEqualTo("123");
 		routingChannel.send(MessageBuilder.withPayload(123).build());
 		assertThat(processBChannel.receive(0).getPayload()).isEqualTo(123);
-		Map<String, Object> args = new HashMap<String, Object>();
+		Map<String, Object> args = new HashMap<>();
 		args.put("p1", "java.lang.String");
 		args.put("p2", "processCChannel");
 
@@ -107,7 +107,7 @@ public class DynamicRouterTests {
 		assertThat(processAChannel.receive(0).getPayload()).isEqualTo("123");
 		routingChannel.send(MessageBuilder.withPayload(123).build());
 		assertThat(processBChannel.receive(0).getPayload()).isEqualTo(123);
-		Map<String, Object> args = new HashMap<String, Object>();
+		Map<String, Object> args = new HashMap<>();
 		args.put("key", "java.lang.String");
 		args.put("channelName", "processCChannel");
 

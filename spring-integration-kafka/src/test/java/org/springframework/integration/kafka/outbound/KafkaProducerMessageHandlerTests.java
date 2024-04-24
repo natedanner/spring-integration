@@ -121,17 +121,17 @@ import static org.springframework.kafka.test.assertj.KafkaConditions.value;
  */
 class KafkaProducerMessageHandlerTests {
 
-	private static String topic1 = "testTopic1out";
+	private static final String topic1 = "testTopic1out";
 
-	private static String topic2 = "testTopic2out";
+	private static final String topic2 = "testTopic2out";
 
-	private static String topic3 = "testTopic3out";
+	private static final String topic3 = "testTopic3out";
 
-	private static String topic4 = "testTopic4out";
+	private static final String topic4 = "testTopic4out";
 
-	private static String topic5 = "testTopic5out";
+	private static final String topic5 = "testTopic5out";
 
-	private static String topic6 = "testTopic6in";
+	private static final String topic6 = "testTopic6in";
 
 	private static EmbeddedKafkaBroker embeddedKafka;
 

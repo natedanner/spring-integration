@@ -108,7 +108,7 @@ public class SpelRouterIntegrationTests {
 		}
 
 		public MessageChannel getChannel(int value) {
-			return (value == 0) ? clear : remainders;
+			return value == 0 ? clear : remainders;
 		}
 
 	}

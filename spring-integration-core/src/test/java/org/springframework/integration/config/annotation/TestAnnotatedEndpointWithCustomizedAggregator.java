@@ -36,7 +36,7 @@ import org.springframework.stereotype.Component;
 @Component("endpointWithCustomizedAnnotation")
 public class TestAnnotatedEndpointWithCustomizedAggregator {
 
-	private final ConcurrentMap<Object, Message<?>> aggregatedMessages = new ConcurrentHashMap<Object, Message<?>>();
+	private final ConcurrentMap<Object, Message<?>> aggregatedMessages = new ConcurrentHashMap<>();
 
 	@Aggregator(
 			inputChannel = "inputChannel",

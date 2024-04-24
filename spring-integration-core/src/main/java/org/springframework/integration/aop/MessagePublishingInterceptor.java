@@ -163,7 +163,7 @@ public class MessagePublishingInterceptor implements MethodInterceptor, BeanFact
 		}
 		Object result = payloadExpression.getValue(context);
 		if (result != null) {
-			AbstractIntegrationMessageBuilder<?> builder = (result instanceof Message<?>)
+			AbstractIntegrationMessageBuilder<?> builder = result instanceof Message<?>
 					? getMessageBuilderFactory().fromMessage((Message<?>) result)
 					: getMessageBuilderFactory().withPayload(result);
 			Map<String, Object> headers = evaluateHeaders(method, context);

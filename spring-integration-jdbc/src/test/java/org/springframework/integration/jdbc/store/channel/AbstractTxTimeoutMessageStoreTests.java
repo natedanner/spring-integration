@@ -146,7 +146,7 @@ public abstract class AbstractTxTimeoutMessageStoreTests {
 		}
 
 		ExecutorService executorService = Executors.newCachedThreadPool();
-		CompletionService<Boolean> completionService = new ExecutorCompletionService<Boolean>(executorService);
+		CompletionService<Boolean> completionService = new ExecutorCompletionService<>(executorService);
 
 		final int concurrency = 5;
 

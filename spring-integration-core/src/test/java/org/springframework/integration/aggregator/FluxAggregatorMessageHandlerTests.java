@@ -64,7 +64,7 @@ class FluxAggregatorMessageHandlerTests {
 		Message<?> result = resultChannel.receive(10_000);
 		assertThat(result).isNotNull()
 				.extracting(Message::getHeaders)
-				.satisfies((headers) ->
+				.satisfies(headers ->
 						assertThat(headers)
 								.containsEntry(IntegrationMessageHeaderAccessor.CORRELATION_ID, 0));
 
@@ -86,7 +86,7 @@ class FluxAggregatorMessageHandlerTests {
 		result = resultChannel.receive(10_000);
 		assertThat(result).isNotNull()
 				.extracting(Message::getHeaders)
-				.satisfies((headers) ->
+				.satisfies(headers ->
 						assertThat(headers)
 								.containsEntry(IntegrationMessageHeaderAccessor.CORRELATION_ID, 1));
 
@@ -113,7 +113,7 @@ class FluxAggregatorMessageHandlerTests {
 		fluxAggregatorMessageHandler.setOutputChannel(resultChannel);
 		fluxAggregatorMessageHandler.setWindowSize(10);
 		fluxAggregatorMessageHandler.setCombineFunction(
-				(messageFlux) ->
+				messageFlux ->
 						messageFlux
 								.map(Message::getPayload)
 								.collectList()
@@ -218,7 +218,7 @@ class FluxAggregatorMessageHandlerTests {
 		QueueChannel resultChannel = new QueueChannel();
 		FluxAggregatorMessageHandler fluxAggregatorMessageHandler = new FluxAggregatorMessageHandler();
 		fluxAggregatorMessageHandler.setOutputChannel(resultChannel);
-		fluxAggregatorMessageHandler.setBoundaryTrigger((message) -> "terminate".equals(message.getPayload()));
+		fluxAggregatorMessageHandler.setBoundaryTrigger(message -> "terminate".equals(message.getPayload()));
 		fluxAggregatorMessageHandler.start();
 
 		for (int i = 0; i < 3; i++) {
@@ -259,8 +259,8 @@ class FluxAggregatorMessageHandlerTests {
 		QueueChannel resultChannel = new QueueChannel();
 		FluxAggregatorMessageHandler fluxAggregatorMessageHandler = new FluxAggregatorMessageHandler();
 		fluxAggregatorMessageHandler.setOutputChannel(resultChannel);
-		fluxAggregatorMessageHandler.setWindowConfigurer((group) ->
-				group.windowWhile((message) ->
+		fluxAggregatorMessageHandler.setWindowConfigurer(group ->
+				group.windowWhile(message ->
 						message.getPayload() instanceof Integer));
 		fluxAggregatorMessageHandler.start();
 

@@ -37,9 +37,9 @@ import static org.assertj.core.api.Assertions.assertThat;
  */
 class ReactiveMessageHandlerTests {
 
-	private AtomicBoolean handled = new AtomicBoolean();
+	private final AtomicBoolean handled = new AtomicBoolean();
 
-	private QueueChannel output = new QueueChannel();
+	private final QueueChannel output = new QueueChannel();
 
 	@BeforeEach
 	void setUp() {

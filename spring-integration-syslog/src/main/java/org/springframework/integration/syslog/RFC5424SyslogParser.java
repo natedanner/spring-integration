@@ -108,13 +108,13 @@ public class RFC5424SyslogParser {
 			map.put(SyslogHeaders.DECODE_ERRORS, "false");
 
 			JavaUtils.INSTANCE
-					.acceptIfNotNull(timestamp, (value) -> map.put(SyslogHeaders.TIMESTAMP, value))
-					.acceptIfNotNull(host, (value) -> map.put(SyslogHeaders.HOST, value))
-					.acceptIfNotNull(app, (value) -> map.put(SyslogHeaders.APP_NAME, value))
-					.acceptIfNotNull(procId, (value) -> map.put(SyslogHeaders.PROCID, value))
-					.acceptIfNotNull(msgId, (value) -> map.put(SyslogHeaders.MSGID, value))
-					.acceptIfNotNull(structuredData, (value) -> map.put(SyslogHeaders.STRUCTURED_DATA, value))
-					.acceptIfCondition(this.retainOriginal, line, (value) -> map.put(SyslogHeaders.UNDECODED, value));
+					.acceptIfNotNull(timestamp, value -> map.put(SyslogHeaders.TIMESTAMP, value))
+					.acceptIfNotNull(host, value -> map.put(SyslogHeaders.HOST, value))
+					.acceptIfNotNull(app, value -> map.put(SyslogHeaders.APP_NAME, value))
+					.acceptIfNotNull(procId, value -> map.put(SyslogHeaders.PROCID, value))
+					.acceptIfNotNull(msgId, value -> map.put(SyslogHeaders.MSGID, value))
+					.acceptIfNotNull(structuredData, value -> map.put(SyslogHeaders.STRUCTURED_DATA, value))
+					.acceptIfCondition(this.retainOriginal, line, value -> map.put(SyslogHeaders.UNDECODED, value));
 		}
 		catch (IllegalStateException | StringIndexOutOfBoundsException ex) {
 			map.put(SyslogHeaders.DECODE_ERRORS, "true");

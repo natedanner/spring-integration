@@ -70,7 +70,7 @@ public class MarshallingTransformer extends AbstractXmlTransformer {
 
 	@Override
 	public Object doTransform(Message<?> message) {
-		Object source = (this.extractPayload) ? message.getPayload() : message;
+		Object source = this.extractPayload ? message.getPayload() : message;
 		Object transformedPayload;
 		Result result = getResultFactory().createResult(source);
 		if (result == null) {

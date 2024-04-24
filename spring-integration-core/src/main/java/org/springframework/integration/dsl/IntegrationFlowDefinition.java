@@ -63,7 +63,7 @@ public abstract class IntegrationFlowDefinition<B extends IntegrationFlowDefinit
 	 * @see org.springframework.integration.handler.LambdaMessageProcessor
 	 */
 	public <S, T> B transform(GenericTransformer<S, T> genericTransformer) {
-		return transformWith((transformerSpec) -> transformerSpec.transformer(genericTransformer));
+		return transformWith(transformerSpec -> transformerSpec.transformer(genericTransformer));
 	}
 
 	/**

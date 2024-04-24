@@ -24,7 +24,7 @@ import org.springframework.messaging.Message;
  * @author Marius Bogoevici
  * @author Gary Russell
  */
-public class MailTestsHelper {
+public final class MailTestsHelper {
 
 	public static final String SUBJECT = "Some subject";
 

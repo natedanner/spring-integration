@@ -22,7 +22,7 @@ public class TestBean {
 
 	private String value = "foo";
 
-	private boolean test = false;
+	private boolean test;
 
 	private long number = 42;
 
@@ -74,10 +74,10 @@ public class TestBean {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((child == null) ? 0 : child.hashCode());
+		result = prime * result + (child == null ? 0 : child.hashCode());
 		result = prime * result + (int) (number ^ (number >>> 32));
 		result = prime * result + (test ? 1231 : 1237);
-		result = prime * result + ((value == null) ? 0 : value.hashCode());
+		result = prime * result + (value == null ? 0 : value.hashCode());
 		return result;
 	}
 

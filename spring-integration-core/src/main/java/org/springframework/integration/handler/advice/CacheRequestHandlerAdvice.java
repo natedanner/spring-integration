@@ -195,8 +195,8 @@ public class CacheRequestHandlerAdvice extends AbstractRequestHandlerAdvice
 		if (!ObjectUtils.isEmpty(this.cacheNames)) {
 			cacheOperationsToUse =
 					this.cacheOperations.stream()
-							.filter((operation) -> ObjectUtils.isEmpty(operation.getCacheNames()))
-							.map((operation) -> {
+							.filter(operation -> ObjectUtils.isEmpty(operation.getCacheNames()))
+							.map(operation -> {
 								CacheOperation.Builder builder;
 								if (operation instanceof CacheableOperation) {
 									CacheableOperation cacheableOperation = (CacheableOperation) operation;

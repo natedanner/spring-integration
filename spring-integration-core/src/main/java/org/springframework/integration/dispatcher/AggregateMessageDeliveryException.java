@@ -43,7 +43,7 @@ public class AggregateMessageDeliveryException extends MessageDeliveryException 
 
 		super(undeliveredMessage, description);
 		this.initCause(aggregatedExceptions.get(0));
-		this.aggregatedExceptions = new ArrayList<Exception>(aggregatedExceptions);
+		this.aggregatedExceptions = new ArrayList<>(aggregatedExceptions);
 	}
 
 	/**

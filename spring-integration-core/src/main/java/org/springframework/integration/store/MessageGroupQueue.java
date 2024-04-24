@@ -327,7 +327,7 @@ public class MessageGroupQueue extends AbstractQueue<Message<?>> implements Bloc
 		lock.lockInterruptibly();
 
 		try {
-			while (this.size() == 0) {
+			while (this.isEmpty()) {
 				this.messageStoreNotEmpty.await();
 			}
 			message = doPoll();

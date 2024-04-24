@@ -44,7 +44,7 @@ public class MBeanTreePollingMessageSource extends AbstractMessageSource<Object>
 
 	private volatile MBeanServerConnection server;
 
-	private volatile ObjectName queryName = null;
+	private volatile ObjectName queryName;
 
 	private volatile QueryExp queryExpression = ObjectName.WILDCARD;
 

@@ -42,12 +42,12 @@ class KafkaRuntimeHints implements RuntimeHintsRegistrar {
 
 		// Java DSL does not register beans during AOT phase, so @Reflective is not reachable from Pausable
 		Stream.of("pause", "resume", "isPaused")
-				.flatMap((name) ->
+				.flatMap(name ->
 						Stream.of(KafkaMessageDrivenChannelAdapter.class,
 										KafkaInboundGateway.class,
 										KafkaMessageSource.class)
-								.filter((type) -> reflectionHints.getTypeHint(type) == null)
-								.flatMap((type) -> Stream.ofNullable(ReflectionUtils.findMethod(type, name))))
+								.filter(type -> reflectionHints.getTypeHint(type) == null)
+								.flatMap(type -> Stream.ofNullable(ReflectionUtils.findMethod(type, name))))
 				.forEach(method -> reflectionHints.registerMethod(method, ExecutableMode.INVOKE));
 	}
 

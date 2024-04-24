@@ -68,9 +68,9 @@ public class ExpressionEvaluatingRequestHandlerAdvice extends AbstractRequestHan
 
 	private String failureChannelName;
 
-	private boolean trapException = false;
+	private boolean trapException;
 
-	private boolean returnFailureExpressionResult = false;
+	private boolean returnFailureExpressionResult;
 
 	private boolean propagateOnSuccessEvaluationFailures;
 

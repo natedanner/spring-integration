@@ -58,8 +58,8 @@ public class ZeroMqMessageProducerTests {
 
 		StepVerifier stepVerifier =
 				StepVerifier.create(outputChannel)
-						.assertNext((message) -> assertThat(message.getPayload()).isEqualTo("test"))
-						.assertNext((message) -> assertThat(message.getPayload()).isEqualTo("test2"))
+						.assertNext(message -> assertThat(message.getPayload()).isEqualTo("test"))
+						.assertNext(message -> assertThat(message.getPayload()).isEqualTo("test2"))
 						.thenCancel()
 						.verifyLater();
 
@@ -103,12 +103,12 @@ public class ZeroMqMessageProducerTests {
 
 		StepVerifier stepVerifier =
 				StepVerifier.create(outputChannel)
-						.assertNext((message) ->
+						.assertNext(message ->
 								assertThat(message.getPayload())
 										.asInstanceOf(InstanceOfAssertFactories.type(ZMsg.class))
 										.extracting(ZMsg::unwrap)
 										.isEqualTo(new ZFrame("testTopic")))
-						.assertNext((message) ->
+						.assertNext(message ->
 								assertThat(message.getPayload())
 										.asInstanceOf(InstanceOfAssertFactories.type(ZMsg.class))
 										.extracting(ZMsg::unwrap)

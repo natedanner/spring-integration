@@ -109,7 +109,7 @@ public class MessageMetricsAdviceTests {
 	private static class DummyHandler implements MessageHandler {
 
 		@SuppressWarnings("unused")
-		boolean invoked = false;
+		boolean invoked;
 
 		DummyHandler() {
 			super();
@@ -124,7 +124,7 @@ public class MessageMetricsAdviceTests {
 
 	private static class DummyInterceptor implements MethodInterceptor {
 
-		boolean invoked = false;
+		boolean invoked;
 
 		DummyInterceptor() {
 			super();

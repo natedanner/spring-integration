@@ -105,7 +105,7 @@ public class RouterAnnotationPostProcessorTests {
 
 		@Router(inputChannel = "routingChannel")
 		public String route(List<?> payload) {
-			if (payload.size() == 0) {
+			if (payload.isEmpty()) {
 				return null;
 			}
 			if (payload.get(0) instanceof Integer) {

@@ -411,9 +411,9 @@ public class TransformerTests {
 		@Bean
 		public IntegrationFlow replyProducingSubFlowEnricher() {
 			return f -> f
-					.enrich(e -> e.<TestPojo>requestPayload(p -> p.getPayload().getName())
+					.enrich(e -> e.requestPayload(p -> p.getPayload().getName())
 							.requestSubFlow(someServiceFlow())
-							.<String>headerFunction("foo", Message::getPayload)
+							.headerFunction("foo", Message::getPayload)
 							.propertyFunction("name", Message::getPayload))
 					.channel("subFlowTestReplyChannel");
 		}
@@ -426,11 +426,11 @@ public class TransformerTests {
 		@Bean
 		public IntegrationFlow terminatingSubFlowEnricher(SomeService someService) {
 			return f -> f
-					.enrich(e -> e.<TestPojo>requestPayload(p -> p.getPayload().getName())
+					.enrich(e -> e.requestPayload(p -> p.getPayload().getName())
 							.requestSubFlow(sf -> sf
 									.handle(someService::aTerminatingServiceMethod))
 							.replyChannel("enricherReplyChannel")
-							.<String>headerFunction("foo", Message::getPayload)
+							.headerFunction("foo", Message::getPayload)
 							.propertyFunction("name", Message::getPayload))
 					.channel("subFlowTestReplyChannel");
 		}
@@ -457,7 +457,7 @@ public class TransformerTests {
 		@Bean
 		public IntegrationFlow transformFlowWithError() {
 			return f -> f
-					.transformWith((t) ->
+					.transformWith(t ->
 							t.transformer(p -> {
 										throw new RuntimeException("intentional");
 									})

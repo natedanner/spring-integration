@@ -51,7 +51,7 @@ public abstract class AbstractReactiveMessageHandler extends MessageHandlerSuppo
 			messageToUse = message;
 		}
 		return handleMessageInternal(messageToUse)
-				.doOnError((ex) -> this.logger.error(ex,
+				.doOnError(ex -> this.logger.error(ex,
 						LogMessage.format("An error occurred in message handler [%s] on message [%s]", this, messageToUse)));
 	}
 

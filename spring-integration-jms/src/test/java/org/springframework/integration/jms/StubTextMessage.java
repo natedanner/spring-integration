@@ -45,15 +45,15 @@ public class StubTextMessage implements TextMessage {
 
 	private String type;
 
-	private long timestamp = 0L;
+	private long timestamp;
 
-	private long expiration = 0L;
+	private long expiration;
 
 	private int priority = DEFAULT_PRIORITY;
 
 	private boolean redelivered;
 
-	private ConcurrentHashMap<String, Object> properties = new ConcurrentHashMap<String, Object>();
+	private ConcurrentHashMap<String, Object> properties = new ConcurrentHashMap<>();
 
 	private long deliveryTime;
 
@@ -98,25 +98,25 @@ public class StubTextMessage implements TextMessage {
 	@Override
 	public byte getByteProperty(String name) throws JMSException {
 		Object value = this.properties.get(name);
-		return (value instanceof Byte) ? (Byte) value : 0;
+		return value instanceof Byte ? (Byte) value : 0;
 	}
 
 	@Override
 	public double getDoubleProperty(String name) throws JMSException {
 		Object value = this.properties.get(name);
-		return (value instanceof Double) ? (Double) value : 0;
+		return value instanceof Double ? (Double) value : 0;
 	}
 
 	@Override
 	public float getFloatProperty(String name) throws JMSException {
 		Object value = this.properties.get(name);
-		return (value instanceof Float) ? (Float) value : 0;
+		return value instanceof Float ? (Float) value : 0;
 	}
 
 	@Override
 	public int getIntProperty(String name) throws JMSException {
 		Object value = this.properties.get(name);
-		return (value instanceof Integer) ? (Integer) value : 0;
+		return value instanceof Integer ? (Integer) value : 0;
 	}
 
 	@Override
@@ -177,7 +177,7 @@ public class StubTextMessage implements TextMessage {
 	@Override
 	public long getLongProperty(String name) throws JMSException {
 		Object value = this.properties.get(name);
-		return (value instanceof Long) ? (Long) value : 0;
+		return value instanceof Long ? (Long) value : 0;
 	}
 
 	@Override
@@ -193,13 +193,13 @@ public class StubTextMessage implements TextMessage {
 	@Override
 	public short getShortProperty(String name) throws JMSException {
 		Object value = this.properties.get(name);
-		return (value instanceof Short) ? (Short) value : 0;
+		return value instanceof Short ? (Short) value : 0;
 	}
 
 	@Override
 	public String getStringProperty(String name) throws JMSException {
 		Object value = this.properties.get(name);
-		return (value instanceof String) ? (String) value : null;
+		return value instanceof String ? (String) value : null;
 	}
 
 	@Override

@@ -95,7 +95,7 @@ public class ZeroMqMessageHandlerTests {
 				new ZeroMqMessageHandler(CONTEXT, "tcp://localhost:" + port, SocketType.PUB);
 		messageHandler.setBeanFactory(mock(BeanFactory.class));
 		messageHandler.setTopicExpression(
-				new FunctionExpression<Message<?>>((message) -> message.getHeaders().get("topic")));
+				new FunctionExpression<Message<?>>(message -> message.getHeaders().get("topic")));
 		messageHandler.setMessageMapper(new EmbeddedJsonHeadersMessageMapper());
 		messageHandler.afterPropertiesSet();
 		messageHandler.start();

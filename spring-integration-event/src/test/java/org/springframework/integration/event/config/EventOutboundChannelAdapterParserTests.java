@@ -121,7 +121,7 @@ public class EventOutboundChannelAdapterParserTests {
 			Object source = event.getSource();
 			if (source instanceof Message) {
 				String payload = (String) ((Message<?>) source).getPayload();
-				if (payload.equals("hello")) {
+				if ("hello".equals(payload)) {
 					eventLatch.countDown();
 				}
 			}

@@ -120,7 +120,7 @@ public interface RedisContainerTest {
 				RedisConnection.class);
 
 		int n = 0;
-		while (n++ < 300 && connection.getSubscription().getPatterns().size() == 0) {
+		while (n++ < 300 && connection.getSubscription().getPatterns().isEmpty()) {
 			Thread.sleep(100);
 		}
 		assertThat(n < 300).as("RedisMessageListenerContainer Failed to Subscribe with patterns").isTrue();

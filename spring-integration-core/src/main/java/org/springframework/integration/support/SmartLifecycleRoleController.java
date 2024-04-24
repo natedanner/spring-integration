@@ -282,7 +282,7 @@ public class SmartLifecycleRoleController implements ApplicationListener<Abstrac
 		return this.lifecycles.get(role)
 				.stream()
 				.collect(Collectors.toMap(e ->
-								(e instanceof NamedComponent)
+								e instanceof NamedComponent
 										? ((NamedComponent) e).getComponentName()
 										: (e.getClass().getSimpleName() + "#" + index.getAndIncrement()),
 						Lifecycle::isRunning));

@@ -76,7 +76,7 @@ public class ExpressionEvaluatingRequestHandlerAdviceTests {
 		public IntegrationFlow advised() {
 			return f -> f
 					.<String>handle((payload, headers) -> {
-								if (payload.equals("good")) {
+								if ("good".equals(payload)) {
 									return null;
 								}
 								else {

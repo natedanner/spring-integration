@@ -101,11 +101,11 @@ public class PeriodicTriggerFactoryBean implements FactoryBean<PeriodicTrigger> 
 	}
 
 	private static boolean isDurationString(String value) {
-		return (value.length() > 1 && (isP(value.charAt(0)) || isP(value.charAt(1))));
+		return value.length() > 1 && (isP(value.charAt(0)) || isP(value.charAt(1)));
 	}
 
 	private static boolean isP(char ch) {
-		return (ch == 'P' || ch == 'p');
+		return ch == 'P' || ch == 'p';
 	}
 
 	private static Duration toDuration(long value, TimeUnit timeUnit) {

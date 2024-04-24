@@ -24,7 +24,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  * @since 2.2
  *
  */
-public class SyslogdTests {
+public final class SyslogdTests {
 
 	private SyslogdTests() {
 		super();

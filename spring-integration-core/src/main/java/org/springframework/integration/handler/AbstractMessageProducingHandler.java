@@ -342,7 +342,7 @@ public abstract class AbstractMessageProducingHandler extends AbstractMessageHan
 					reactiveStreamsSubscribableChannel
 							.subscribeTo(
 									Flux.from(reactiveReply)
-											.doOnError((ex) -> sendErrorMessage(requestMessage, ex))
+											.doOnError(ex -> sendErrorMessage(requestMessage, ex))
 											.map(result -> createOutputMessage(result, requestHeaders)));
 				}
 				else {

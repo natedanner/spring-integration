@@ -407,7 +407,7 @@ class MongoDbTests implements MongoDbContainerTest {
 		private MongoDbOutboundGatewaySpec collectionNameFunctionOutboundGateway(boolean expectSingleResult) {
 			return MongoDb.outboundGateway(mongoDbFactory(), mongoConverter())
 					.queryExpression("headers.query")
-					.<String>collectionNameFunction(Message::getPayload)
+					.collectionNameFunction(Message::getPayload)
 					.expectSingleResult(expectSingleResult)
 					.entityClass(Person.class);
 		}

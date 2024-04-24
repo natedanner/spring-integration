@@ -63,7 +63,7 @@ import static org.assertj.core.api.Assertions.fail;
 @RunWith(SpringJUnit4ClassRunner.class)
 public class JsonPathTests {
 
-	private static File JSON_FILE;
+	private static File jsonFile;
 
 	private static String JSON;
 
@@ -72,11 +72,11 @@ public class JsonPathTests {
 	@BeforeClass
 	public static void setUp() throws IOException {
 		ClassPathResource jsonResource = new ClassPathResource("JsonPathTests.json", JsonPathTests.class);
-		JSON_FILE = jsonResource.getFile();
-		Scanner scanner = new Scanner(JSON_FILE);
+		jsonFile = jsonResource.getFile();
+		Scanner scanner = new Scanner(jsonFile);
 		JSON = scanner.useDelimiter("\\Z").next();
 		scanner.close();
-		testMessage = new GenericMessage<String>(JSON);
+		testMessage = new GenericMessage<>(JSON);
 	}
 
 	@Autowired
@@ -127,7 +127,7 @@ public class JsonPathTests {
 		assertThat(receive).isNotNull();
 		assertThat(receive.getPayload()).isEqualTo("Nigel Rees");
 
-		this.transformerInput.send(new GenericMessage<File>(JSON_FILE));
+		this.transformerInput.send(new GenericMessage<File>(jsonFile));
 		receive = this.output.receive(1000);
 		assertThat(receive).isNotNull();
 

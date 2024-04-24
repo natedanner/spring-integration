@@ -245,7 +245,7 @@ public abstract class IntegrationNamespaceUtils {
 			 */
 			if (numberOfAttributes != 1 && !(numberOfAttributes == 2 &&
 					pollerElement.hasAttribute("default") &&
-					pollerElement.getAttribute("default").equals("false"))) {
+					"false".equals(pollerElement.getAttribute("default")))) {
 				parserContext.getReaderContext().error(
 						"A 'poller' element that provides a 'ref' must have no other attributes.", pollerElement);
 			}

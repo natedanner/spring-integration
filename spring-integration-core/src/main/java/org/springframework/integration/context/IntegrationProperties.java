@@ -131,7 +131,7 @@ public final class IntegrationProperties {
 
 	private int taskSchedulerPoolSize = 10; // NOSONAR
 
-	private boolean messagingTemplateThrowExceptionOnLateReply = false;
+	private boolean messagingTemplateThrowExceptionOnLateReply;
 
 	private String[] readOnlyHeaders = {};
 
@@ -354,28 +354,28 @@ public final class IntegrationProperties {
 		IntegrationProperties integrationProperties = new IntegrationProperties();
 		JavaUtils.INSTANCE
 				.acceptIfHasText(properties.getProperty(CHANNELS_AUTOCREATE),
-						(value) -> integrationProperties.setChannelsAutoCreate(Boolean.parseBoolean(value)))
+						value -> integrationProperties.setChannelsAutoCreate(Boolean.parseBoolean(value)))
 				.acceptIfHasText(properties.getProperty(CHANNELS_MAX_UNICAST_SUBSCRIBERS),
-						(value) -> integrationProperties.setChannelsMaxUnicastSubscribers(Integer.parseInt(value)))
+						value -> integrationProperties.setChannelsMaxUnicastSubscribers(Integer.parseInt(value)))
 				.acceptIfHasText(properties.getProperty(CHANNELS_MAX_BROADCAST_SUBSCRIBERS),
-						(value) -> integrationProperties.setChannelsMaxBroadcastSubscribers(Integer.parseInt(value)))
+						value -> integrationProperties.setChannelsMaxBroadcastSubscribers(Integer.parseInt(value)))
 				.acceptIfHasText(properties.getProperty(ERROR_CHANNEL_REQUIRE_SUBSCRIBERS),
-						(value) -> integrationProperties.setErrorChannelRequireSubscribers(Boolean.parseBoolean(value)))
+						value -> integrationProperties.setErrorChannelRequireSubscribers(Boolean.parseBoolean(value)))
 				.acceptIfHasText(properties.getProperty(ERROR_CHANNEL_IGNORE_FAILURES),
-						(value) -> integrationProperties.setErrorChannelIgnoreFailures(Boolean.parseBoolean(value)))
+						value -> integrationProperties.setErrorChannelIgnoreFailures(Boolean.parseBoolean(value)))
 				.acceptIfHasText(properties.getProperty(TASK_SCHEDULER_POOL_SIZE),
-						(value) -> integrationProperties.setTaskSchedulerPoolSize(Integer.parseInt(value)))
+						value -> integrationProperties.setTaskSchedulerPoolSize(Integer.parseInt(value)))
 				.acceptIfHasText(properties.getProperty(THROW_EXCEPTION_ON_LATE_REPLY),
-						(value) -> integrationProperties.setMessagingTemplateThrowExceptionOnLateReply(
+						value -> integrationProperties.setMessagingTemplateThrowExceptionOnLateReply(
 								Boolean.parseBoolean(value)))
 				.acceptIfHasText(properties.getProperty(READ_ONLY_HEADERS),
-						(value) -> integrationProperties.setReadOnlyHeaders(
+						value -> integrationProperties.setReadOnlyHeaders(
 								StringUtils.commaDelimitedListToStringArray(value)))
 				.acceptIfHasText(properties.getProperty(ENDPOINTS_NO_AUTO_STARTUP),
-						(value) -> integrationProperties.setNoAutoStartupEndpoints(
+						value -> integrationProperties.setNoAutoStartupEndpoints(
 								StringUtils.commaDelimitedListToStringArray(value)))
 				.acceptIfHasText(properties.getProperty(ENDPOINTS_DEFAULT_TIMEOUT),
-						(value) -> integrationProperties.setEndpointsDefaultTimeout(Long.parseLong(value)));
+						value -> integrationProperties.setEndpointsDefaultTimeout(Long.parseLong(value)));
 		return integrationProperties;
 	}
 

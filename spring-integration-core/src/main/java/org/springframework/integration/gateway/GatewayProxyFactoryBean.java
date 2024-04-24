@@ -138,7 +138,7 @@ public class GatewayProxyFactoryBean<T> extends AbstractEndpoint
 
 	private DestinationResolver<MessageChannel> channelResolver;
 
-	private boolean shouldTrack = false;
+	private boolean shouldTrack;
 
 	private TypeConverter typeConverter = new SimpleTypeConverter();
 
@@ -374,7 +374,7 @@ public class GatewayProxyFactoryBean<T> extends AbstractEndpoint
 					"methods returning Future<?> will run on the calling thread");
 		}
 		this.asyncExecutor =
-				(executor instanceof AsyncTaskExecutor || executor == null)
+				executor instanceof AsyncTaskExecutor || executor == null
 						? (AsyncTaskExecutor) executor
 						: new TaskExecutorAdapter(executor);
 		this.asyncExecutorExplicitlySet = true;
@@ -948,7 +948,7 @@ public class GatewayProxyFactoryBean<T> extends AbstractEndpoint
 
 	private void validateHeaders(Set<String> headerNames) {
 		for (String header : headerNames) {
-			if ((MessageHeaders.ID.equals(header) || MessageHeaders.TIMESTAMP.equals(header))) {
+			if (MessageHeaders.ID.equals(header) || MessageHeaders.TIMESTAMP.equals(header)) {
 				throw new BeanInitializationException(
 						"Messaging Gateway cannot override 'id' and 'timestamp' read-only headers.\n" +
 								"Wrong headers configuration for " + getComponentName());

@@ -175,14 +175,14 @@ public class CrossOriginTests {
 	private CorsConfiguration getCorsConfiguration(HandlerExecutionChain chain, boolean isPreFlightRequest) {
 		if (isPreFlightRequest) {
 			Object handler = chain.getHandler();
-			assertThat(handler.getClass().getSimpleName().equals("PreFlightHandler")).isTrue();
+			assertThat("PreFlightHandler".equals(handler.getClass().getSimpleName())).isTrue();
 			return TestUtils.getPropertyValue(handler, "config", CorsConfiguration.class);
 		}
 		else {
 			HandlerInterceptor[] interceptors = chain.getInterceptors();
 			if (interceptors != null) {
 				for (HandlerInterceptor interceptor : interceptors) {
-					if (interceptor.getClass().getSimpleName().equals("CorsInterceptor")) {
+					if ("CorsInterceptor".equals(interceptor.getClass().getSimpleName())) {
 						return TestUtils.getPropertyValue(interceptor, "config", CorsConfiguration.class);
 					}
 				}

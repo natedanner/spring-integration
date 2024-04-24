@@ -72,7 +72,7 @@ public final class MessageBuilder<T> extends AbstractIntegrationMessageBuilder<T
 		this.originalMessage = originalMessage;
 		this.headerAccessor = new IntegrationMessageHeaderAccessor(originalMessage);
 		if (originalMessage != null) {
-			this.modified = (!this.payload.equals(originalMessage.getPayload()));
+			this.modified = !this.payload.equals(originalMessage.getPayload());
 		}
 	}
 

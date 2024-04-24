@@ -336,7 +336,7 @@ public class ApplicationEventListeningMessageProducerTests {
 
 	}
 
-	private static class TestApplicationListener implements ApplicationListener<ApplicationEvent> {
+	private static final class TestApplicationListener implements ApplicationListener<ApplicationEvent> {
 
 		private final AtomicInteger counter;
 

@@ -65,7 +65,7 @@ public class UnmarshallingTransformer extends AbstractPayloadTransformer<Object,
 
 	private SourceFactory sourceFactory = new DomSourceFactory();
 
-	private boolean alwaysUseSourceFactory = false;
+	private boolean alwaysUseSourceFactory;
 
 	private MimeMessageUnmarshallerHelper mimeMessageUnmarshallerHelper;
 

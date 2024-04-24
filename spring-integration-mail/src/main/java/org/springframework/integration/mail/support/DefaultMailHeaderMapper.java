@@ -49,7 +49,7 @@ public class DefaultMailHeaderMapper implements HeaderMapper<MimeMessage> {
 		Map<String, Object> headers = MailUtils.extractStandardHeaders(source);
 		try {
 			Enumeration<?> allHeaders = source.getAllHeaders();
-			MultiValueMap<String, String> rawHeaders = new LinkedMultiValueMap<String, String>();
+			MultiValueMap<String, String> rawHeaders = new LinkedMultiValueMap<>();
 			while (allHeaders.hasMoreElements()) {
 				Object headerInstance = allHeaders.nextElement();
 				if (headerInstance instanceof Header) {

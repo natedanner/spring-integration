@@ -138,7 +138,7 @@ public class IntegrationComponentScanRegistrar implements ImportBeanDefinitionRe
 		BeanNameGenerator beanNameGenerator = IntegrationConfigUtils.annotationBeanNameGenerator(registry);
 
 		Class<? extends BeanNameGenerator> generatorClass = componentScan.getClass("nameGenerator");
-		if (!(BeanNameGenerator.class == generatorClass)) {
+		if (BeanNameGenerator.class != generatorClass) {
 			beanNameGenerator = BeanUtils.instantiateClass(generatorClass);
 		}
 

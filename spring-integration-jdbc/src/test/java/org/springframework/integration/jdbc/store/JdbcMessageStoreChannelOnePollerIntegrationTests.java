@@ -161,9 +161,9 @@ public class JdbcMessageStoreChannelOnePollerIntegrationTests {
 
 	public static class Service {
 
-		private static boolean fail = false;
+		private static boolean fail;
 
-		private static List<String> messages = new CopyOnWriteArrayList<String>();
+		private static List<String> messages = new CopyOnWriteArrayList<>();
 
 		private static CountDownLatch latch = new CountDownLatch(0);
 

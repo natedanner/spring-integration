@@ -137,7 +137,7 @@ public class NotificationListeningMessageProducerTests {
 		adapter.setServer(this.server);
 		adapter.setObjectName(this.objectName);
 		adapter.setOutputChannel(outputChannel);
-		adapter.setFilter(notification -> !notification.getMessage().equals("bad"));
+		adapter.setFilter(notification -> !"bad".equals(notification.getMessage()));
 		adapter.setBeanFactory(mock(BeanFactory.class));
 		adapter.afterPropertiesSet();
 		adapter.start();

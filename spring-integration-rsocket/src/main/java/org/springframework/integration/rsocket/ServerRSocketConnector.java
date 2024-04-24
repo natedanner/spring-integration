@@ -53,7 +53,7 @@ public class ServerRSocketConnector extends AbstractRSocketConnector implements 
 
 	private final ServerTransport<CloseableChannel> serverTransport;
 
-	private Consumer<RSocketServer> serverConfigurer = (rsocketServer) -> {
+	private Consumer<RSocketServer> serverConfigurer = rsocketServer -> {
 	};
 
 	private Mono<CloseableChannel> serverMono;
@@ -204,7 +204,7 @@ public class ServerRSocketConnector extends AbstractRSocketConnector implements 
 	public Mono<Integer> getBoundPort() {
 		if (this.serverTransport != null) {
 			return this.serverMono
-					.map((server) -> server.address().getPort());
+					.map(server -> server.address().getPort());
 		}
 		else {
 			return Mono.empty();

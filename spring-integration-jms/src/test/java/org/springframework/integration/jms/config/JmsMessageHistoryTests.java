@@ -103,7 +103,7 @@ public class JmsMessageHistoryTests extends ActiveMQMultiContextTests {
 
 		public Map<String, Object> toHeaders(jakarta.jms.Message jmsMessage) {
 			Map<String, Object> headers = super.toHeaders(jmsMessage);
-			List<Properties> history = new ArrayList<Properties>();
+			List<Properties> history = new ArrayList<>();
 			String outboundHistory = (String) headers.get("outbound_history");
 			StringTokenizer outerTok = new StringTokenizer(outboundHistory, "[]");
 			while (outerTok.hasMoreTokens()) {

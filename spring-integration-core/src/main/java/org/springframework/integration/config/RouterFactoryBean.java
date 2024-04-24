@@ -123,7 +123,7 @@ public class RouterFactoryBean extends AbstractStandardMessageHandlerFactoryBean
 	}
 
 	protected AbstractMappingMessageRouter createMethodInvokingRouter(Object targetObject, String targetMethodName) {
-		return (StringUtils.hasText(targetMethodName))
+		return StringUtils.hasText(targetMethodName)
 				? new MethodInvokingRouter(targetObject, targetMethodName)
 				: new MethodInvokingRouter(targetObject);
 	}

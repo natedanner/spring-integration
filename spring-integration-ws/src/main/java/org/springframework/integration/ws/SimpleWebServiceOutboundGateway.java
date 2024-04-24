@@ -71,7 +71,7 @@ public class SimpleWebServiceOutboundGateway extends AbstractWebServiceOutboundG
 			WebServiceMessageFactory messageFactory) {
 
 		super(destinationProvider, messageFactory);
-		this.sourceExtractor = (sourceExtractor != null) ? sourceExtractor : new DefaultSourceExtractor();
+		this.sourceExtractor = sourceExtractor != null ? sourceExtractor : new DefaultSourceExtractor();
 	}
 
 	public SimpleWebServiceOutboundGateway(String uri) {
@@ -86,7 +86,7 @@ public class SimpleWebServiceOutboundGateway extends AbstractWebServiceOutboundG
 			WebServiceMessageFactory messageFactory) {
 
 		super(uri, messageFactory);
-		this.sourceExtractor = (sourceExtractor != null) ? sourceExtractor : new DefaultSourceExtractor();
+		this.sourceExtractor = sourceExtractor != null ? sourceExtractor : new DefaultSourceExtractor();
 	}
 
 	/**

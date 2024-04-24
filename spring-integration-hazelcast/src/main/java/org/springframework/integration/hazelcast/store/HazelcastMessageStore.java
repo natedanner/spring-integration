@@ -65,7 +65,7 @@ public class HazelcastMessageStore extends AbstractKeyValueMessageStore {
 
 	@Override
 	protected void doRemoveAll(Collection<Object> ids) {
-		this.map.removeAll((mapEntry) -> ids.contains(mapEntry.getKey()));
+		this.map.removeAll(mapEntry -> ids.contains(mapEntry.getKey()));
 	}
 
 	@Override

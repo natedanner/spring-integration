@@ -59,7 +59,7 @@ public class UnicastingDispatcher extends AbstractDispatcher {
 
 	private final Executor executor;
 
-	private Predicate<Exception> failoverStrategy = (exception) -> true;
+	private Predicate<Exception> failoverStrategy = exception -> true;
 
 	private LoadBalancingStrategy loadBalancingStrategy;
 
@@ -82,7 +82,7 @@ public class UnicastingDispatcher extends AbstractDispatcher {
 	 * @param failover The failover boolean.
 	 */
 	public void setFailover(boolean failover) {
-		setFailoverStrategy((exception) -> failover);
+		setFailoverStrategy(exception -> failover);
 	}
 
 	/**

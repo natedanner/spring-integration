@@ -45,7 +45,7 @@ import static org.awaitility.Awaitility.await;
  * @author Artem Bilan
  *
  */
-public class SocketTestUtils {
+public final class SocketTestUtils {
 
 	public static final String TEST_STRING = "TestMessage";
 

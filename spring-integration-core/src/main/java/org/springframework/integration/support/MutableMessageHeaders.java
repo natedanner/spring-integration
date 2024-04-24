@@ -96,7 +96,7 @@ public class MutableMessageHeaders extends MessageHeaders {
 	private static Long extractTimestamp(@Nullable Map<String, Object> headers) {
 		if (headers != null && headers.containsKey(MessageHeaders.TIMESTAMP)) {
 			Object timestamp = headers.get(MessageHeaders.TIMESTAMP);
-			return (timestamp instanceof String) ? Long.parseLong((String) timestamp) : (Long) timestamp;
+			return timestamp instanceof String ? Long.parseLong((String) timestamp) : (Long) timestamp;
 		}
 
 		return null;

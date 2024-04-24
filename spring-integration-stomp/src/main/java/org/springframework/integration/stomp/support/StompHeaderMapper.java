@@ -153,7 +153,7 @@ public class StompHeaderMapper implements HeaderMapper<StompHeaders> {
 					target.set(name, (String) value);
 				}
 				else {
-					Class<?> clazz = (value != null) ? value.getClass() : null;
+					Class<?> clazz = value != null ? value.getClass() : null;
 					throw new IllegalArgumentException(
 							"Expected String value for any generic STOMP header value, but received: " + clazz);
 				}
@@ -168,7 +168,7 @@ public class StompHeaderMapper implements HeaderMapper<StompHeaders> {
 			target.setContentLength(Long.parseLong((String) value));
 		}
 		else {
-			Class<?> clazz = (value != null) ? value.getClass() : null;
+			Class<?> clazz = value != null ? value.getClass() : null;
 			throw new IllegalArgumentException(
 					"Expected Number or String value for 'content-length' header value, but received: " + clazz);
 		}
@@ -184,7 +184,7 @@ public class StompHeaderMapper implements HeaderMapper<StompHeaders> {
 				target.setContentType(MediaType.parseMediaType((String) value));
 			}
 			else {
-				Class<?> clazz = (value != null) ? value.getClass() : null;
+				Class<?> clazz = value != null ? value.getClass() : null;
 				throw new IllegalArgumentException(
 						"Expected MediaType or String value for 'content-type' header value, but received: "
 								+ clazz);
@@ -197,7 +197,7 @@ public class StompHeaderMapper implements HeaderMapper<StompHeaders> {
 			target.setReceipt((String) value);
 		}
 		else {
-			Class<?> clazz = (value != null) ? value.getClass() : null;
+			Class<?> clazz = value != null ? value.getClass() : null;
 			throw new IllegalArgumentException(
 					"Expected String value for 'receipt' header value, but received: " + clazz);
 		}
@@ -208,7 +208,7 @@ public class StompHeaderMapper implements HeaderMapper<StompHeaders> {
 			target.setDestination((String) value);
 		}
 		else {
-			Class<?> clazz = (value != null) ? value.getClass() : null;
+			Class<?> clazz = value != null ? value.getClass() : null;
 			throw new IllegalArgumentException(
 					"Expected String value for 'destination' header value, but received: " + clazz);
 		}

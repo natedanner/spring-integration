@@ -127,10 +127,10 @@ public class ExpressionEvaluatingParameterSourceFactory implements ParameterSour
 		@Nullable
 		public Object getValue(String paramName) {
 			return this.values.computeIfAbsent(paramName,
-					(key) -> {
+					key -> {
 						JpaParameter jpaParameter =
 								this.parametersMap.computeIfAbsent(paramName,
-										(name) -> {
+										name -> {
 											JpaParameter parameter = new JpaParameter(paramName, null, paramName);
 											ExpressionEvaluatingParameterSourceFactory.this.parameters.add(parameter);
 											return parameter;

@@ -366,7 +366,7 @@ public class JmsChannelFactoryBean extends AbstractFactoryBean<AbstractJmsChanne
 
 	@Override
 	public Class<?> getObjectType() {
-		return (this.channel != null) ? this.channel.getClass() : AbstractJmsChannel.class;
+		return this.channel != null ? this.channel.getClass() : AbstractJmsChannel.class;
 	}
 
 	@Override
@@ -476,7 +476,7 @@ public class JmsChannelFactoryBean extends AbstractFactoryBean<AbstractJmsChanne
 
 	@Override
 	public int getPhase() {
-		return (this.channel instanceof SubscribableJmsChannel) ?
+		return this.channel instanceof SubscribableJmsChannel ?
 				((SubscribableJmsChannel) this.channel).getPhase() : 0;
 	}
 

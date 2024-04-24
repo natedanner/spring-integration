@@ -80,13 +80,13 @@ public final class IntegrationReactiveUtils {
 		return Mono.
 				<Message<T>>create(monoSink ->
 				monoSink.onRequest(value -> monoSink.success(messageSource.receive())))
-				.doOnSuccess((message) -> {
+				.doOnSuccess(message -> {
 					if (message != null) {
 						AckUtils.autoAck(StaticMessageHeaderAccessor.getAcknowledgmentCallback(message));
 					}
 				})
 				.doOnError(MessagingException.class,
-						(ex) -> {
+						ex -> {
 							Message<?> failedMessage = ex.getFailedMessage();
 							if (failedMessage != null) {
 								AckUtils.autoNack(StaticMessageHeaderAccessor.getAcknowledgmentCallback(failedMessage));
@@ -94,8 +94,8 @@ public final class IntegrationReactiveUtils {
 							LOGGER.error("Error from Flux for : " + messageSource, ex);
 						})
 				.subscribeOn(Schedulers.boundedElastic())
-				.repeatWhenEmpty((repeat) ->
-						repeat.flatMap((increment) ->
+				.repeatWhenEmpty(repeat ->
+						repeat.flatMap(increment ->
 								Mono.deferContextual(ctx ->
 										Mono.delay(ctx.getOrDefault(DELAY_WHEN_EMPTY_KEY,
 												DEFAULT_DELAY_WHEN_EMPTY)))))
@@ -136,7 +136,7 @@ public final class IntegrationReactiveUtils {
 	private static <T> Flux<Message<T>> adaptSubscribableChannelToPublisher(SubscribableChannel inputChannel) {
 		return Flux.defer(() -> {
 			Sinks.Many<Message<T>> sink = Sinks.many().unicast().onBackpressureError();
-			MessageHandler messageHandler = (message) -> {
+			MessageHandler messageHandler = message -> {
 				while (true) {
 					switch (sink.tryEmitNext((Message<T>) message)) {
 						case FAIL_NON_SERIALIZED:

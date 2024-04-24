@@ -43,7 +43,7 @@ public class ClaimCheckOutTransformer extends AbstractTransformer implements Int
 
 	private final MessageStore messageStore;
 
-	private volatile boolean removeMessage = false;
+	private volatile boolean removeMessage;
 
 	/**
 	 * Create a claim check-out transformer that will delegate to the provided MessageStore.

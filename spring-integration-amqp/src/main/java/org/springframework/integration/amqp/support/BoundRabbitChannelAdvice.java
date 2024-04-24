@@ -112,7 +112,7 @@ public class BoundRabbitChannelAdvice implements HandleMessageAdvice {
 
 	private void doHandleAcks(long deliveryTag, boolean multiple, boolean ack) {
 		if (this.logger.isDebugEnabled()) {
-			this.logger.debug("Publisher confirm " + (!ack ? "n" : "") + "ack: " + deliveryTag + ", " +
+			this.logger.debug("Publisher confirm " + (ack ? "" : "n") + "ack: " + deliveryTag + ", " +
 					"multiple: " + multiple);
 		}
 	}

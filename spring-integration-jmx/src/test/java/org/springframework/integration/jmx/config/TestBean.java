@@ -32,11 +32,11 @@ import org.springframework.jmx.export.annotation.ManagedResource;
 @ManagedResource
 public class TestBean {
 
-	final List<String> messages = new ArrayList<String>();
+	final List<String> messages = new ArrayList<>();
 
 	@ManagedAttribute
 	public String getFirstMessage() {
-		return (messages.size() > 0) ? messages.get(0) : null;
+		return !messages.isEmpty() ? messages.get(0) : null;
 	}
 
 	@ManagedOperation

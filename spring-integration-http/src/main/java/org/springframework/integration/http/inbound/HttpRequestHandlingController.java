@@ -106,7 +106,7 @@ public class HttpRequestHandlingController extends HttpRequestHandlingEndpointSu
 	 * @param replyKey The reply key.
 	 */
 	public void setReplyKey(String replyKey) {
-		this.replyKey = (replyKey != null) ? replyKey : DEFAULT_REPLY_KEY;
+		this.replyKey = replyKey != null ? replyKey : DEFAULT_REPLY_KEY;
 	}
 
 	/**

@@ -39,7 +39,7 @@ import org.springframework.lang.Nullable;
  */
 final class FileChannelCache {
 
-	private static ConcurrentMap<File, FileChannel> channelCache = new ConcurrentHashMap<>();
+	private static final ConcurrentMap<File, FileChannel> channelCache = new ConcurrentHashMap<>();
 
 	private FileChannelCache() {
 	}

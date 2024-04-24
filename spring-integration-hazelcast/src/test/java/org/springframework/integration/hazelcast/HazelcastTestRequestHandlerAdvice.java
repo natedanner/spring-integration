@@ -31,7 +31,7 @@ import org.springframework.messaging.Message;
  */
 public class HazelcastTestRequestHandlerAdvice extends AbstractRequestHandlerAdvice {
 
-	public CountDownLatch executeLatch = null;
+	public CountDownLatch executeLatch;
 
 	public HazelcastTestRequestHandlerAdvice(int count) {
 		this.executeLatch = new CountDownLatch(count);

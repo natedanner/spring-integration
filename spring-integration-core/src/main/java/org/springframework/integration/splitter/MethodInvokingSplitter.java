@@ -36,11 +36,11 @@ import org.springframework.integration.handler.MethodInvokingMessageProcessor;
 public class MethodInvokingSplitter extends AbstractMessageProcessingSplitter {
 
 	public MethodInvokingSplitter(Object object, Method method) {
-		super(new MethodInvokingMessageProcessor<Collection<?>>(object, method));
+		super(new MethodInvokingMessageProcessor<>(object, method));
 	}
 
 	public MethodInvokingSplitter(Object object, String methodName) {
-		super(new MethodInvokingMessageProcessor<Collection<?>>(object, methodName));
+		super(new MethodInvokingMessageProcessor<>(object, methodName));
 	}
 
 	@SuppressWarnings("unchecked")

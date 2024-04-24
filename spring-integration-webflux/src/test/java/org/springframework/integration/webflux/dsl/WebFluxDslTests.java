@@ -294,7 +294,7 @@ public class WebFluxDslTests {
 		IntegrationFlow flow =
 				IntegrationFlow.from(
 								WebFlux.inboundGateway("/validation")
-										.requestMapping((mapping) -> mapping
+										.requestMapping(mapping -> mapping
 												.methods(HttpMethod.POST)
 												.consumes(MediaType.APPLICATION_JSON_VALUE))
 										.requestPayloadType(
@@ -331,7 +331,7 @@ public class WebFluxDslTests {
 
 												})))
 						.channel(MessageChannels.flux())
-						.transform((payload) -> {
+						.transform(payload -> {
 							throw new RuntimeException("Error!");
 						})
 						.get();

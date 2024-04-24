@@ -43,11 +43,11 @@ public class MessageGroupStoreReaper implements Runnable, DisposableBean, Initia
 
 	private MessageGroupStore messageGroupStore;
 
-	private boolean expireOnDestroy = false;
+	private boolean expireOnDestroy;
 
 	private long timeout = -1;
 
-	private int phase = 0;
+	private int phase;
 
 	private boolean autoStartup = true;
 

@@ -178,9 +178,6 @@ public class UdpUnicastEndToEndTests implements Runnable {
 				}
 			}
 		}
-		catch (RuntimeException e) {
-			throw e;
-		}
 		catch (InterruptedException e) {
 			Thread.currentThread().interrupt();
 			throw new RuntimeException("interrupted");

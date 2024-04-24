@@ -37,12 +37,12 @@ public class KryoClassMapRegistrar extends AbstractKryoRegistrar {
 	private final Map<Integer, Class<?>> registeredClasses;
 
 	public KryoClassMapRegistrar(Map<Integer, Class<?>> kryoRegisteredClasses) {
-		this.registeredClasses = new HashMap<Integer, Class<?>>(kryoRegisteredClasses);
+		this.registeredClasses = new HashMap<>(kryoRegisteredClasses);
 	}
 
 	@Override
 	public List<Registration> getRegistrations() {
-		List<Registration> registrations = new ArrayList<Registration>();
+		List<Registration> registrations = new ArrayList<>();
 		if (!CollectionUtils.isEmpty(this.registeredClasses)) {
 			for (Map.Entry<Integer, Class<?>> entry : this.registeredClasses.entrySet()) {
 				registrations.add(

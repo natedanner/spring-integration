@@ -115,7 +115,7 @@ public class MetadataStoreSelector implements MessageSelector {
 	public boolean accept(Message<?> message) {
 		String key = this.keyStrategy.processMessage(message);
 		Long timestamp = message.getHeaders().getTimestamp();
-		String value = (this.valueStrategy != null)
+		String value = this.valueStrategy != null
 				? this.valueStrategy.processMessage(message)
 				: (timestamp == null ? "0" : Long.toString(timestamp));
 

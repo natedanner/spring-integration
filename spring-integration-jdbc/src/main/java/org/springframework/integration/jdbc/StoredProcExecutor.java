@@ -61,7 +61,7 @@ public class StoredProcExecutor implements BeanFactoryAware, InitializingBean {
 
 	private static final int DEFAULT_CACHE_SIZE = 10;
 
-	private static final float LOAD_FACTOR = 0.75f;
+	private static final float LOAD_FACTOR = 0.75F;
 
 	private final DataSource dataSource;
 
@@ -86,7 +86,7 @@ public class StoredProcExecutor implements BeanFactoryAware, InitializingBean {
 	 * not support meta data lookups or if you like to provide customized
 	 * parameter definitions, this flag can be set to 'true'. It defaults to 'false'.
 	 */
-	private boolean ignoreColumnMetaData = false;
+	private boolean ignoreColumnMetaData;
 
 	/**
 	 * If this variable is set to true then all results from a stored procedure call
@@ -127,9 +127,9 @@ public class StoredProcExecutor implements BeanFactoryAware, InitializingBean {
 	 */
 	private List<ProcedureParameter> procedureParameters;
 
-	private boolean isFunction = false;
+	private boolean isFunction;
 
-	private boolean returnValueRequired = false;
+	private boolean returnValueRequired;
 
 	/**
 	 * Constructor taking {@link DataSource} from which the DB Connection can be

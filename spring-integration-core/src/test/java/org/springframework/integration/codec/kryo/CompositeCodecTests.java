@@ -69,7 +69,7 @@ public class CompositeCodecTests {
 				return false;
 			}
 			SomeClassWithNoDefaultConstructors that = (SomeClassWithNoDefaultConstructors) other;
-			return (this.val1.equals(that.val1) && this.val2 == that.val2);
+			return this.val1.equals(that.val1) && this.val2 == that.val2;
 		}
 
 		@Override

@@ -52,7 +52,7 @@ public class MongoDbStoringMessageHandler extends AbstractMessageHandler {
 
 	private Expression collectionNameExpression = new LiteralExpression("data");
 
-	private volatile boolean initialized = false;
+	private volatile boolean initialized;
 
 	/**
 	 * Will construct this instance using provided {@link MongoDatabaseFactory}.

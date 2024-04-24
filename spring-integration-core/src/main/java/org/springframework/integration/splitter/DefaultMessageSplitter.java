@@ -49,7 +49,7 @@ public class DefaultMessageSplitter extends AbstractMessageSplitter {
 	protected final Object splitMessage(Message<?> message) {
 		Object payload = message.getPayload();
 		if (payload instanceof String && this.delimiters != null) {
-			List<String> tokens = new ArrayList<String>();
+			List<String> tokens = new ArrayList<>();
 			StringTokenizer tokenizer = new StringTokenizer((String) payload, this.delimiters);
 			while (tokenizer.hasMoreElements()) {
 				tokens.add(tokenizer.nextToken());

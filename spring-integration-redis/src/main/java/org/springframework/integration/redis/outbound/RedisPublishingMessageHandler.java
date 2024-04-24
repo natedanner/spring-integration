@@ -51,7 +51,7 @@ public class RedisPublishingMessageHandler extends AbstractMessageHandler {
 
 	public RedisPublishingMessageHandler(RedisConnectionFactory connectionFactory) {
 		Assert.notNull(connectionFactory, "connectionFactory must not be null");
-		this.template = new RedisTemplate<Object, Object>();
+		this.template = new RedisTemplate<>();
 		this.template.setConnectionFactory(connectionFactory);
 		this.template.setEnableDefaultSerializer(false);
 		this.template.afterPropertiesSet();

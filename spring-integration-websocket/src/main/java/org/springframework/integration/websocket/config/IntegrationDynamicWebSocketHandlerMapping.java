@@ -63,7 +63,7 @@ class IntegrationDynamicWebSocketHandlerMapping extends AbstractUrlHandlerMappin
 		List<PathPattern> matches = null;
 		for (PathPattern pattern : this.pathPatternHandlerMap.keySet()) {
 			if (pattern.matches(path.pathWithinApplication())) {
-				matches = (matches != null ? matches : new ArrayList<>());
+				matches = matches != null ? matches : new ArrayList<>();
 				matches.add(pattern);
 			}
 		}

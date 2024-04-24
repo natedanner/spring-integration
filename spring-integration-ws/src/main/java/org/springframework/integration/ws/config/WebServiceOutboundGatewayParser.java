@@ -46,7 +46,7 @@ public class WebServiceOutboundGatewayParser extends AbstractOutboundGatewayPars
 
 	@Override
 	protected String getGatewayClassName(Element element) {
-		return ((StringUtils.hasText(element.getAttribute("marshaller"))) ?
+		return (StringUtils.hasText(element.getAttribute("marshaller")) ?
 				MarshallingWebServiceOutboundGateway.class : SimpleWebServiceOutboundGateway.class).getName();
 	}
 

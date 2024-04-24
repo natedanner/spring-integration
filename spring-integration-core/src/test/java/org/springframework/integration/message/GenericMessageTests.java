@@ -33,12 +33,12 @@ public class GenericMessageTests {
 
 	@Test
 	public void testMessageHeadersCopiedFromMap() {
-		Map<String, Object> headerMap = new HashMap<String, Object>();
+		Map<String, Object> headerMap = new HashMap<>();
 		headerMap.put("testAttribute", Integer.valueOf(123));
 		headerMap.put("testProperty", "foo");
 		headerMap.put(IntegrationMessageHeaderAccessor.SEQUENCE_SIZE, 42);
 		headerMap.put(IntegrationMessageHeaderAccessor.SEQUENCE_NUMBER, 24);
-		GenericMessage<String> message = new GenericMessage<String>("test", headerMap);
+		GenericMessage<String> message = new GenericMessage<>("test", headerMap);
 		assertThat(message.getHeaders().get("testAttribute")).isEqualTo(123);
 		assertThat(message.getHeaders().get("testProperty", String.class)).isEqualTo("foo");
 		assertThat(new IntegrationMessageHeaderAccessor(message).getSequenceSize()).isEqualTo(42);

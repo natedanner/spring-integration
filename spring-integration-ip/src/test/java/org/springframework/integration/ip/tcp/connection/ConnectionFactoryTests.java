@@ -190,7 +190,7 @@ public class ConnectionFactoryTests {
 		assertThat(serverFactory.closeConnection(servers.get(0))).isTrue();
 		servers = serverFactory.getOpenConnectionIds();
 		assertThat(servers.size()).isEqualTo(0);
-		await().atMost(Duration.ofSeconds(10)).until(() -> clientFactory.getOpenConnectionIds().size() == 0);
+		await().atMost(Duration.ofSeconds(10)).until(() -> clientFactory.getOpenConnectionIds().isEmpty());
 		clients = clientFactory.getOpenConnectionIds();
 		assertThat(clients.size()).isEqualTo(0);
 		assertThat(eventLatch.await(10, TimeUnit.SECONDS)).isTrue();
@@ -300,14 +300,12 @@ public class ConnectionFactoryTests {
 		});
 		server.setBeanFactory(mock(BeanFactory.class));
 		AtomicReference<TcpConnection> connection = new AtomicReference<>();
-		server.registerSender(conn -> {
-			connection.set(conn);
-		});
+		server.registerSender(connection::set);
 		AtomicInteger tested = new AtomicInteger();
 		server.registerListener(msg -> {
 			if (!(msg instanceof ErrorMessage)) {
 				String payload = new String((byte[]) msg.getPayload());
-				if (payload.equals("PING")) {
+				if ("PING".equals(payload)) {
 					tested.incrementAndGet();
 					connection.get().send(new GenericMessage<>(fail ? "PANG" : "PONG"));
 				}

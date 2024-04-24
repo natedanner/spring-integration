@@ -117,7 +117,7 @@ public abstract class HttpRequestHandlingEndpointSupport extends BaseHttpInbound
 
 	private boolean convertersMerged;
 
-	private boolean mergeWithDefaultConverters = false;
+	private boolean mergeWithDefaultConverters;
 
 	private MultipartResolver multipartResolver;
 
@@ -232,7 +232,7 @@ public abstract class HttpRequestHandlingEndpointSupport extends BaseHttpInbound
 						+ "': no multipart request handling will be supported.");
 			}
 		}
-		if (this.messageConverters.size() == 0 || (this.mergeWithDefaultConverters && !this.convertersMerged)) {
+		if (this.messageConverters.isEmpty() || (this.mergeWithDefaultConverters && !this.convertersMerged)) {
 			this.messageConverters.addAll(this.defaultMessageConverters);
 		}
 	}

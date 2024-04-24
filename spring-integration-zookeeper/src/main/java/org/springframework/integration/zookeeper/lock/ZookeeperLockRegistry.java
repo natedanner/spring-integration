@@ -63,7 +63,7 @@ public class ZookeeperLockRegistry implements ExpirableLockRegistry, DisposableB
 	private final Lock locksLock = new ReentrantLock();
 
 	private final Map<String, ZkLock> locks =
-			new LinkedHashMap<String, ZkLock>(16, 0.75F, true) {
+			new LinkedHashMap<>(16, 0.75F, true) {
 
 				@Override
 				protected boolean removeEldestEntry(Entry<String, ZkLock> eldest) {

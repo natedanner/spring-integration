@@ -44,7 +44,7 @@ import org.springframework.util.StringUtils;
 public class DefaultFileNameGenerator extends AbstractExpressionEvaluator implements FileNameGenerator {
 
 	private volatile Expression expression =
-			new FunctionExpression<Message<?>>((message) -> message.getHeaders().get(FileHeaders.FILENAME));
+			new FunctionExpression<Message<?>>(message -> message.getHeaders().get(FileHeaders.FILENAME));
 
 	/**
 	 * Specify an expression to be evaluated against the Message
@@ -63,7 +63,7 @@ public class DefaultFileNameGenerator extends AbstractExpressionEvaluator implem
 	 */
 	public void setHeaderName(String headerName) {
 		Assert.notNull(headerName, "'headerName' must not be null");
-		this.expression = new FunctionExpression<Message<?>>((message) -> message.getHeaders().get(headerName));
+		this.expression = new FunctionExpression<Message<?>>(message -> message.getHeaders().get(headerName));
 	}
 
 	@Override

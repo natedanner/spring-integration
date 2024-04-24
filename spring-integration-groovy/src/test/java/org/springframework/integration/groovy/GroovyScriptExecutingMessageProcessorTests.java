@@ -203,7 +203,7 @@ public class GroovyScriptExecutingMessageProcessorTests {
 
 	}
 
-	private static class TestResource extends AbstractResource {
+	private static final class TestResource extends AbstractResource {
 
 		private volatile String script;
 

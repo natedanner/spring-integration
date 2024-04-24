@@ -157,9 +157,6 @@ public class NotificationPublishingChannelAdapterParserTests {
 					assertThat(e.getTargetException()).isInstanceOf(IllegalStateException.class);
 					assertThat(e.getTargetException().getMessage()).contains("cannot be changed");
 				}
-				catch (Exception e) {
-					throw e;
-				}
 				server.invoke(objectName, "stop", new Object[] {}, new String[] {});
 				server.setAttribute(objectName, new Attribute("ComponentNamePatternsString", "foo, bar"));
 				assertThat(server.getAttribute(objectName, "ComponentNamePatternsString")).isEqualTo("bar,foo");

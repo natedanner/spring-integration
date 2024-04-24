@@ -104,13 +104,13 @@ public abstract class AbstractHttpRequestExecutingMessageHandler extends Abstrac
 
 	private boolean extractPayload = true;
 
-	private boolean extractPayloadExplicitlySet = false;
+	private boolean extractPayloadExplicitlySet;
 
 	private boolean extractResponseBody = true;
 
 	private Charset charset = StandardCharsets.UTF_8;
 
-	private boolean transferCookies = false;
+	private boolean transferCookies;
 
 	private HeaderMapper<HttpHeaders> headerMapper = DefaultHttpHeaderMapper.outboundMapper();
 
@@ -335,7 +335,7 @@ public abstract class AbstractHttpRequestExecutingMessageHandler extends Abstrac
 		MessageBuilderFactory messageBuilderFactory = getMessageBuilderFactory();
 		if (httpResponse.hasBody() && this.extractResponseBody) {
 			Object responseBody = httpResponse.getBody();
-			replyBuilder = (responseBody instanceof Message<?>)
+			replyBuilder = responseBody instanceof Message<?>
 					? messageBuilderFactory.fromMessage((Message<?>) responseBody)
 					: messageBuilderFactory.withPayload(responseBody); // NOSONAR - hasBody()
 		}
@@ -437,7 +437,7 @@ public abstract class AbstractHttpRequestExecutingMessageHandler extends Abstrac
 	}
 
 	private boolean shouldIncludeRequestBody(HttpMethod httpMethod) {
-		return !(CollectionUtils.containsInstance(NO_BODY_HTTP_METHODS, httpMethod));
+		return !CollectionUtils.containsInstance(NO_BODY_HTTP_METHODS, httpMethod);
 	}
 
 	private MultiValueMap<Object, Object> convertToMultiValueMap(Map<?, ?> simpleMap) {

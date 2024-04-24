@@ -77,7 +77,7 @@ public class MapToObjectTransformer extends AbstractPayloadTransformer<Map<?, ?>
 
 	@Override
 	protected Object transformPayload(Map<?, ?> payload) {
-		Object target = (this.targetClass != null)
+		Object target = this.targetClass != null
 				? BeanUtils.instantiateClass(this.targetClass)
 				: this.getBeanFactory().getBean(this.targetBeanName);
 

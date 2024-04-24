@@ -41,7 +41,7 @@ public final class UpperBound {
 	 * @param capacity The capacity.
 	 */
 	public UpperBound(int capacity) {
-		this.semaphore = (capacity > 0) ? new Semaphore(capacity, true) : null;
+		this.semaphore = capacity > 0 ? new Semaphore(capacity, true) : null;
 	}
 
 	public int availablePermits() {

@@ -100,7 +100,7 @@ public class LeaderInitiator implements SmartLifecycle, DisposableBean, Applicat
 	 */
 	private volatile Future<Void> future;
 
-	private boolean customPublisher = false;
+	private boolean customPublisher;
 
 	private volatile boolean running;
 
@@ -285,7 +285,7 @@ public class LeaderInitiator implements SmartLifecycle, DisposableBean, Applicat
 
 		protected final String role = LeaderInitiator.this.candidate.getRole();
 
-		private volatile boolean leader = false;
+		private volatile boolean leader;
 
 		@Override
 		public Void call() {

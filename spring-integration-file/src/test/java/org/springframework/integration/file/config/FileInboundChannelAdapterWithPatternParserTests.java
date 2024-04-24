@@ -122,7 +122,7 @@ public class FileInboundChannelAdapterWithPatternParserTests {
 			}
 		}
 		assertThat(pattern).as("expected SimplePatternFileListFilterTest").isNotNull();
-		assertThat(pattern.toString()).isEqualTo("*.txt");
+		assertThat(pattern).isEqualTo("*.txt");
 	}
 
 }

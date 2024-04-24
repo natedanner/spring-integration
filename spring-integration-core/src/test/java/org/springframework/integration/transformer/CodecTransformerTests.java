@@ -41,18 +41,18 @@ public class CodecTransformerTests {
 	@Test
 	public void testCodec() throws Exception {
 		MyCodec codec = new MyCodec();
-		EncodingPayloadTransformer<String> enc = new EncodingPayloadTransformer<String>(codec);
+		EncodingPayloadTransformer<String> enc = new EncodingPayloadTransformer<>(codec);
 		Message<?> message = new GenericMessage<String>("bar");
 		byte[] transformed = enc.doTransform(message);
 		assertThat(transformed).isEqualTo("foo".getBytes());
 		DecodingTransformer<?> dec = new DecodingTransformer<String>(codec, String.class);
 		assertThat(dec.doTransform(new GenericMessage<byte[]>(transformed))).isEqualTo("foo");
 
-		dec = new DecodingTransformer<Integer>(codec, new SpelExpressionParser().parseExpression("T(Integer)"));
+		dec = new DecodingTransformer<>(codec, new SpelExpressionParser().parseExpression("T(Integer)"));
 		dec.setEvaluationContext(new StandardEvaluationContext());
 		assertThat(dec.doTransform(new GenericMessage<byte[]>(transformed))).isEqualTo(42);
 
-		dec = new DecodingTransformer<Integer>(codec, new SpelExpressionParser().parseExpression("headers['type']"));
+		dec = new DecodingTransformer<>(codec, new SpelExpressionParser().parseExpression("headers['type']"));
 		dec.setEvaluationContext(new StandardEvaluationContext());
 		assertThat(dec.doTransform(new GenericMessage<byte[]>(transformed,
 				Collections.singletonMap("type", Integer.class)))).isEqualTo(42);

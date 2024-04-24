@@ -66,9 +66,9 @@ public class DebeziumMessageProducer extends MessageProducerSupport {
 
 	private HeaderMapper<List<Header<Object>>> headerMapper = new DefaultDebeziumHeaderMapper();
 
-	private boolean enableEmptyPayload = false;
+	private boolean enableEmptyPayload;
 
-	private boolean enableBatch = false;
+	private boolean enableBatch;
 
 	private volatile CountDownLatch lifecycleLatch = new CountDownLatch(0);
 

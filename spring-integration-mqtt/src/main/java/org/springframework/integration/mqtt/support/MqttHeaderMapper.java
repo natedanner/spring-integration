@@ -115,7 +115,7 @@ public class MqttHeaderMapper implements HeaderMapper<MqttProperties> {
 	}
 
 	private Object mapPropertyIfMatch(String headerName, @Nullable Object value) {
-		return (value != null && shouldMapHeader(headerName, this.inboundHeaderNames)) ? value : null;
+		return value != null && shouldMapHeader(headerName, this.inboundHeaderNames) ? value : null;
 	}
 
 	private static boolean shouldMapHeader(String headerName, String[] patterns) {

@@ -37,7 +37,7 @@ import org.springframework.messaging.Message;
  */
 public class AggregatingMessageHandler extends AbstractCorrelatingMessageHandler {
 
-	private volatile boolean expireGroupsUponCompletion = false;
+	private volatile boolean expireGroupsUponCompletion;
 
 	public AggregatingMessageHandler(MessageGroupProcessor processor, MessageGroupStore store,
 			CorrelationStrategy correlationStrategy, ReleaseStrategy releaseStrategy) {

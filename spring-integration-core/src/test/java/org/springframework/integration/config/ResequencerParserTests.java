@@ -193,7 +193,7 @@ public class ResequencerParserTests {
 
 	static class TestReleaseStrategyPojo {
 
-		private int invocationCount = 0;
+		private int invocationCount;
 
 		public boolean bar(List<Message<?>> __) {
 			invocationCount++;

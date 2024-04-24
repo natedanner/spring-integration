@@ -370,7 +370,7 @@ public abstract class TcpConnectionSupport implements TcpConnection {
 	 */
 	@Nullable
 	public TcpSender getSender() {
-		return this.senders.size() > 0 ? this.senders.get(0) : null;
+		return this.senders.isEmpty() ? null : this.senders.get(0);
 	}
 
 	/**

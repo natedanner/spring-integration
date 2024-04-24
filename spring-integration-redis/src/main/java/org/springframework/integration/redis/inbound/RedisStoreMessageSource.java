@@ -117,7 +117,7 @@ public class RedisStoreMessageSource extends AbstractMessageSource<RedisStore> {
 			((IntegrationResourceHolder) holder).addAttribute("store", store);
 		}
 
-		if (store instanceof Collection<?> && ((Collection<?>) store).size() < 1) {
+		if (store instanceof Collection<?> && ((Collection<?>) store).isEmpty()) {
 			return null;
 		}
 		else {

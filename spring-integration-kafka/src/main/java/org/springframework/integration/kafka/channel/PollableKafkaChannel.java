@@ -85,7 +85,7 @@ public class PollableKafkaChannel extends AbstractKafkaChannel
 			if (isLoggingEnabled()) {
 				logger.trace(() -> "preReceive on channel '" + this + "'");
 			}
-			if (interceptorList.getInterceptors().size() > 0) {
+			if (!interceptorList.getInterceptors().isEmpty()) {
 				interceptorStack = new ArrayDeque<>();
 				if (!interceptorList.preReceive(this, interceptorStack)) {
 					return null;

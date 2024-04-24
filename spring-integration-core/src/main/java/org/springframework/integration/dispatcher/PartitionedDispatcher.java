@@ -68,7 +68,7 @@ public class PartitionedDispatcher extends AbstractDispatcher {
 
 	private ThreadFactory threadFactory = new CustomizableThreadFactory("partition-thread-");
 
-	private Predicate<Exception> failoverStrategy = (exception) -> true;
+	private Predicate<Exception> failoverStrategy = exception -> true;
 
 	@Nullable
 	private LoadBalancingStrategy loadBalancingStrategy;
@@ -109,7 +109,7 @@ public class PartitionedDispatcher extends AbstractDispatcher {
 	 * @param failover The failover boolean.
 	 */
 	public void setFailover(boolean failover) {
-		setFailoverStrategy((exception) -> failover);
+		setFailoverStrategy(exception -> failover);
 	}
 
 	/**

@@ -112,7 +112,7 @@ public class CachingSessionFactoryTests {
 
 	}
 
-	private static class TestSession implements Session<String> {
+	private static final class TestSession implements Session<String> {
 
 		@SuppressWarnings("unused")
 		private final String id;

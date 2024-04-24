@@ -74,7 +74,7 @@ public class ObjectToJsonTransformer extends AbstractTransformer {
 
 	private volatile String contentType = JSON_CONTENT_TYPE;
 
-	private volatile boolean contentTypeExplicitlySet = false;
+	private volatile boolean contentTypeExplicitlySet;
 
 	public ObjectToJsonTransformer() {
 		this(JsonObjectMapperProvider.newInstance());

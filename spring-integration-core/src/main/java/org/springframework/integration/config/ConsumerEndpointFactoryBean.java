@@ -103,7 +103,7 @@ public class ConsumerEndpointFactoryBean
 
 	private Boolean autoStartup;
 
-	private int phase = 0;
+	private int phase;
 
 	private boolean isPhaseSet;
 
@@ -441,7 +441,7 @@ public class ConsumerEndpointFactoryBean
 
 	@Override
 	public int getPhase() {
-		return (this.endpoint != null) ? this.endpoint.getPhase() : 0;
+		return this.endpoint != null ? this.endpoint.getPhase() : 0;
 	}
 
 	@Override

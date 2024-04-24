@@ -98,7 +98,7 @@ public class ProcedureParameterTests {
 
 	private List<ProcedureParameter> getProcedureParameterList() {
 
-		List<ProcedureParameter> procedureParameterList = new ArrayList<ProcedureParameter>();
+		List<ProcedureParameter> procedureParameterList = new ArrayList<>();
 		procedureParameterList.add(new ProcedureParameter("param1", "value1", null));
 		procedureParameterList.add(new ProcedureParameter("param2", "value1", null));
 		procedureParameterList.add(new ProcedureParameter("param3", "value1", null));

@@ -425,7 +425,7 @@ public class HttpRequestExecutingMessageHandlerTests {
 		listA.add("1");
 		listA.add("2");
 		form.put("a", listA);
-		form.put("b", Collections.EMPTY_LIST);
+		form.put("b", Collections.emptyList());
 		form.put("c", Collections.singletonList("3"));
 		Message<?> message = MessageBuilder.withPayload(form).build();
 
@@ -467,7 +467,7 @@ public class HttpRequestExecutingMessageHandlerTests {
 		listA.add(new City("Philadelphia"));
 		listA.add(new City("Ambler"));
 		form.put("a", listA);
-		form.put("b", Collections.EMPTY_LIST);
+		form.put("b", Collections.emptyList());
 		form.put("c", Collections.singletonList(new City("Mohnton")));
 		Message<?> message = MessageBuilder.withPayload(form).build();
 
@@ -789,7 +789,7 @@ public class HttpRequestExecutingMessageHandlerTests {
 				.withStackTraceContaining("404 Not Found");
 
 		assertThat(requestHeaders.getAccept()).isNotNull();
-		assertThat(requestHeaders.getAccept().size() > 0).isTrue();
+		assertThat(!requestHeaders.getAccept().isEmpty()).isTrue();
 		List<MediaType> accept = requestHeaders.getAccept();
 		assertThat(accept).hasSizeGreaterThan(0);
 		assertThat(accept.get(0).getType()).isEqualTo("application");
@@ -820,7 +820,7 @@ public class HttpRequestExecutingMessageHandlerTests {
 				.withStackTraceContaining("404 Not Found");
 
 		assertThat(requestHeaders.getAccept()).isNotNull();
-		assertThat(requestHeaders.getAccept().size() > 0).isTrue();
+		assertThat(!requestHeaders.getAccept().isEmpty()).isTrue();
 		List<MediaType> accept = requestHeaders.getAccept();
 		assertThat(accept).hasSizeGreaterThan(0);
 		assertThat(accept.get(0).getType()).isEqualTo("application");

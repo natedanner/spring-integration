@@ -111,7 +111,7 @@ public class ConnectionTimeoutTests {
 
 	private void notTimeoutGuts(AbstractServerConnectionFactory server, AbstractClientConnectionFactory client)
 			throws Exception, InterruptedException {
-		final AtomicReference<Message<?>> reply = new AtomicReference<Message<?>>();
+		final AtomicReference<Message<?>> reply = new AtomicReference<>();
 		final CountDownLatch replyLatch = new CountDownLatch(1);
 		client.registerListener(message -> {
 			if (!(message instanceof ErrorMessage)) {
@@ -150,7 +150,7 @@ public class ConnectionTimeoutTests {
 	public void testNetReplyTimeout() throws Exception {
 		TcpNetServerConnectionFactory server = new TcpNetServerConnectionFactory(0);
 		this.setupServerCallbacks(server, 4500);
-		final AtomicReference<Message<?>> reply = new AtomicReference<Message<?>>();
+		final AtomicReference<Message<?>> reply = new AtomicReference<>();
 		server.start();
 		TestingUtilities.waitListening(server, null);
 		TcpNetClientConnectionFactory client = new TcpNetClientConnectionFactory("localhost", server.getPort());
@@ -187,7 +187,7 @@ public class ConnectionTimeoutTests {
 	public void testNioReplyTimeout() throws Exception {
 		TcpNetServerConnectionFactory server = new TcpNetServerConnectionFactory(0);
 		this.setupServerCallbacks(server, 2100);
-		final AtomicReference<Message<?>> reply = new AtomicReference<Message<?>>();
+		final AtomicReference<Message<?>> reply = new AtomicReference<>();
 		server.start();
 		TestingUtilities.waitListening(server, null);
 		TcpNioClientConnectionFactory client = new TcpNioClientConnectionFactory("localhost", server.getPort());
@@ -215,7 +215,7 @@ public class ConnectionTimeoutTests {
 
 	private void setupServerCallbacks(AbstractServerConnectionFactory server, final int serverDelay) {
 		server.setComponentName("serverFactory");
-		final AtomicReference<TcpConnection> serverConnection = new AtomicReference<TcpConnection>();
+		final AtomicReference<TcpConnection> serverConnection = new AtomicReference<>();
 		server.registerListener(message -> {
 			try {
 				Thread.sleep(serverDelay);

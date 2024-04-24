@@ -284,7 +284,7 @@ public class StreamingInboundTests {
 
 	}
 
-	public static class StringFileInfo extends AbstractFileInfo<String> {
+	public static final class StringFileInfo extends AbstractFileInfo<String> {
 
 		private final String name;
 

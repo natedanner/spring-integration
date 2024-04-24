@@ -66,7 +66,7 @@ public class JsonToObjectTransformer extends AbstractTransformer implements Bean
 	private ClassLoader classLoader;
 
 	private Expression valueTypeExpression =
-			new FunctionExpression<Message<?>>((message) ->
+			new FunctionExpression<Message<?>>(message ->
 					obtainResolvableTypeFromHeadersIfAny(message.getHeaders(), this.classLoader));
 
 	private EvaluationContext evaluationContext;
@@ -105,7 +105,7 @@ public class JsonToObjectTransformer extends AbstractTransformer implements Bean
 	public JsonToObjectTransformer(ResolvableType targetType, @Nullable JsonObjectMapper<?, ?> jsonObjectMapper) {
 		Assert.notNull(targetType, "'targetType' must not be null");
 		this.targetType = targetType;
-		this.jsonObjectMapper = (jsonObjectMapper != null) ? jsonObjectMapper : JsonObjectMapperProvider.newInstance();
+		this.jsonObjectMapper = jsonObjectMapper != null ? jsonObjectMapper : JsonObjectMapperProvider.newInstance();
 	}
 
 	@Override

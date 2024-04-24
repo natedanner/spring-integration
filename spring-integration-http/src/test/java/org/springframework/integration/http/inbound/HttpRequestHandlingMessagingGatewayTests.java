@@ -307,7 +307,7 @@ public class HttpRequestHandlingMessagingGatewayTests extends AbstractHttpInboun
 				.hasSize(1)
 				.element(0)
 				.isInstanceOf(TestBean.class)
-				.satisfies((actual) -> {
+				.satisfies(actual -> {
 					TestBean bean = (TestBean) actual;
 					assertThat(bean).extracting(TestBean::getName).isEqualTo("T. Bean");
 					assertThat(bean).extracting(TestBean::getAge).isEqualTo(42);

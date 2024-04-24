@@ -174,7 +174,7 @@ public class FailOverDispatcherTests {
 	@Test
 	public void failoverStrategyRejects() {
 		UnicastingDispatcher dispatcher = new UnicastingDispatcher();
-		dispatcher.setFailoverStrategy((exception) -> !(exception instanceof MessageRejectedException));
+		dispatcher.setFailoverStrategy(exception -> !(exception instanceof MessageRejectedException));
 		AtomicInteger counter = new AtomicInteger();
 		MessageHandler target1 = new CountingTestEndpoint(counter, false);
 		MessageHandler target2 = new CountingTestEndpoint(counter, true);

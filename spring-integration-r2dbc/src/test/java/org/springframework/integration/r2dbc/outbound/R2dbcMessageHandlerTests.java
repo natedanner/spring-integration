@@ -171,7 +171,7 @@ public class R2dbcMessageHandlerTests {
 				.get("id");
 
 		this.r2dbcMessageHandler.setCriteriaExpression(
-				new FunctionExpression<Message<?>>((m) -> Criteria.where("id").is(insertedId)));
+				new FunctionExpression<Message<?>>(m -> Criteria.where("id").is(insertedId)));
 		payload.put("age", 40);
 
 		message = MessageBuilder.withPayload(payload).build();
@@ -226,7 +226,7 @@ public class R2dbcMessageHandlerTests {
 				.get("id");
 
 		this.r2dbcMessageHandler.setCriteriaExpression(
-				new FunctionExpression<Message<?>>((m) -> Criteria.where("id").is(insertedId)));
+				new FunctionExpression<Message<?>>(m -> Criteria.where("id").is(insertedId)));
 		message = MessageBuilder.withPayload(payload).build();
 		waitFor(this.r2dbcMessageHandler.handleMessage(message));
 
@@ -265,7 +265,7 @@ public class R2dbcMessageHandlerTests {
 				.get("id");
 
 		this.r2dbcMessageHandler.setCriteriaExpression(
-				new FunctionExpression<Message<?>>((m) -> Criteria.where("id").is(insertedId)));
+				new FunctionExpression<Message<?>>(m -> Criteria.where("id").is(insertedId)));
 		message = MessageBuilder.withPayload(payload).build();
 		waitFor(this.r2dbcMessageHandler.handleMessage(message));
 

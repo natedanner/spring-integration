@@ -37,7 +37,7 @@ import org.springframework.messaging.support.GenericMessage;
 @MessageEndpoint("endpointWithDefaultAnnotationAndCustomReleaseStrategy")
 public class TestAnnotatedEndpointWithReleaseStrategy {
 
-	private final ConcurrentMap<Object, Message<?>> aggregatedMessages = new ConcurrentHashMap<Object, Message<?>>();
+	private final ConcurrentMap<Object, Message<?>> aggregatedMessages = new ConcurrentHashMap<>();
 
 	@Aggregator(inputChannel = "inputChannel")
 	public Message<?> aggregatingMethod(List<Message<?>> messages) {

@@ -35,7 +35,7 @@ public class StoredProcOutboundGateway extends AbstractReplyProducingMessageHand
 
 	private final StoredProcExecutor executor;
 
-	private volatile boolean expectSingleResult = false;
+	private volatile boolean expectSingleResult;
 
 	private boolean requiresReplyExplicitlySet;
 

@@ -263,7 +263,7 @@ public class R2dbcMessageSourceTests {
 				(DatabaseClient.GenericExecuteSpec bindSpec, Person o) -> bindSpec.bind("id", o.getId()));
 
 		StepVerifier.create(defaultR2dbcMessageSource.receive().getPayload())
-				.expectErrorMatches(throwable -> throwable instanceof ClassCastException)
+				.expectErrorMatches(ClassCastException.class::isInstance)
 				.verify();
 
 	}

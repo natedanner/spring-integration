@@ -843,7 +843,7 @@ public class KafkaMessageSource<K, V> extends AbstractMessageSource<Object>
 										return i.getRecord().offset();
 									})
 									.collect(Collectors.toList());
-					if (rewound.size() > 0) {
+					if (!rewound.isEmpty()) {
 						this.logger.warn(() -> "Rolled back " + KafkaUtils.format(record)
 								+ " later in-flight offsets "
 								+ rewound + " will also be re-fetched");
@@ -875,7 +875,7 @@ public class KafkaMessageSource<K, V> extends AbstractMessageSource<Object>
 								}
 							}
 						}
-						if (toCommit.size() > 0) {
+						if (!toCommit.isEmpty()) {
 							ackInformation = toCommit.get(toCommit.size() - 1);
 							KafkaAckInfo<K, V> ackInformationToLog = ackInformation;
 							this.commitLogger.log(() -> "Committing pending offsets for "

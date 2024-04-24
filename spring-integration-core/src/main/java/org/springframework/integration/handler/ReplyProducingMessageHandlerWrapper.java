@@ -49,7 +49,7 @@ public class ReplyProducingMessageHandlerWrapper extends AbstractReplyProducingM
 
 	@Override
 	public IntegrationPatternType getIntegrationPatternType() {
-		return (this.target instanceof IntegrationPattern)
+		return this.target instanceof IntegrationPattern
 				? ((IntegrationPattern) this.target).getIntegrationPatternType()
 				: IntegrationPatternType.service_activator;
 	}

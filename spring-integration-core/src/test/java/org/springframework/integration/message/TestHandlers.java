@@ -33,7 +33,7 @@ public abstract class TestHandlers {
 	/**
 	 * Create a handler that always returns null.
 	 */
-	public static final Object nullHandler() {
+	public static Object nullHandler() {
 		return new Object() {
 
 			public Message<?> handle(Message<?> message) {
@@ -45,7 +45,7 @@ public abstract class TestHandlers {
 	/**
 	 * Create a handler that simply returns the {@link Message} it receives.
 	 */
-	public static final Object echoHandler() {
+	public static Object echoHandler() {
 		return new Object() {
 
 			public Message<?> handle(Message<?> message) {
@@ -57,7 +57,7 @@ public abstract class TestHandlers {
 	/**
 	 * Create a handler that increments the provided counter.
 	 */
-	public static final Object countingHandler(final AtomicInteger counter) {
+	public static Object countingHandler(final AtomicInteger counter) {
 		return new Object() {
 
 			public Message<?> handle(Message<?> message) {
@@ -70,7 +70,7 @@ public abstract class TestHandlers {
 	/**
 	 * Create a handler that counts down on the provided latch.
 	 */
-	public static final Object countDownHandler(final CountDownLatch latch) {
+	public static Object countDownHandler(final CountDownLatch latch) {
 		return new Object() {
 
 			public Message<?> handle(Message<?> message) {
@@ -84,7 +84,7 @@ public abstract class TestHandlers {
 	 * Create a handler that counts down on the provided latch
 	 * and also increments the provided counter.
 	 */
-	public static final Object countingCountDownHandler(final AtomicInteger counter, final CountDownLatch latch) {
+	public static Object countingCountDownHandler(final AtomicInteger counter, final CountDownLatch latch) {
 		return new Object() {
 
 			public Message<?> handle(Message<?> message) {

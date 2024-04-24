@@ -118,7 +118,7 @@ class CoreRuntimeHints implements RuntimeHintsRegistrar {
 						reflectionHints.registerTypeIfPresent(classLoader, type, MemberCategory.INVOKE_PUBLIC_METHODS));
 
 		Stream.of("start", "stop", "isRunning")
-				.flatMap((name) -> Stream.ofNullable(ReflectionUtils.findMethod(AbstractEndpoint.class, name)))
+				.flatMap(name -> Stream.ofNullable(ReflectionUtils.findMethod(AbstractEndpoint.class, name)))
 				.forEach(method -> reflectionHints.registerMethod(method, ExecutableMode.INVOKE));
 
 		hints.resources().registerPattern("META-INF/spring.integration.properties");

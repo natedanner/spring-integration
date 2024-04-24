@@ -52,7 +52,7 @@ public final class StaticMessageHeaderAccessor {
 		if (value == null) {
 			return null;
 		}
-		return (value instanceof UUID ? (UUID) value : UUID.fromString(value.toString()));
+		return value instanceof UUID ? (UUID) value : UUID.fromString(value.toString());
 	}
 
 	@Nullable
@@ -61,7 +61,7 @@ public final class StaticMessageHeaderAccessor {
 		if (value == null) {
 			return null;
 		}
-		return (value instanceof Long ? (Long) value : Long.parseLong(value.toString()));
+		return value instanceof Long ? (Long) value : Long.parseLong(value.toString());
 	}
 
 	@Nullable
@@ -70,7 +70,7 @@ public final class StaticMessageHeaderAccessor {
 		if (value == null) {
 			return null;
 		}
-		return (value instanceof MimeType ? (MimeType) value : MimeType.valueOf(value.toString()));
+		return value instanceof MimeType ? (MimeType) value : MimeType.valueOf(value.toString());
 	}
 
 	@Nullable
@@ -81,18 +81,18 @@ public final class StaticMessageHeaderAccessor {
 	public static int getSequenceNumber(Message<?> message) {
 		Number sequenceNumber = message.getHeaders().get(IntegrationMessageHeaderAccessor.SEQUENCE_NUMBER,
 				Number.class);
-		return (sequenceNumber != null ? sequenceNumber.intValue() : 0);
+		return sequenceNumber != null ? sequenceNumber.intValue() : 0;
 	}
 
 	public static int getSequenceSize(Message<?> message) {
 		Number sequenceSize = message.getHeaders().get(IntegrationMessageHeaderAccessor.SEQUENCE_SIZE, Number.class);
-		return (sequenceSize != null ? sequenceSize.intValue() : 0);
+		return sequenceSize != null ? sequenceSize.intValue() : 0;
 	}
 
 	@Nullable
 	public static Integer getPriority(Message<?> message) {
 		Number priority = message.getHeaders().get(IntegrationMessageHeaderAccessor.PRIORITY, Number.class);
-		return (priority != null ? priority.intValue() : null);
+		return priority != null ? priority.intValue() : null;
 	}
 
 	@Nullable

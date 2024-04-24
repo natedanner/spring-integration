@@ -402,8 +402,8 @@ public abstract class AbstractMongoDbMessageStoreTests implements MongoDbContain
 		public int hashCode() {
 			final int prime = 31;
 			int result = 1;
-			result = prime * result + ((fname == null) ? 0 : fname.hashCode());
-			result = prime * result + ((lname == null) ? 0 : lname.hashCode());
+			result = prime * result + (fname == null ? 0 : fname.hashCode());
+			result = prime * result + (lname == null ? 0 : lname.hashCode());
 			return result;
 		}
 

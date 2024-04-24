@@ -76,7 +76,7 @@ public abstract class MessageProducerSupport extends AbstractEndpoint
 
 	private String errorChannelName;
 
-	private boolean shouldTrack = false;
+	private boolean shouldTrack;
 
 	private volatile Subscription subscription;
 
@@ -276,14 +276,14 @@ public abstract class MessageProducerSupport extends AbstractEndpoint
 						.map(this::trackMessageIfAny)
 						.doOnComplete(this::stop)
 						.doOnCancel(this::stop)
-						.doOnSubscribe((subs) -> this.subscription = subs);
+						.doOnSubscribe(subs -> this.subscription = subs);
 
 		if (channelForSubscription instanceof ReactiveStreamsSubscribableChannel) {
 			((ReactiveStreamsSubscribableChannel) channelForSubscription).subscribeTo(messageFlux);
 		}
 		else {
 			messageFlux
-					.doOnNext((message) -> {
+					.doOnNext(message -> {
 						try {
 							sendMessage(message);
 						}

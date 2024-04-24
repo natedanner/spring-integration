@@ -125,7 +125,7 @@ public class RequestReplyScenariosWithTempReplyQueuesTests extends ActiveMQMulti
 					fail("Test failed", e1);
 				}
 				String requestPayload = (String) extractPayload(message);
-				if (requestPayload.equals("foo")) {
+				if ("foo".equals(requestPayload)) {
 					try {
 						Thread.sleep(6000);
 					}

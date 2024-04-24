@@ -190,21 +190,21 @@ public class HttpDslTests {
 		assertThat(result.getHeaders()).containsEntry("contentLength", -1L);
 		assertThat(result)
 				.extracting(Message::getPayload)
-				.satisfies((payload) ->
+				.satisfies(payload ->
 						assertThat((Map<String, ?>) payload)
 								.hasSize(1)
-								.extracting((map) -> map.get("a1"))
+								.extracting(map -> map.get("a1"))
 								.asInstanceOf(InstanceOfAssertFactories.LIST)
 								.hasSize(2)
-								.satisfies((list) -> {
+								.satisfies(list -> {
 									assertThat(list)
 											.element(0)
-											.extracting((file) ->
+											.extracting(file ->
 													((UploadedMultipartFile) file).getOriginalFilename())
 											.isEqualTo("file1");
 									assertThat(list)
 											.element(1)
-											.extracting((file) ->
+											.extracting(file ->
 													((UploadedMultipartFile) file).getOriginalFilename())
 											.isEqualTo("file2");
 								}));
@@ -218,7 +218,7 @@ public class HttpDslTests {
 		IntegrationFlow flow =
 				IntegrationFlow.from(
 								Http.inboundChannelAdapter("/validation")
-										.requestMapping((mapping) -> mapping
+										.requestMapping(mapping -> mapping
 												.methods(HttpMethod.POST)
 												.consumes(MediaType.APPLICATION_JSON_VALUE))
 										.requestPayloadType(TestModel.class)
@@ -279,7 +279,7 @@ public class HttpDslTests {
 													}
 
 												})))
-						.transform((payload) -> {
+						.transform(payload -> {
 							throw new RuntimeException("Error!");
 						})
 						.get();
@@ -325,7 +325,7 @@ public class HttpDslTests {
 		@Bean
 		public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 			return http
-					.authorizeHttpRequests((authorizeHttpRequests) ->
+					.authorizeHttpRequests(authorizeHttpRequests ->
 							authorizeHttpRequests
 									.requestMatchers(new AntPathRequestMatcher("/service/internal/**")).hasRole("ADMIN")
 									.anyRequest().permitAll())
@@ -398,8 +398,8 @@ public class HttpDslTests {
 		public IntegrationFlow multiPartFilesFlow() {
 			return IntegrationFlow
 					.from(Http.inboundChannelAdapter("/multiPartFiles")
-							.headerFunction("contentLength", (entity) -> entity.getHeaders().getContentLength()))
-					.channel((c) -> c.queue("multiPartFilesChannel"))
+							.headerFunction("contentLength", entity -> entity.getHeaders().getContentLength()))
+					.channel(c -> c.queue("multiPartFilesChannel"))
 					.get();
 		}
 

@@ -181,7 +181,7 @@ public class AnnotationGatewayProxyFactoryBean<T> extends GatewayProxyFactoryBea
 										String headerExpression =
 												beanFactory.resolveEmbeddedValue(header.expression());
 
-										Assert.state(!(hasValue == StringUtils.hasText(headerExpression)),
+										Assert.state(hasValue != StringUtils.hasText(headerExpression),
 												"exactly one of 'value' or 'expression' is required on a gateway's " +
 														"header.");
 

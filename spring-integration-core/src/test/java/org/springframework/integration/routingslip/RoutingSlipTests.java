@@ -132,7 +132,7 @@ public class RoutingSlipTests {
 
 		final String[] channels = {"channel2", "channel3"};
 
-		private int i = 0;
+		private int i;
 
 		public String get(Message<?> requestMessage, Object reply) {
 			try {
@@ -151,7 +151,7 @@ public class RoutingSlipTests {
 
 		@Override
 		public Object getNextPath(Message<?> requestMessage, Object reply) {
-			return !invoked.getAndSet(true) ? "channel4" : null;
+			return invoked.getAndSet(true) ? null : "channel4";
 		}
 
 	}

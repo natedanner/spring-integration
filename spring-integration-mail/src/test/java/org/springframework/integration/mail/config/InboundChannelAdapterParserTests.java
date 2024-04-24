@@ -301,7 +301,7 @@ public class InboundChannelAdapterParserTests {
 
 	private AbstractMailReceiver getReceiver(String name) {
 		Object adapter = context.getBean(name);
-		Object target = (adapter instanceof ImapIdleChannelAdapter) ? adapter
+		Object target = adapter instanceof ImapIdleChannelAdapter ? adapter
 				: new DirectFieldAccessor(adapter).getPropertyValue("source");
 		return (AbstractMailReceiver) new DirectFieldAccessor(target).getPropertyValue("mailReceiver");
 	}

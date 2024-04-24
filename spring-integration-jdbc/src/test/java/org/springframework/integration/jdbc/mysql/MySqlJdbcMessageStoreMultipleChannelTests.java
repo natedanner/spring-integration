@@ -124,7 +124,7 @@ public class MySqlJdbcMessageStoreMultipleChannelTests {
 		}
 
 		public List<Object> duplicate(Message<?> message) {
-			ArrayList<Object> res = new ArrayList<Object>();
+			ArrayList<Object> res = new ArrayList<>();
 			res.add(message);
 			res.add(message);
 			return res;

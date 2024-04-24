@@ -96,7 +96,7 @@ public abstract class AbstractInboundFileSynchronizingMessageSource<F>
 	/**
 	 * Whether the {@link DirectoryScanner} was explicitly set.
 	 */
-	private boolean scannerExplicitlySet = false;
+	private boolean scannerExplicitlySet;
 
 	private volatile boolean running;
 

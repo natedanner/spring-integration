@@ -50,7 +50,7 @@ public class ExecutorChannel extends AbstractExecutorChannel {
 
 	private final LoadBalancingStrategy loadBalancingStrategy;
 
-	private Predicate<Exception> failoverStrategy = (exception) -> true;
+	private Predicate<Exception> failoverStrategy = exception -> true;
 
 	/**
 	 * Create an ExecutorChannel that delegates to the provided
@@ -88,7 +88,7 @@ public class ExecutorChannel extends AbstractExecutorChannel {
 	 * @param failover The failover boolean.
 	 */
 	public void setFailover(boolean failover) {
-		setFailoverStrategy((exception) -> failover);
+		setFailoverStrategy(exception -> failover);
 	}
 
 	/**

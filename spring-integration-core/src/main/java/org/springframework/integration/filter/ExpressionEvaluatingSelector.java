@@ -42,13 +42,13 @@ public class ExpressionEvaluatingSelector extends AbstractMessageProcessingSelec
 	private final String expressionString;
 
 	public ExpressionEvaluatingSelector(String expressionString) {
-		super(new ExpressionEvaluatingMessageProcessor<Boolean>(EXPRESSION_PARSER.parseExpression(expressionString),
+		super(new ExpressionEvaluatingMessageProcessor<>(EXPRESSION_PARSER.parseExpression(expressionString),
 				Boolean.class));
 		this.expressionString = expressionString;
 	}
 
 	public ExpressionEvaluatingSelector(Expression expression) {
-		super(new ExpressionEvaluatingMessageProcessor<Boolean>(expression, Boolean.class));
+		super(new ExpressionEvaluatingMessageProcessor<>(expression, Boolean.class));
 		this.expressionString = expression.getExpressionString();
 	}
 

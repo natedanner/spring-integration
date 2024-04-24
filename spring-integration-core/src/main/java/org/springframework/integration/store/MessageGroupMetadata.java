@@ -91,7 +91,7 @@ public class MessageGroupMetadata implements Serializable {
 	}
 
 	public UUID firstId() {
-		if (this.messageIds.size() > 0) {
+		if (!this.messageIds.isEmpty()) {
 			return this.messageIds.get(0);
 		}
 		return null;
@@ -103,7 +103,7 @@ public class MessageGroupMetadata implements Serializable {
 	 * @return the list of messages ids stored in the group
 	 */
 	public List<UUID> getMessageIds() {
-		return new LinkedList<UUID>(this.messageIds);
+		return new LinkedList<>(this.messageIds);
 	}
 
 	public void complete() {

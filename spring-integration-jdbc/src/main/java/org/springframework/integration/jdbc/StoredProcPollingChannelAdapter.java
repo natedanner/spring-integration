@@ -38,7 +38,7 @@ public class StoredProcPollingChannelAdapter extends AbstractMessageSource<Objec
 
 	private final StoredProcExecutor executor;
 
-	private volatile boolean expectSingleResult = false;
+	private volatile boolean expectSingleResult;
 
 	/**
 	 * Constructor taking {@link StoredProcExecutor}.

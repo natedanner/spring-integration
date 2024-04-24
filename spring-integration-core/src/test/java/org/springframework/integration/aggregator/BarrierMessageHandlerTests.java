@@ -89,7 +89,7 @@ public class BarrierMessageHandlerTests {
 		handler.setOutputChannel(outputChannel);
 		handler.setBeanFactory(mock(BeanFactory.class));
 		handler.afterPropertiesSet();
-		final AtomicReference<Exception> dupCorrelation = new AtomicReference<Exception>();
+		final AtomicReference<Exception> dupCorrelation = new AtomicReference<>();
 		final CountDownLatch latch = new CountDownLatch(1);
 		Runnable runnable = () -> {
 			try {
@@ -209,7 +209,7 @@ public class BarrierMessageHandlerTests {
 		handler.setOutputChannel(outputChannel);
 		handler.setBeanFactory(mock(BeanFactory.class));
 		handler.afterPropertiesSet();
-		final AtomicReference<Exception> exception = new AtomicReference<Exception>();
+		final AtomicReference<Exception> exception = new AtomicReference<>();
 		final CountDownLatch latch = new CountDownLatch(1);
 		ExecutorService exec = Executors.newSingleThreadExecutor();
 		exec.execute(() -> {

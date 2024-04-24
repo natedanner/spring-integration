@@ -140,7 +140,7 @@ public class MicrometerNodeEnhancer {
 		if (timerSearch != null) {
 			return timerSearch
 					.tag(IntegrationObservation.HandlerTags.COMPONENT_NAME.asString(), node.getName())
-					.tag("error", (value) -> success == "none".equals(value))
+					.tag("error", value -> success == "none".equals(value))
 					.timer();
 		}
 

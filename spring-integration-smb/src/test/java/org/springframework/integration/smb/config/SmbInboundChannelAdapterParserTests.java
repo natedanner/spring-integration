@@ -113,7 +113,7 @@ public class SmbInboundChannelAdapterParserTests {
 				applicationContext.getBeansOfType(SourcePollingChannelAdapter.class);
 		SourcePollingChannelAdapter adapter = null;
 		for (String key : spcas.keySet()) {
-			if (!key.equals("smbInbound") && !key.equals("simpleAdapter")) {
+			if (!"smbInbound".equals(key) && !"simpleAdapter".equals(key)) {
 				adapter = spcas.get(key);
 			}
 		}

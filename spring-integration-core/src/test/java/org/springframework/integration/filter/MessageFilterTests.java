@@ -136,9 +136,6 @@ public class MessageFilterTests {
 		try {
 			assertThat(inputChannel.send(message)).isTrue();
 		}
-		catch (Exception e) {
-			throw e;
-		}
 		finally {
 			Message<?> reply = discardChannel.receive(0);
 			assertThat(reply).isNotNull();

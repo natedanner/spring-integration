@@ -100,7 +100,7 @@ public class GatewayProxyFactoryBeanTests {
 		GenericConversionService cs = new DefaultConversionService();
 		Converter<String, byte[]> stringToByteConverter =
 				// Has to an interface (not lambda) to honor Mockito
-				new Converter<String, byte[]>() {
+				new Converter<>() {
 
 					@Override
 					public byte[] convert(String source) {

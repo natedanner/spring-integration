@@ -59,7 +59,7 @@ public class ScriptsTests {
 	@TempDir
 	public static File FOLDER;
 
-	private static File SCRIPT_FILE;
+	private static File scriptFile;
 
 	@Autowired
 	@Qualifier("scriptSplitter.input")
@@ -98,8 +98,8 @@ public class ScriptsTests {
 
 	@BeforeAll
 	public static void setup() throws IOException {
-		SCRIPT_FILE = new File(FOLDER, "script.py");
-		FileCopyUtils.copy("1".getBytes(), SCRIPT_FILE);
+		scriptFile = new File(FOLDER, "script.py");
+		FileCopyUtils.copy("1".getBytes(), scriptFile);
 	}
 
 	@AfterEach
@@ -142,8 +142,8 @@ public class ScriptsTests {
 		this.scriptServiceInput.send(new GenericMessage<Object>("test"));
 		assertThat(this.results.receive(10000).getPayload()).isEqualTo(1);
 
-		FileCopyUtils.copy("2".getBytes(), SCRIPT_FILE);
-		SCRIPT_FILE.setLastModified(System.currentTimeMillis() + 10000); // force refresh
+		FileCopyUtils.copy("2".getBytes(), scriptFile);
+		scriptFile.setLastModified(System.currentTimeMillis() + 10000); // force refresh
 
 		this.scriptServiceInput.send(new GenericMessage<Object>("test"));
 		assertThat(this.results.receive(10000).getPayload()).isEqualTo(2);
@@ -233,7 +233,7 @@ public class ScriptsTests {
 
 		@Bean
 		public IntegrationFlow scriptService() {
-			return f -> f.handle(Scripts.processor("file:" + SCRIPT_FILE.getAbsolutePath()).refreshCheckDelay(0))
+			return f -> f.handle(Scripts.processor("file:" + scriptFile.getAbsolutePath()).refreshCheckDelay(0))
 					.channel(results());
 		}
 

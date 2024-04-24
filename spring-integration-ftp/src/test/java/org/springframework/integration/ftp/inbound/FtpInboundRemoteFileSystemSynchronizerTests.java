@@ -69,7 +69,7 @@ import static org.mockito.Mockito.when;
  */
 public class FtpInboundRemoteFileSystemSynchronizerTests {
 
-	private static FTPClient ftpClient = mock(FTPClient.class);
+	private static final FTPClient ftpClient = mock(FTPClient.class);
 
 	@BeforeEach
 	@AfterEach
@@ -233,7 +233,7 @@ public class FtpInboundRemoteFileSystemSynchronizerTests {
 
 		@Override
 		protected FTPClient createClientInstance() {
-			if (this.ftpFiles.size() == 0) {
+			if (this.ftpFiles.isEmpty()) {
 				this.init();
 			}
 

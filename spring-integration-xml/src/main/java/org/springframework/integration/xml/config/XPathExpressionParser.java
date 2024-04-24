@@ -94,7 +94,7 @@ public class XPathExpressionParser extends AbstractSingleBeanDefinitionParser {
 		}
 
 		if (prefixProvided) {
-			Map<String, String> namespaceMap = new HashMap<String, String>(1);
+			Map<String, String> namespaceMap = new HashMap<>(1);
 			namespaceMap.put(nsPrefix, nsUri);
 			builder.addConstructorArgValue(namespaceMap);
 		}

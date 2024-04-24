@@ -69,9 +69,9 @@ public class EntryEventMessagePayload<K, V> {
 
 		EntryEventMessagePayload<?, ?> that = (EntryEventMessagePayload<?, ?>) o;
 
-		return this.key.equals(that.key) && !(this.value != null ? !this.value.equals(that.value)
-				: that.value != null) && !(this.oldValue != null
-				? !this.oldValue.equals(that.oldValue) : that.oldValue != null);
+		return this.key.equals(that.key) && this.value == null ? !this.value.equals(that.value)
+				: that.value != null && this.oldValue == null
+				? !this.oldValue.equals(that.oldValue) : that.oldValue != null;
 
 	}
 

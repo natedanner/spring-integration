@@ -70,7 +70,7 @@ public class AnnotatedEndpointActivationTests {
 	// This has to be static because the MessageBus registers the handler
 	// more than once (every time a test instance is created), but only one of
 	// them will get the message.
-	private static volatile int count = 0;
+	private static volatile int count;
 
 	@BeforeEach
 	public void resetCount() {

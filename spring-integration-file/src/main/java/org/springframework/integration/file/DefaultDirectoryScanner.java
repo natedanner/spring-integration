@@ -92,7 +92,7 @@ public class DefaultDirectoryScanner implements DirectoryScanner {
 			throw new MessagingException("The path [" + directory
 					+ "] does not denote a properly accessible directory.");
 		}
-		return (this.filter != null) ? this.filter.filterFiles(files) : Arrays.asList(files);
+		return this.filter != null ? this.filter.filterFiles(files) : Arrays.asList(files);
 	}
 
 	/**

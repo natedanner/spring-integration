@@ -93,7 +93,7 @@ class MongoDbMessageSourceTests implements MongoDbContainerTest {
 		messageSource.setBeanFactory(mock(BeanFactory.class));
 		messageSource.afterPropertiesSet();
 		@SuppressWarnings("unchecked")
-		List<BasicDBObject> results = ((List<BasicDBObject>) messageSource.receive().getPayload());
+		List<BasicDBObject> results = (List<BasicDBObject>) messageSource.receive().getPayload();
 		assertThat(results).hasSize(1);
 		BasicDBObject resultObject = results.get(0);
 
@@ -113,7 +113,7 @@ class MongoDbMessageSourceTests implements MongoDbContainerTest {
 		messageSource.setBeanFactory(mock(BeanFactory.class));
 		messageSource.afterPropertiesSet();
 		@SuppressWarnings("unchecked")
-		List<Person> results = ((List<Person>) messageSource.receive().getPayload());
+		List<Person> results = (List<Person>) messageSource.receive().getPayload();
 		assertThat(results).hasSize(1);
 		Person person = results.get(0);
 		assertThat(person.getName()).isEqualTo("Oleg");
@@ -152,7 +152,7 @@ class MongoDbMessageSourceTests implements MongoDbContainerTest {
 		messageSource.setBeanFactory(mock(BeanFactory.class));
 		messageSource.afterPropertiesSet();
 		@SuppressWarnings("unchecked")
-		List<Person> results = ((List<Person>) messageSource.receive().getPayload());
+		List<Person> results = (List<Person>) messageSource.receive().getPayload();
 		Person person = results.get(0);
 		assertThat(person.getName()).isEqualTo("Oleg");
 		assertThat(person.getAddress().getState()).isEqualTo("PA");

@@ -525,7 +525,7 @@ public class AbstractCorrelatingMessageHandlerTests {
 		handler.start();
 		Message<?> receive = discardChannel.receive(10000);
 		assertThat(receive).isNotNull();
-		await().until(groupStore::getMessageGroupCount, (count) -> count == 0);
+		await().until(groupStore::getMessageGroupCount, count -> count == 0);
 		verify(groupStore, atLeast(2)).expireMessageGroups(100);
 		taskScheduler.destroy();
 	}

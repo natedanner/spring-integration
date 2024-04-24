@@ -71,7 +71,7 @@ public class SharedConnectionTests {
 	public void test1() throws Exception {
 		TestingUtilities.waitListening(this.server, null);
 		this.client.setPort(this.server.getPort());
-		this.ctx.getBeansOfType(ConsumerEndpointFactoryBean.class).values().forEach(c -> c.start());
+		this.ctx.getBeansOfType(ConsumerEndpointFactoryBean.class).values().forEach(ConsumerEndpointFactoryBean::start);
 		MessageChannel input = ctx.getBean("input", MessageChannel.class);
 		input.send(MessageBuilder.withPayload("Test").build());
 		QueueChannel replies = ctx.getBean("replies", QueueChannel.class);

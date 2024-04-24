@@ -706,7 +706,7 @@ public class TcpNioConnection extends TcpConnectionSupport {
 
 		private static final int BUFFER_LIMIT = 5;
 
-		private final BlockingQueue<byte[]> buffers = new LinkedBlockingQueue<byte[]>(BUFFER_LIMIT);
+		private final BlockingQueue<byte[]> buffers = new LinkedBlockingQueue<>(BUFFER_LIMIT);
 
 		private volatile byte[] currentBuffer;
 

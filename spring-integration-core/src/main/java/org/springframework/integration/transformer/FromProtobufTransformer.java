@@ -44,7 +44,7 @@ public class FromProtobufTransformer extends AbstractTransformer implements Bean
 	private ClassLoader beanClassLoader;
 
 	private Expression expectedTypeExpression =
-			new FunctionExpression<Message<?>>((message) -> message.getHeaders().get(ProtoHeaders.TYPE));
+			new FunctionExpression<Message<?>>(message -> message.getHeaders().get(ProtoHeaders.TYPE));
 
 	private EvaluationContext evaluationContext;
 

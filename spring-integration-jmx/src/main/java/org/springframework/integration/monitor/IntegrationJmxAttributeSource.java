@@ -66,7 +66,7 @@ public class IntegrationJmxAttributeSource extends AnnotationJmxAttributeSource 
 			return null;
 		}
 		Class<?> declaringClass = (Class<?>) ann.getSource();
-		Class<?> target = (declaringClass != null && !declaringClass.isInterface() ? declaringClass : beanClass);
+		Class<?> target = declaringClass != null && !declaringClass.isInterface() ? declaringClass : beanClass;
 		if (!Modifier.isPublic(target.getModifiers())) {
 			throw new InvalidMetadataException("@IntegrationManagedResource class '" + target.getName() +
 					"' must be public");

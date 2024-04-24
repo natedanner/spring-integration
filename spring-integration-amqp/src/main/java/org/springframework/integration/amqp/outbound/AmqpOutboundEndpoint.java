@@ -187,10 +187,9 @@ public class AmqpOutboundEndpoint extends AbstractAmqpOutboundEndpoint
 
 	@SuppressWarnings("unchecked")
 	private void multiSend(Message<?> requestMessage, String exchangeName, String routingKey) {
-		((Iterable<?>) requestMessage.getPayload()).forEach(payload -> {
+		((Iterable<?>) requestMessage.getPayload()).forEach(payload ->
 			Assert.state(payload instanceof Message,
-					"To use multiSend, the payload must be an Iterable<Message<?>>");
-		});
+					"To use multiSend, the payload must be an Iterable<Message<?>>"));
 		this.rabbitTemplate.invoke(template -> {
 			((Iterable<Message<?>>) requestMessage.getPayload()).forEach(message -> {
 				doRabbitSend(exchangeName, routingKey, message, null, (RabbitTemplate) template);

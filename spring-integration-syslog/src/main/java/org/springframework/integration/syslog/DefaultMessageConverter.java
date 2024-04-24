@@ -44,7 +44,7 @@ public class DefaultMessageConverter implements MessageConverter, BeanFactoryAwa
 
 	private final SyslogToMapTransformer transformer = new SyslogToMapTransformer();
 
-	public static final Set<String> SYSLOG_PAYLOAD_ENTRIES = new HashSet<String>(
+	public static final Set<String> SYSLOG_PAYLOAD_ENTRIES = new HashSet<>(
 			Arrays.asList(new String[] {SyslogToMapTransformer.MESSAGE, SyslogToMapTransformer.UNDECODED}));
 
 	private volatile MessageBuilderFactory messageBuilderFactory = new DefaultMessageBuilderFactory();
@@ -85,7 +85,7 @@ public class DefaultMessageConverter implements MessageConverter, BeanFactoryAwa
 	@Override
 	public Message<?> fromSyslog(Message<?> message) {
 		Map<String, ?> map = this.transformer.doTransform(message);
-		Map<String, Object> out = new HashMap<String, Object>();
+		Map<String, Object> out = new HashMap<>();
 		for (Entry<String, ?> entry : map.entrySet()) {
 			String key = entry.getKey();
 			if (!SYSLOG_PAYLOAD_ENTRIES.contains(key)) {

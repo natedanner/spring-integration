@@ -132,7 +132,7 @@ public abstract class AbstractCorrelatingMessageHandler extends AbstractMessageP
 
 	private LockRegistry lockRegistry = new DefaultLockRegistry();
 
-	private boolean lockRegistrySet = false;
+	private boolean lockRegistrySet;
 
 	private long minimumTimeoutForEmptyGroups;
 
@@ -1061,8 +1061,8 @@ public abstract class AbstractCorrelatingMessageHandler extends AbstractMessageP
 					messageSequenceSize = 0;
 				}
 				return messageSequenceSize.equals(getSequenceSize())
-						&& !(this.sourceGroup != null ? this.sourceGroup.containsSequence(messageSequenceNumber)
-						: containsSequenceNumber(this.getMessages(), messageSequenceNumber));
+						&& this.sourceGroup == null ? this.sourceGroup.containsSequence(messageSequenceNumber)
+						: containsSequenceNumber(this.getMessages(), messageSequenceNumber);
 			}
 			return true;
 		}

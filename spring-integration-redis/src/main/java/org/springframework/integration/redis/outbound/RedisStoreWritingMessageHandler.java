@@ -327,7 +327,7 @@ public class RedisStoreWritingMessageHandler extends AbstractMessageHandler {
 				(BoundZSetOperations<String, Object>) this.redisTemplate.boundZSetOps(zset.getKey());
 		boolean zsetIncrementHeader = extractZsetIncrementHeader(message);
 		if (this.extractPayloadElements) {
-			if ((payload instanceof Map<?, ?> && this.verifyAllMapValuesOfTypeNumber((Map<?, ?>) payload))) {
+			if (payload instanceof Map<?, ?> && this.verifyAllMapValuesOfTypeNumber((Map<?, ?>) payload)) {
 				Map<Object, Number> payloadAsMap = (Map<Object, Number>) payload;
 				processInPipeline(() -> {
 					for (Entry<Object, Number> entry : payloadAsMap.entrySet()) {

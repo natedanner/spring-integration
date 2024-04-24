@@ -68,7 +68,7 @@ public class ServerWebSocketContainer extends IntegrationWebSocketContainer
 
 	private boolean autoStartup = true;
 
-	private int phase = 0;
+	private int phase;
 
 	private TaskScheduler sockJsTaskScheduler;
 

@@ -58,7 +58,7 @@ public class SplitterAggregatorTests {
 	}
 
 	private Numbers nextTen() {
-		List<Integer> values = new ArrayList<Integer>();
+		List<Integer> values = new ArrayList<>();
 		for (int i = 0; i < 10; i++) {
 			values.add(this.count.incrementAndGet());
 		}

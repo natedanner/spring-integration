@@ -33,7 +33,7 @@ public class FileWrittenEvent extends ApacheMinaSftpEvent {
 
 	private final String remoteHandle;
 
-	private transient Path file;
+	private final transient Path file;
 
 	private final int dataLen;
 

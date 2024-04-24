@@ -32,7 +32,7 @@ import jakarta.jms.Topic;
  */
 public class StubConnection implements Connection {
 
-	private String messageText;
+	private final String messageText;
 
 	public StubConnection(String messageText) {
 		this.messageText = messageText;

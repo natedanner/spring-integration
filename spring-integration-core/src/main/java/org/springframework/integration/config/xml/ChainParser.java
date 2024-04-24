@@ -73,8 +73,8 @@ public class ChainParser extends AbstractConsumerEndpointParser {
 		}
 
 		String chainHandlerId = this.resolveId(element, builder.getRawBeanDefinition(), parserContext);
-		List<BeanMetadataElement> handlerList = new ManagedList<BeanMetadataElement>();
-		Set<String> handlerBeanNameSet = new HashSet<String>();
+		List<BeanMetadataElement> handlerList = new ManagedList<>();
+		Set<String> handlerBeanNameSet = new HashSet<>();
 		NodeList children = element.getChildNodes();
 
 		int childOrder = 0;

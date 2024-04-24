@@ -70,7 +70,7 @@ public class BaseHttpInboundEndpoint extends MessagingGatewaySupport implements 
 
 	private Validator validator;
 
-	private ResolvableType requestPayloadType = null;
+	private ResolvableType requestPayloadType;
 
 	private HeaderMapper<HttpHeaders> headerMapper = DefaultHttpHeaderMapper.inboundMapper();
 
@@ -362,7 +362,7 @@ public class BaseHttpInboundEndpoint extends MessagingGatewaySupport implements 
 	 * @return true or false if HTTP request can contain the body
 	 */
 	protected static boolean isReadable(@Nullable HttpMethod httpMethod) {
-		return httpMethod != null && !(CollectionUtils.containsInstance(NON_READABLE_BODY_HTTP_METHODS, httpMethod));
+		return httpMethod != null && !CollectionUtils.containsInstance(NON_READABLE_BODY_HTTP_METHODS, httpMethod);
 	}
 
 }

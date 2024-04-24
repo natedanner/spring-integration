@@ -81,7 +81,7 @@ public class ContentEnricher extends AbstractReplyProducingMessageHandler implem
 
 	private EvaluationContext targetEvaluationContext;
 
-	private boolean shouldClonePayload = false;
+	private boolean shouldClonePayload;
 
 	private Expression requestPayloadExpression;
 

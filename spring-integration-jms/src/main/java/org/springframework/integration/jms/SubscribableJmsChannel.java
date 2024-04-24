@@ -143,7 +143,7 @@ public class SubscribableJmsChannel extends AbstractJmsChannel
 
 	@Override
 	public int getPhase() {
-		return (this.container != null) ? this.container.getPhase() : 0;
+		return this.container != null ? this.container.getPhase() : 0;
 	}
 
 	@Override

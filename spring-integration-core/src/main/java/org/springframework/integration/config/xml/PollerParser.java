@@ -55,7 +55,7 @@ public class PollerParser extends AbstractBeanDefinitionParser {
 			throws BeanDefinitionStoreException {
 
 		String id = super.resolveId(element, definition, parserContext);
-		if (element.getAttribute("default").equals("true")) {
+		if ("true".equals(element.getAttribute("default"))) {
 			if (parserContext.getRegistry().isBeanNameInUse(PollerMetadata.DEFAULT_POLLER_METADATA_BEAN_NAME)) {
 				parserContext.getReaderContext().error(
 						"Only one default <poller/> element is allowed per context.", element);

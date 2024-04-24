@@ -98,7 +98,7 @@ public abstract class AbstractMqttMessageDrivenChannelAdapter<T, C> extends Mess
 		validateTopics(topics);
 
 		return Arrays.stream(topics)
-				.collect(Collectors.toMap(Function.identity(), (key) -> 1, (x, y) -> y, LinkedHashMap::new));
+				.collect(Collectors.toMap(Function.identity(), key -> 1, (x, y) -> y, LinkedHashMap::new));
 	}
 
 	private static void validateTopics(String[] topics) {

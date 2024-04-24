@@ -64,7 +64,7 @@ class IdempotentReceiverAutoProxyCreator extends AbstractAutoProxyCreator {
 		initIdempotentEndpointsIfNecessary();
 
 		if (MessageHandler.class.isAssignableFrom(beanClass)) {
-			List<Advisor> interceptors = new ArrayList<Advisor>();
+			List<Advisor> interceptors = new ArrayList<>();
 			for (Map.Entry<String, List<String>> entry : this.idempotentEndpoints.entrySet()) {
 				List<String> mappedNames = entry.getValue();
 				for (String mappedName : mappedNames) {
@@ -95,7 +95,7 @@ class IdempotentReceiverAutoProxyCreator extends AbstractAutoProxyCreator {
 			this.lock.lock();
 			try {
 				if (this.idempotentEndpoints == null) {
-					this.idempotentEndpoints = new LinkedHashMap<String, List<String>>();
+					this.idempotentEndpoints = new LinkedHashMap<>();
 					for (Map<String, String> mapping : this.idempotentEndpointsMapping) {
 						Assert.isTrue(mapping.size() == 1, "The 'idempotentEndpointMapping' must be a SingletonMap");
 						String interceptor = mapping.keySet().iterator().next();
@@ -104,7 +104,7 @@ class IdempotentReceiverAutoProxyCreator extends AbstractAutoProxyCreator {
 						Assert.hasText(endpoint, "The 'idempotentReceiverEndpoint' can't be empty String");
 						List<String> endpoints = this.idempotentEndpoints.get(interceptor);
 						if (endpoints == null) {
-							endpoints = new ArrayList<String>();
+							endpoints = new ArrayList<>();
 							this.idempotentEndpoints.put(interceptor, endpoints);
 						}
 						endpoints.add(endpoint);

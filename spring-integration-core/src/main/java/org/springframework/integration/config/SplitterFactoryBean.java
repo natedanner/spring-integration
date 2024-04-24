@@ -86,7 +86,7 @@ public class SplitterFactoryBean extends AbstractStandardMessageHandlerFactoryBe
 	}
 
 	protected AbstractMessageSplitter createMethodInvokingSplitter(Object targetObject, String targetMethodName) {
-		return (StringUtils.hasText(targetMethodName))
+		return StringUtils.hasText(targetMethodName)
 				? new MethodInvokingSplitter(targetObject, targetMethodName)
 				: new MethodInvokingSplitter(targetObject);
 	}

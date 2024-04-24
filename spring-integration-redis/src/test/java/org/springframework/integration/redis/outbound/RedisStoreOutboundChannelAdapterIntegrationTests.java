@@ -142,10 +142,10 @@ class RedisStoreOutboundChannelAdapterIntegrationTests implements RedisContainer
 
 	@Test
 	void testListWithKeyAsHeader() {
-		RedisList<String> redisList = new DefaultRedisList<String>("pepboys", this.redisTemplate);
+		RedisList<String> redisList = new DefaultRedisList<>("pepboys", this.redisTemplate);
 		assertThat(redisList).isEmpty();
 
-		List<String> pepboys = new ArrayList<String>();
+		List<String> pepboys = new ArrayList<>();
 		pepboys.add("Manny");
 		pepboys.add("Moe");
 		pepboys.add("Jack");
@@ -158,7 +158,7 @@ class RedisStoreOutboundChannelAdapterIntegrationTests implements RedisContainer
 	@Test
 	void testListWithKeyAsHeaderSimple() {
 		redisTemplate.delete("foo");
-		RedisList<String> redisList = new DefaultRedisList<String>("foo", this.redisTemplate);
+		RedisList<String> redisList = new DefaultRedisList<>("foo", this.redisTemplate);
 		assertThat(redisList).isEmpty();
 
 		Message<String> message = MessageBuilder.withPayload("bar").setHeader("redis_key", "foo").build();
@@ -169,10 +169,10 @@ class RedisStoreOutboundChannelAdapterIntegrationTests implements RedisContainer
 
 	@Test
 	void testListWithProvidedKey() {
-		RedisList<String> redisList = new DefaultRedisList<String>("pepboys", this.redisTemplate);
+		RedisList<String> redisList = new DefaultRedisList<>("pepboys", this.redisTemplate);
 		assertThat(redisList).isEmpty();
 
-		List<String> pepboys = new ArrayList<String>();
+		List<String> pepboys = new ArrayList<>();
 		pepboys.add("Manny");
 		pepboys.add("Moe");
 		pepboys.add("Jack");
@@ -184,7 +184,7 @@ class RedisStoreOutboundChannelAdapterIntegrationTests implements RedisContainer
 
 	@Test
 	void testZsetSimplePayloadIncrement() {
-		RedisZSet<String> redisZSet = new DefaultRedisZSet<String>("foo", this.redisTemplate);
+		RedisZSet<String> redisZSet = new DefaultRedisZSet<>("foo", this.redisTemplate);
 		assertThat(redisZSet).isEmpty();
 
 		Message<String> message = MessageBuilder.withPayload("bar")
@@ -204,7 +204,7 @@ class RedisStoreOutboundChannelAdapterIntegrationTests implements RedisContainer
 
 	@Test
 	void testZsetSimplePayloadOverwrite() {
-		RedisZSet<String> redisZSet = new DefaultRedisZSet<String>("foo", this.redisTemplate);
+		RedisZSet<String> redisZSet = new DefaultRedisZSet<>("foo", this.redisTemplate);
 		assertThat(redisZSet).isEmpty();
 
 		Message<String> message = MessageBuilder.withPayload("bar")
@@ -223,7 +223,7 @@ class RedisStoreOutboundChannelAdapterIntegrationTests implements RedisContainer
 
 	@Test
 	void testZsetSimplePayloadIncrementBy2() {
-		RedisZSet<String> redisZSet = new DefaultRedisZSet<String>("foo", this.redisTemplate);
+		RedisZSet<String> redisZSet = new DefaultRedisZSet<>("foo", this.redisTemplate);
 		assertThat(redisZSet).isEmpty();
 
 		Message<String> message = MessageBuilder.withPayload("bar")
@@ -244,7 +244,7 @@ class RedisStoreOutboundChannelAdapterIntegrationTests implements RedisContainer
 
 	@Test
 	void testZsetSimplePayloadOverwriteWithHeaderScore() {
-		RedisZSet<String> redisZSet = new DefaultRedisZSet<String>("foo", this.redisTemplate);
+		RedisZSet<String> redisZSet = new DefaultRedisZSet<>("foo", this.redisTemplate);
 		assertThat(redisZSet).isEmpty();
 
 		Message<String> message = MessageBuilder.withPayload("bar")
@@ -265,10 +265,10 @@ class RedisStoreOutboundChannelAdapterIntegrationTests implements RedisContainer
 
 	@Test
 	void testMapToZsetWithProvidedKey() {
-		RedisZSet<String> redisZset = new DefaultRedisZSet<String>("presidents", this.redisTemplate);
+		RedisZSet<String> redisZset = new DefaultRedisZSet<>("presidents", this.redisTemplate);
 		assertThat(redisZset).isEmpty();
 
-		Map<String, Integer> presidents = new HashMap<String, Integer>();
+		Map<String, Integer> presidents = new HashMap<>();
 		presidents.put("John Adams", 18);
 
 		presidents.put("Barack Obama", 21);
@@ -313,11 +313,11 @@ class RedisStoreOutboundChannelAdapterIntegrationTests implements RedisContainer
 
 	@Test
 	void testMapToMapWithProvidedKey() {
-		RedisMap<String, String> redisMap = new DefaultRedisMap<String, String>("pepboys", this.redisTemplate);
+		RedisMap<String, String> redisMap = new DefaultRedisMap<>("pepboys", this.redisTemplate);
 
 		assertThat(redisMap).isEmpty();
 
-		Map<String, String> pepboys = new HashMap<String, String>();
+		Map<String, String> pepboys = new HashMap<>();
 		pepboys.put("1", "Manny");
 		pepboys.put("2", "Moe");
 		pepboys.put("3", "Jack");
@@ -341,11 +341,11 @@ class RedisStoreOutboundChannelAdapterIntegrationTests implements RedisContainer
 		// map key is not provided
 	void testMapToMapAsSingleEntryWithKeyAsHeaderFail() {
 		RedisMap<String, Map<String, String>> redisMap =
-				new DefaultRedisMap<String, Map<String, String>>("pepboys", this.redisTemplate);
+				new DefaultRedisMap<>("pepboys", this.redisTemplate);
 
 		assertThat(redisMap).isEmpty();
 
-		Map<String, String> pepboys = new HashMap<String, String>();
+		Map<String, String> pepboys = new HashMap<>();
 		pepboys.put("1", "Manny");
 		pepboys.put("2", "Moe");
 		pepboys.put("3", "Jack");
@@ -360,18 +360,18 @@ class RedisStoreOutboundChannelAdapterIntegrationTests implements RedisContainer
 	@Test
 		// key is not provided
 	void testMapToMapNoKey() {
-		RedisTemplate<String, Map<String, Map<String, String>>> redisTemplate = new RedisTemplate<String, Map<String, Map<String, String>>>();
+		RedisTemplate<String, Map<String, Map<String, String>>> redisTemplate = new RedisTemplate<>();
 		redisTemplate.setKeySerializer(new StringRedisSerializer());
 		redisTemplate.setHashKeySerializer(new StringRedisSerializer());
 		redisTemplate.setConnectionFactory(redisConnectionFactory);
 		redisTemplate.afterPropertiesSet();
 
 		RedisMap<String, Map<String, String>> redisMap =
-				new DefaultRedisMap<String, Map<String, String>>("pepboys", redisTemplate);
+				new DefaultRedisMap<>("pepboys", redisTemplate);
 
 		assertThat(redisMap).isEmpty();
 
-		Map<String, String> pepboys = new HashMap<String, String>();
+		Map<String, String> pepboys = new HashMap<>();
 		pepboys.put("1", "Manny");
 		pepboys.put("2", "Moe");
 		pepboys.put("3", "Jack");
@@ -383,18 +383,18 @@ class RedisStoreOutboundChannelAdapterIntegrationTests implements RedisContainer
 
 	@Test
 	void testMapToMapAsSingleEntryWithKeyAsHeader() {
-		RedisTemplate<String, Map<String, Map<String, String>>> redisTemplate = new RedisTemplate<String, Map<String, Map<String, String>>>();
+		RedisTemplate<String, Map<String, Map<String, String>>> redisTemplate = new RedisTemplate<>();
 		redisTemplate.setKeySerializer(new StringRedisSerializer());
 		redisTemplate.setHashKeySerializer(new StringRedisSerializer());
 		redisTemplate.setConnectionFactory(redisConnectionFactory);
 		redisTemplate.afterPropertiesSet();
 
 		RedisMap<String, Map<String, String>> redisMap =
-				new DefaultRedisMap<String, Map<String, String>>("pepboys", redisTemplate);
+				new DefaultRedisMap<>("pepboys", redisTemplate);
 
 		assertThat(redisMap).isEmpty();
 
-		Map<String, String> pepboys = new HashMap<String, String>();
+		Map<String, String> pepboys = new HashMap<>();
 		pepboys.put("1", "Manny");
 		pepboys.put("2", "Moe");
 		pepboys.put("3", "Jack");
@@ -412,7 +412,7 @@ class RedisStoreOutboundChannelAdapterIntegrationTests implements RedisContainer
 
 	@Test
 	void testStoreSimpleStringInMap() {
-		RedisMap<String, String> redisMap = new DefaultRedisMap<String, String>("bar", this.redisTemplate);
+		RedisMap<String, String> redisMap = new DefaultRedisMap<>("bar", this.redisTemplate);
 
 		assertThat(redisMap).isEmpty();
 
@@ -427,10 +427,10 @@ class RedisStoreOutboundChannelAdapterIntegrationTests implements RedisContainer
 
 	@Test
 	void testSetWithKeyAsHeader() {
-		RedisSet<String> redisSet = new DefaultRedisSet<String>("pepboys", this.redisTemplate);
+		RedisSet<String> redisSet = new DefaultRedisSet<>("pepboys", this.redisTemplate);
 		assertThat(redisSet).isEmpty();
 
-		Set<String> pepboys = new HashSet<String>();
+		Set<String> pepboys = new HashSet<>();
 		pepboys.add("Manny");
 		pepboys.add("Moe");
 		pepboys.add("Jack");
@@ -442,7 +442,7 @@ class RedisStoreOutboundChannelAdapterIntegrationTests implements RedisContainer
 
 	@Test
 	void testSetWithKeyAsHeaderSimple() {
-		RedisSet<String> redisSet = new DefaultRedisSet<String>("foo", this.redisTemplate);
+		RedisSet<String> redisSet = new DefaultRedisSet<>("foo", this.redisTemplate);
 		assertThat(redisSet).isEmpty();
 
 		Message<String> message = MessageBuilder.withPayload("foo")
@@ -454,10 +454,10 @@ class RedisStoreOutboundChannelAdapterIntegrationTests implements RedisContainer
 
 	@Test
 	void testSetWithKeyAsHeaderNotParsed() {
-		RedisSet<String> redisSet = new DefaultRedisSet<String>("pepboys", this.redisTemplate);
+		RedisSet<String> redisSet = new DefaultRedisSet<>("pepboys", this.redisTemplate);
 		assertThat(redisSet).isEmpty();
 
-		Set<String> pepboys = new HashSet<String>();
+		Set<String> pepboys = new HashSet<>();
 		pepboys.add("Manny");
 		pepboys.add("Moe");
 		pepboys.add("Jack");
@@ -469,7 +469,7 @@ class RedisStoreOutboundChannelAdapterIntegrationTests implements RedisContainer
 
 	@Test
 	void testPojoIntoSet() {
-		RedisSet<String> redisSet = new DefaultRedisSet<String>("pepboys", this.redisTemplate);
+		RedisSet<String> redisSet = new DefaultRedisSet<>("pepboys", this.redisTemplate);
 		assertThat(redisSet).isEmpty();
 
 		String pepboy = "Manny";

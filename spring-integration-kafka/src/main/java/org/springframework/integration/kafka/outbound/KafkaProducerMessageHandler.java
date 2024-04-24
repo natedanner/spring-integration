@@ -685,7 +685,7 @@ public class KafkaProducerMessageHandler<K, V> extends AbstractReplyProducingMes
 		Map<String, Set<Integer>> topicsAndPartitions = new HashMap<>();
 		if (replyTopics != null) {
 			replyTopics.forEach(tp -> {
-				topicsAndPartitions.computeIfAbsent(tp.topic(), (k) -> new TreeSet<>());
+				topicsAndPartitions.computeIfAbsent(tp.topic(), k -> new TreeSet<>());
 				topicsAndPartitions.get(tp.topic()).add(tp.partition());
 			});
 			this.replyTopicsAndPartitions.putAll(topicsAndPartitions);

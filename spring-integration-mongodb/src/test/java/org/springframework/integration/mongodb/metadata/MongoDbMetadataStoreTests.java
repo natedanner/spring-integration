@@ -49,7 +49,7 @@ class MongoDbMetadataStoreTests implements MongoDbContainerTest {
 
 	private final String file1Id = "12345";
 
-	private MongoDbMetadataStore store = null;
+	private MongoDbMetadataStore store;
 
 	@BeforeEach
 	public void configure() {

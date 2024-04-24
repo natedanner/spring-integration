@@ -72,7 +72,7 @@ public class JsonToObjectTransformerTests {
 				.hasSize(1)
 				.element(0)
 				.isInstanceOf(TestPerson.class)
-				.satisfies((actual) -> {
+				.satisfies(actual -> {
 					TestPerson bean = (TestPerson) actual;
 					assertThat(bean).extracting(TestPerson::getFirstName).isEqualTo("John");
 					assertThat(bean).extracting(TestPerson::getLastName).isEqualTo("Doe");

@@ -151,7 +151,7 @@ public class JdbcChannelMessageStore implements PriorityCapableChannelMessageSto
 
 	private MessageGroupFactory messageGroupFactory = new SimpleMessageGroupFactory();
 
-	private boolean usingIdCache = false;
+	private boolean usingIdCache;
 
 	private boolean priorityEnabled;
 
@@ -613,7 +613,7 @@ public class JdbcChannelMessageStore implements PriorityCapableChannelMessageSto
 
 		Assert.state(messages.size() < 2,
 				() -> "The query must return zero or 1 row; got " + messages.size() + " rows");
-		if (messages.size() > 0) {
+		if (!messages.isEmpty()) {
 
 			final Message<?> message = messages.get(0);
 			UUID id = message.getHeaders().getId();

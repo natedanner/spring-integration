@@ -46,7 +46,7 @@ public class SimpleToAvroTransformer extends AbstractTransformer {
 	private final EncoderFactory encoderFactory = new EncoderFactory();
 
 	private Expression typeIdExpression =
-			new FunctionExpression<Message<?>>((message) -> message.getPayload().getClass());
+			new FunctionExpression<Message<?>>(message -> message.getPayload().getClass());
 
 	private EvaluationContext evaluationContext;
 

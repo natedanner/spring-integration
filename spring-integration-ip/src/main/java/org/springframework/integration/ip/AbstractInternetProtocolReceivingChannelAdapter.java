@@ -43,7 +43,7 @@ public abstract class AbstractInternetProtocolReceivingChannelAdapter
 
 	private ApplicationEventPublisher applicationEventPublisher;
 
-	private int soTimeout = 0;
+	private int soTimeout;
 
 	private int soReceiveBufferSize = -1;
 
@@ -168,7 +168,7 @@ public abstract class AbstractInternetProtocolReceivingChannelAdapter
 		if (isActive() && this.taskExecutor == null) {
 			this.taskExecutor =
 					Executors.newFixedThreadPool(this.poolSize,
-							(runner) -> {
+							runner -> {
 								Thread thread = new Thread(runner);
 								thread.setName(threadName);
 								thread.setDaemon(true);

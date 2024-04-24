@@ -118,18 +118,18 @@ public class FileWritingMessageHandlerTests {
 	public void permissions() {
 		if (FileUtils.IS_POSIX) {
 			FileWritingMessageHandler handler = new FileWritingMessageHandler(mock(Expression.class));
-			handler.setChmod(0421);
+			handler.setChmod(273);
 			Set<?> permissions = TestUtils.getPropertyValue(handler, "permissions", Set.class);
 			assertThat(permissions.size()).isEqualTo(3);
 			assertThat(permissions.contains(PosixFilePermission.OWNER_READ)).isTrue();
 			assertThat(permissions.contains(PosixFilePermission.GROUP_WRITE)).isTrue();
 			assertThat(permissions.contains(PosixFilePermission.OTHERS_EXECUTE)).isTrue();
-			handler.setChmod(0600);
+			handler.setChmod(384);
 			permissions = TestUtils.getPropertyValue(handler, "permissions", Set.class);
 			assertThat(permissions.size()).isEqualTo(2);
 			assertThat(permissions.contains(PosixFilePermission.OWNER_READ)).isTrue();
 			assertThat(permissions.contains(PosixFilePermission.OWNER_WRITE)).isTrue();
-			handler.setChmod(0777);
+			handler.setChmod(511);
 			permissions = TestUtils.getPropertyValue(handler, "permissions", Set.class);
 			assertThat(permissions.size()).isEqualTo(9);
 		}
@@ -138,7 +138,7 @@ public class FileWritingMessageHandlerTests {
 	@Test
 	public void supportedTypeAndPermissions() throws Exception {
 		if (FileUtils.IS_POSIX) {
-			handler.setChmod(0777);
+			handler.setChmod(511);
 		}
 		handler.setOutputChannel(new NullChannel());
 		handler.handleMessage(new GenericMessage<>("test"));

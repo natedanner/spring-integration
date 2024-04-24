@@ -92,7 +92,7 @@ public abstract class AbstractMessageChannel extends IntegrationObjectSupport
 	@Nullable
 	private MessageSenderObservationConvention observationConvention;
 
-	private boolean shouldTrack = false;
+	private boolean shouldTrack;
 
 	private Class<?>[] datatypes = new Class<?>[0];
 

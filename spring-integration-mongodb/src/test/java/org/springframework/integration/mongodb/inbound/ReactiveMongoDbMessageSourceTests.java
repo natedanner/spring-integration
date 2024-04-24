@@ -150,7 +150,7 @@ class ReactiveMongoDbMessageSourceTests implements MongoDbContainerTest {
 				})
 				.expectNextMatches(person -> {
 					names.remove(person.getName());
-					return names.size() == 0;
+					return names.isEmpty();
 				})
 				.verifyComplete();
 	}

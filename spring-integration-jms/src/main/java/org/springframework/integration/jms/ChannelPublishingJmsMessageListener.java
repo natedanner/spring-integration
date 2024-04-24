@@ -405,7 +405,7 @@ public class ChannelPublishingJmsMessageListener
 				headers.put(IntegrationMessageHeaderAccessor.DELIVERY_ATTEMPT, new AtomicInteger());
 			}
 			requestMessage =
-					(result instanceof Message<?>) ?
+					result instanceof Message<?> ?
 							this.messageBuilderFactory.fromMessage((Message<?>) result).copyHeaders(headers).build() :
 							this.messageBuilderFactory.withPayload(result).copyHeaders(headers).build();
 		}
@@ -483,7 +483,7 @@ public class ChannelPublishingJmsMessageListener
 			jakarta.jms.Message replyMessage) throws JMSException {
 
 		if (this.correlationKey != null) {
-			if (this.correlationKey.equals("JMSCorrelationID")) {
+			if ("JMSCorrelationID".equals(this.correlationKey)) {
 				replyMessage.setJMSCorrelationID(requestMessage.getJMSCorrelationID());
 			}
 			else {
@@ -672,7 +672,7 @@ public class ChannelPublishingJmsMessageListener
 		@Override
 		protected AttributeAccessor getErrorMessageAttributes(@Nullable Message<?> message) {
 			AttributeAccessor attributes = ATTRIBUTES_HOLDER.get();
-			return (attributes != null) ? attributes : super.getErrorMessageAttributes(message);
+			return attributes != null ? attributes : super.getErrorMessageAttributes(message);
 		}
 
 		private void setAttributesIfNecessary(Object jmsMessage, Message<?> message) {

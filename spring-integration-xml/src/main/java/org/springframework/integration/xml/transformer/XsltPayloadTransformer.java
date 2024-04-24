@@ -104,9 +104,9 @@ public class XsltPayloadTransformer extends AbstractXmlTransformer implements Be
 
 	private boolean resultFactoryExplicitlySet;
 
-	private boolean alwaysUseSourceFactory = false;
+	private boolean alwaysUseSourceFactory;
 
-	private boolean alwaysUseResultFactory = false;
+	private boolean alwaysUseResultFactory;
 
 	private String[] xsltParamHeaders;
 
@@ -142,8 +142,8 @@ public class XsltPayloadTransformer extends AbstractXmlTransformer implements Be
 		Assert.isTrue(xslResource instanceof ClassPathResource ||
 						xslResource instanceof FileSystemResource ||
 						xslResource instanceof VfsResource || // NOSONAR boolean complexity
-						xslResource.getClass().getName()
-								.equals("org.springframework.web.context.support.ServletContextResource"),
+						"org.springframework.web.context.support.ServletContextResource"
+								.equals(xslResource.getClass().getName()),
 				"Only 'ClassPathResource', 'FileSystemResource', 'ServletContextResource' or 'VfsResource'" +
 						" are supported directly in this transformer. For any other 'Resource' implementations" +
 						" consider to use a 'Templates'-based constructor instantiation.");

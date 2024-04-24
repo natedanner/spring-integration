@@ -75,14 +75,14 @@ public class MessageTransformingHandler extends AbstractReplyProducingMessageHan
 
 	@Override
 	public String getComponentType() {
-		return (this.transformer instanceof NamedComponent)
+		return this.transformer instanceof NamedComponent
 				? ((NamedComponent) this.transformer).getComponentType()
 				: "transformer";
 	}
 
 	@Override
 	public IntegrationPatternType getIntegrationPatternType() {
-		return (this.transformer instanceof IntegrationPattern)
+		return this.transformer instanceof IntegrationPattern
 				? ((IntegrationPattern) this.transformer).getIntegrationPatternType()
 				: IntegrationPatternType.transformer;
 	}

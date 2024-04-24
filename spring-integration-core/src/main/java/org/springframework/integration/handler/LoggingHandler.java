@@ -118,7 +118,7 @@ public class LoggingHandler extends AbstractMessageHandler {
 	 * @see #setLogExpressionString(String)
 	 */
 	public void setLogExpression(Expression expression) {
-		Assert.isTrue(!(this.shouldLogFullMessageSet),
+		Assert.isTrue(!this.shouldLogFullMessageSet,
 				"Cannot set both 'expression' AND 'shouldLogFullMessage' properties");
 		this.expressionSet = true;
 		this.expression = expression;
@@ -155,7 +155,7 @@ public class LoggingHandler extends AbstractMessageHandler {
 	 * @param shouldLogFullMessage true if the complete message should be logged.
 	 */
 	public void setShouldLogFullMessage(boolean shouldLogFullMessage) {
-		Assert.isTrue(!(this.expressionSet), "Cannot set both 'expression' AND 'shouldLogFullMessage' properties");
+		Assert.isTrue(!this.expressionSet, "Cannot set both 'expression' AND 'shouldLogFullMessage' properties");
 		this.shouldLogFullMessageSet = true;
 		this.expression =
 				shouldLogFullMessage

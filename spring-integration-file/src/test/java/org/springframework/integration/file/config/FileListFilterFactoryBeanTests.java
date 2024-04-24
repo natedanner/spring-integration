@@ -105,7 +105,7 @@ public class FileListFilterFactoryBeanTests {
 	public void filenamePatternAndPreventDuplicatesTrue() throws Exception {
 		FileListFilterFactoryBean factory = new FileListFilterFactoryBean();
 		factory.setIgnoreHidden(false);
-		factory.setFilenamePattern(("foo"));
+		factory.setFilenamePattern("foo");
 		factory.setPreventDuplicates(Boolean.TRUE);
 		FileListFilter<File> result = factory.getObject();
 		assertThat(result instanceof CompositeFileListFilter).isTrue();
@@ -122,7 +122,7 @@ public class FileListFilterFactoryBeanTests {
 	public void filenamePatternAndPreventDuplicatesFalse() throws Exception {
 		FileListFilterFactoryBean factory = new FileListFilterFactoryBean();
 		factory.setIgnoreHidden(false);
-		factory.setFilenamePattern(("foo"));
+		factory.setFilenamePattern("foo");
 		factory.setAlwaysAcceptDirectories(true);
 		factory.setPreventDuplicates(Boolean.FALSE);
 		FileListFilter<File> result = factory.getObject();

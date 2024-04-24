@@ -120,7 +120,7 @@ public class HttpInboundGatewayParserTests {
 		List<HttpMessageConverter<?>> messageConverters =
 				TestUtils.getPropertyValue(this.gateway, "messageConverters", List.class);
 
-		assertThat(messageConverters.size() > 0)
+		assertThat(!messageConverters.isEmpty())
 				.as("The default converters should have been registered, given there are no custom converters")
 				.isTrue();
 
@@ -187,7 +187,7 @@ public class HttpInboundGatewayParserTests {
 		assertThat(map.get("foo")).isEqualTo("foo");
 		assertThat(map.get("bar")).isEqualTo("bar");
 
-		Map<String, Object> mapOfHeaders = new HashMap<String, Object>();
+		Map<String, Object> mapOfHeaders = new HashMap<>();
 		mapOfHeaders.put("abc", "abc");
 		MessageHeaders mh = new MessageHeaders(mapOfHeaders);
 		headers = new HttpHeaders();

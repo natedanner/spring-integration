@@ -71,7 +71,7 @@ public class TcpMessageMapper implements
 
 	private boolean stringToBytes = true;
 
-	private boolean applySequence = false;
+	private boolean applySequence;
 
 	private MessageBuilderFactory messageBuilderFactory = new DefaultMessageBuilderFactory();
 

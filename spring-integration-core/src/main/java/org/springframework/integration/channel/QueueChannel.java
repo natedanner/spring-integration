@@ -90,7 +90,7 @@ public class QueueChannel extends AbstractPollableChannel implements QueueChanne
 		super.registerMetricsCaptor(metricsCaptor);
 		this.sizeGauge =
 				metricsCaptor.gaugeBuilder("spring.integration.channel.queue.size", this,
-								(channel) -> getQueueSize())
+								channel -> getQueueSize())
 						.tag("name", getComponentName() == null ? "unknown" : getComponentName())
 						.tag("type", "channel")
 						.description("The size of the queue channel")
@@ -98,7 +98,7 @@ public class QueueChannel extends AbstractPollableChannel implements QueueChanne
 
 		this.remainingCapacityGauge =
 				metricsCaptor.gaugeBuilder("spring.integration.channel.queue.remaining.capacity", this,
-								(channel) -> getRemainingCapacity())
+								channel -> getRemainingCapacity())
 						.tag("name", getComponentName() == null ? "unknown" : getComponentName())
 						.tag("type", "channel")
 						.description("The remaining capacity of the queue channel")

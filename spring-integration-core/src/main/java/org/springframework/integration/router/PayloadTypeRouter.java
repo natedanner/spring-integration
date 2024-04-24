@@ -56,7 +56,7 @@ public class PayloadTypeRouter extends AbstractMappingMessageRouter {
 			type = type.getComponentType();
 		}
 		String closestMatch = findClosestMatch(type, isArray);
-		return (closestMatch != null) ? Collections.singletonList(closestMatch) : null;
+		return closestMatch != null ? Collections.singletonList(closestMatch) : null;
 	}
 
 	private String findClosestMatch(Class<?> type, boolean isArray) { // NOSONAR
@@ -78,7 +78,7 @@ public class PayloadTypeRouter extends AbstractMappingMessageRouter {
 				minTypeDiffWeight = typeDiffWeight;
 				// new winner, start accumulating matches from scratch
 				matches.clear();
-				matches.add((isArray) ? candidate + ARRAY_SUFFIX : candidate);
+				matches.add(isArray ? candidate + ARRAY_SUFFIX : candidate);
 			}
 			else if (typeDiffWeight == minTypeDiffWeight && typeDiffWeight != Integer.MAX_VALUE) {
 				// candidate tied with current winner, keep track
@@ -103,7 +103,7 @@ public class PayloadTypeRouter extends AbstractMappingMessageRouter {
 		}
 		for (Class<?> iface : type.getInterfaces()) {
 			if (iface.getName().equals(candidate)) {
-				return (level % 2 != 0) ? level + 2 : level + 1;
+				return level % 2 != 0 ? level + 2 : level + 1;
 			}
 			// no match at this level, continue up the hierarchy
 			for (Class<?> superInterface : iface.getInterfaces()) {

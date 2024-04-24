@@ -447,13 +447,13 @@ public class MqttAdapterTests {
 		ReflectionUtils.doWithMethods(MqttPahoMessageDrivenChannelAdapter.class, m -> {
 			m.setAccessible(true);
 			method.set(m);
-		}, m -> m.getName().equals("connect"));
+		}, m -> "connect".equals(m.getName()));
 		assertThat(method.get()).isNotNull();
 		method.get().invoke(adapter);
 		ReflectionUtils.doWithMethods(MqttPahoMessageDrivenChannelAdapter.class, m -> {
 			m.setAccessible(true);
 			method.set(m);
-		}, m -> m.getName().equals("subscribe"));
+		}, m -> "subscribe".equals(m.getName()));
 		assertThat(method.get()).isNotNull();
 		ApplicationEventPublisher eventPublisher = mock(ApplicationEventPublisher.class);
 		adapter.setApplicationEventPublisher(eventPublisher);
@@ -494,13 +494,13 @@ public class MqttAdapterTests {
 		ReflectionUtils.doWithMethods(MqttPahoMessageDrivenChannelAdapter.class, m -> {
 			m.setAccessible(true);
 			method.set(m);
-		}, m -> m.getName().equals("connect"));
+		}, m -> "connect".equals(m.getName()));
 		assertThat(method.get()).isNotNull();
 		method.get().invoke(adapter);
 		ReflectionUtils.doWithMethods(MqttPahoMessageDrivenChannelAdapter.class, m -> {
 			m.setAccessible(true);
 			method.set(m);
-		}, m -> m.getName().equals("subscribe"));
+		}, m -> "subscribe".equals(m.getName()));
 		assertThat(method.get()).isNotNull();
 		LogAccessor logger = spy(TestUtils.getPropertyValue(adapter, "logger", LogAccessor.class));
 		new DirectFieldAccessor(adapter).setPropertyValue("logger", logger);

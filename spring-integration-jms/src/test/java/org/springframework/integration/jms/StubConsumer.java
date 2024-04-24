@@ -26,9 +26,9 @@ import jakarta.jms.MessageListener;
  */
 public class StubConsumer implements MessageConsumer {
 
-	private String messageText;
+	private final String messageText;
 
-	private String messageSelector;
+	private final String messageSelector;
 
 	public StubConsumer(String messageText, String messageSelector) {
 		this.messageText = messageText;

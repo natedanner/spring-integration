@@ -92,7 +92,7 @@ public class RotatingServersTests extends FtpTestSupport {
 
 	@BeforeEach
 	public void extraSetup(TestInfo info) {
-		if (info.getTestMethod().get().getName().equals("testFairStreaming")) {
+		if ("testFairStreaming".equals(info.getTestMethod().get().getName())) {
 			FtpRemoteFileTemplate rft = new FtpRemoteFileTemplate(sessionFactory());
 			rft.execute(s -> {
 				ByteArrayInputStream bais = new ByteArrayInputStream("foo".getBytes());
@@ -118,7 +118,7 @@ public class RotatingServersTests extends FtpTestSupport {
 	public void extraCleanUp(TestInfo info) {
 		FtpRemoteFileTemplate rft = new FtpRemoteFileTemplate(sessionFactory());
 		rft.execute(s -> {
-			if (info.getTestMethod().get().getName().equals("testFairStreaming")) {
+			if ("testFairStreaming".equals(info.getTestMethod().get().getName())) {
 				s.remove("foo/f4");
 				s.remove("baz/f5");
 				s.remove("fiz/f6");

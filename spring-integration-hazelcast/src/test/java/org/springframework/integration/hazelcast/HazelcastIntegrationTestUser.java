@@ -90,7 +90,7 @@ public class HazelcastIntegrationTestUser implements Comparable<HazelcastIntegra
 
 	@Override
 	public int compareTo(HazelcastIntegrationTestUser user) {
-		return (this.id < user.getId()) ? -1 : (this.id > user.getId()) ? 1 : 0;
+		return this.id < user.getId() ? -1 : this.id > user.getId() ? 1 : 0;
 	}
 
 	@Override

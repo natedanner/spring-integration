@@ -30,7 +30,7 @@ import org.springframework.mail.SimpleMailMessage;
  */
 public class StubMailSender implements MailSender {
 
-	private final List<SimpleMailMessage> sentMessages = new ArrayList<SimpleMailMessage>();
+	private final List<SimpleMailMessage> sentMessages = new ArrayList<>();
 
 	@Override
 	public void send(SimpleMailMessage simpleMessage) throws MailException {

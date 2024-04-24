@@ -158,7 +158,7 @@ public final class IntegrationUtils {
 	public static RuntimeException wrapInDeliveryExceptionIfNecessary(Message<?> message, Supplier<String> text,
 			Throwable ex) {
 
-		RuntimeException runtimeException = (ex instanceof RuntimeException)
+		RuntimeException runtimeException = ex instanceof RuntimeException
 				? (RuntimeException) ex
 				: new MessageDeliveryException(message, text.get(), ex);
 		if (!(ex instanceof MessagingException) ||
@@ -181,14 +181,14 @@ public final class IntegrationUtils {
 	public static RuntimeException wrapInHandlingExceptionIfNecessary(Message<?> message, Supplier<String> text,
 			Throwable ex) {
 
-		RuntimeException runtimeException = (ex instanceof RuntimeException)
+		RuntimeException runtimeException = ex instanceof RuntimeException
 				? (RuntimeException) ex
 				: new MessageHandlingException(message, text.get(), ex);
 
 		if (!(ex instanceof MessagingException) ||
 				((MessagingException) ex).getFailedMessage() == null) {
 			runtimeException = new MessageHandlingException(message, text.get(),
-					(ex instanceof IllegalStateException && ex.getCause() != null) ? ex.getCause() : ex);
+					ex instanceof IllegalStateException && ex.getCause() != null ? ex.getCause() : ex);
 		}
 		return runtimeException;
 	}
@@ -202,7 +202,7 @@ public final class IntegrationUtils {
 	public static String obtainComponentName(NamedComponent component) {
 		String name = component.getComponentName();
 		if (name.charAt(0) == '_' && name.startsWith(INTERNAL_COMPONENT_PREFIX)) {
-			name = name.substring((INTERNAL_COMPONENT_PREFIX).length() + 1);
+			name = name.substring(INTERNAL_COMPONENT_PREFIX.length() + 1);
 		}
 		return name;
 	}

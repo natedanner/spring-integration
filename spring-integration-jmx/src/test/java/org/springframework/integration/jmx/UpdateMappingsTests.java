@@ -98,7 +98,7 @@ public class UpdateMappingsTests {
 						.getInstance("update.mapping.domain:type=MessageHandler,name=router,bean=endpoint"),
 				null);
 		assertThat(names.size()).isEqualTo(1);
-		Map<String, String> map = new HashMap<String, String>();
+		Map<String, String> map = new HashMap<>();
 		map.put("foo", "bar");
 		map.put("baz", "qux");
 		Object[] params = new Object[] {map};

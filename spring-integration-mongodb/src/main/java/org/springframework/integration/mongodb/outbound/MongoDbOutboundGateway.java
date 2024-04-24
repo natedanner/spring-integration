@@ -58,7 +58,7 @@ public class MongoDbOutboundGateway extends AbstractReplyProducingMessageHandler
 
 	private MessageCollectionCallback<?> collectionCallback;
 
-	private boolean expectSingleResult = false;
+	private boolean expectSingleResult;
 
 	private Class<?> entityClass = Document.class;
 
@@ -186,7 +186,7 @@ public class MongoDbOutboundGateway extends AbstractReplyProducingMessageHandler
 			query = new BasicQuery((String) expressionValue);
 		}
 		else if (expressionValue instanceof Query) {
-			query = ((Query) expressionValue);
+			query = (Query) expressionValue;
 		}
 		else {
 			throw new IllegalStateException("'queryExpression' must evaluate to " +

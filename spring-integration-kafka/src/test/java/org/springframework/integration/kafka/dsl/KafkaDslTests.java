@@ -492,9 +492,8 @@ public class KafkaDslTests {
 			ContainerProperties props = containerProperties();
 			props.setGroupId("wreh");
 			return IntegrationFlow.from(Kafka.messageDrivenChannelAdapter(consumerFactory(), props)
-							.configureListenerContainer(container -> {
-								container.errorHandler(recoveringErrorHandler());
-							}))
+							.configureListenerContainer(container ->
+								container.errorHandler(recoveringErrorHandler())))
 					.handle(p -> {
 						throw new RuntimeException("test");
 					})

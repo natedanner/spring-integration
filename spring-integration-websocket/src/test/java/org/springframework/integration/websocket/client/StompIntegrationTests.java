@@ -493,7 +493,7 @@ public class StompIntegrationTests {
 				final AbstractSubscribableChannel clientOutboundChannel) {
 			// Cannot be lambda because Java can't infer generic type from lambdas,
 			// therefore we end up with ClassCastException for other event types
-			return new ApplicationListener<SessionSubscribeEvent>() {
+			return new ApplicationListener<>() {
 
 				@Override
 				public void onApplicationEvent(SessionSubscribeEvent event) {

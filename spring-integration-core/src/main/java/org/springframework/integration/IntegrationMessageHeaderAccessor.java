@@ -121,18 +121,18 @@ public class IntegrationMessageHeaderAccessor extends MessageHeaderAccessor {
 
 	public int getSequenceNumber() {
 		Number sequenceNumber = getHeader(SEQUENCE_NUMBER, Number.class);
-		return (sequenceNumber != null ? sequenceNumber.intValue() : 0);
+		return sequenceNumber != null ? sequenceNumber.intValue() : 0;
 	}
 
 	public int getSequenceSize() {
 		Number sequenceSize = getHeader(SEQUENCE_SIZE, Number.class);
-		return (sequenceSize != null ? sequenceSize.intValue() : 0);
+		return sequenceSize != null ? sequenceSize.intValue() : 0;
 	}
 
 	@Nullable
 	public Integer getPriority() {
 		Number priority = getHeader(PRIORITY, Number.class);
-		return (priority != null ? priority.intValue() : null);
+		return priority != null ? priority.intValue() : null;
 	}
 
 	/**

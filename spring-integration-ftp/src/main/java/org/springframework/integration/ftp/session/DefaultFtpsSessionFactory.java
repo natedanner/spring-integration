@@ -56,7 +56,7 @@ public class DefaultFtpsSessionFactory extends AbstractFtpSessionFactory<FTPSCli
 
 	private Boolean wantsClientAuth;
 
-	private boolean implicit = false;
+	private boolean implicit;
 
 	private String prot = "P";
 

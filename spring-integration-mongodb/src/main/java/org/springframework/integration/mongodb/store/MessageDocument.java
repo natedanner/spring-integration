@@ -42,7 +42,7 @@ public class MessageDocument {
 	 * currently Auditable.
 	 */
 	@Id
-	private String _id; // NOSONAR name
+	private String id; // NOSONAR name
 
 	private final Message<?> message;
 

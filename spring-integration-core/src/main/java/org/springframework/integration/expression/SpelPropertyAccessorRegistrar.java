@@ -35,7 +35,7 @@ import org.springframework.util.Assert;
  */
 public class SpelPropertyAccessorRegistrar {
 
-	private final Map<String, PropertyAccessor> propertyAccessors = new LinkedHashMap<String, PropertyAccessor>();
+	private final Map<String, PropertyAccessor> propertyAccessors = new LinkedHashMap<>();
 
 	public SpelPropertyAccessorRegistrar() {
 	}

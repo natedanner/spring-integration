@@ -116,7 +116,7 @@ public class JsonOutboundMessageMapperTests {
 		JsonParser parser = jsonFactory.createParser(json);
 		do {
 			parser.nextToken();
-		} while (parser.getCurrentToken() != JsonToken.FIELD_NAME || !parser.currentName().equals("payload"));
+		} while (parser.getCurrentToken() != JsonToken.FIELD_NAME || !"payload".equals(parser.currentName()));
 		parser.nextToken();
 		return objectMapper.readValue(parser, TestBean.class);
 	}

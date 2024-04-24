@@ -363,7 +363,7 @@ public class Mqttv5PahoMessageDrivenChannelAdapter
 			}
 			super.removeTopic(topic);
 			if (!CollectionUtils.isEmpty(this.subscriptions)) {
-				this.subscriptions.removeIf((sub) -> ObjectUtils.containsElement(topic, sub.getTopic()));
+				this.subscriptions.removeIf(sub -> ObjectUtils.containsElement(topic, sub.getTopic()));
 			}
 		}
 		catch (MqttException ex) {

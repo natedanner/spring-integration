@@ -37,7 +37,7 @@ public class ExpressionEvaluatingMessageListProcessor extends AbstractExpression
 
 	private final Expression expression;
 
-	private volatile Class<?> expectedType = null;
+	private volatile Class<?> expectedType;
 
 	/**
 	 * Construct {@link ExpressionEvaluatingMessageListProcessor} for the provided

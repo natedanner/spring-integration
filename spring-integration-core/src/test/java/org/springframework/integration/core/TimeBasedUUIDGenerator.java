@@ -26,7 +26,7 @@ import java.util.logging.Logger;
  * @author Artem Bilan
  *
  */
-class TimeBasedUUIDGenerator {
+final class TimeBasedUUIDGenerator {
 
 	static final Object lock = new Object();
 
@@ -38,7 +38,7 @@ class TimeBasedUUIDGenerator {
 
 	private static long lastTime;
 
-	private static long clockSequence = 0;
+	private static long clockSequence;
 
 	private TimeBasedUUIDGenerator() {
 		super();
@@ -71,16 +71,16 @@ class TimeBasedUUIDGenerator {
 		time = currentTimeMillis << 32;
 
 		// mid Time
-		time |= ((currentTimeMillis & 0xFFFF00000000L) >> 16);
+		time |= (currentTimeMillis & 0xFFFF00000000L) >> 16;
 
 		// hi Time
 		time |= 0x1000 | ((currentTimeMillis >> 48) & 0x0FFF); // version 1
 
-		long clock_seq_hi_and_reserved = clockSequence;
+		long clockSeqHiAndReserved = clockSequence;
 
-		clock_seq_hi_and_reserved <<= 48;
+		clockSeqHiAndReserved <<= 48;
 
-		long cls = clock_seq_hi_and_reserved;
+		long cls = clockSeqHiAndReserved;
 
 		long lsb = cls | macAddress;
 		if (canNotDetermineMac) {

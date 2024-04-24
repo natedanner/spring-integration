@@ -156,7 +156,7 @@ public class MongoDbMessageStore extends AbstractMessageGroupStore
 		Assert.notNull(mongoDbFactory, "mongoDbFactory must not be null");
 		this.converter = new MessageReadingMongoConverter(mongoDbFactory, new MongoMappingContext());
 		this.template = new MongoTemplate(mongoDbFactory, this.converter);
-		this.collectionName = (StringUtils.hasText(collectionName)) ? collectionName : DEFAULT_COLLECTION_NAME;
+		this.collectionName = StringUtils.hasText(collectionName) ? collectionName : DEFAULT_COLLECTION_NAME;
 	}
 
 	@Override
@@ -235,7 +235,7 @@ public class MongoDbMessageStore extends AbstractMessageGroupStore
 		Assert.notNull(id, "'id' must not be null");
 		MessageWrapper messageWrapper =
 				this.template.findOne(whereMessageIdIs(id), MessageWrapper.class, this.collectionName);
-		return (messageWrapper != null) ? messageWrapper.getMessage() : null;
+		return messageWrapper != null ? messageWrapper.getMessage() : null;
 	}
 
 	@Override
@@ -265,7 +265,7 @@ public class MongoDbMessageStore extends AbstractMessageGroupStore
 		Assert.notNull(id, "'id' must not be null");
 		Query query = Query.query(Criteria.where("headers.id").is(id).and(GROUP_ID_KEY).exists(false));
 		MessageWrapper messageWrapper = this.template.findAndRemove(query, MessageWrapper.class, this.collectionName);
-		return (messageWrapper != null ? messageWrapper.getMessage() : null);
+		return messageWrapper != null ? messageWrapper.getMessage() : null;
 	}
 
 	@Override
@@ -363,7 +363,7 @@ public class MongoDbMessageStore extends AbstractMessageGroupStore
 		MessageWrapper messageWrapper =
 				this.template.findOne(whereMessageIdIsAndGroupIdIs(messageId, groupId),
 						MessageWrapper.class, this.collectionName);
-		return (messageWrapper != null) ? messageWrapper.getMessage() : null;
+		return messageWrapper != null ? messageWrapper.getMessage() : null;
 	}
 
 	@Override

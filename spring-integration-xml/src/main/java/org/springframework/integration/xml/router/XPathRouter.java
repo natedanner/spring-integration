@@ -47,7 +47,7 @@ public class XPathRouter extends AbstractMappingMessageRouter {
 
 	private XmlPayloadConverter converter = new DefaultXmlPayloadConverter();
 
-	private boolean evaluateAsString = false;
+	private boolean evaluateAsString;
 
 	/**
 	 * Create a router that uses an XPath expression. The expression may

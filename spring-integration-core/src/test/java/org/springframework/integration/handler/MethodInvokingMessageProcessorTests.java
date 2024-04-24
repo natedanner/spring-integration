@@ -1400,7 +1400,7 @@ public class MethodInvokingMessageProcessorTests {
 	@SuppressWarnings("unused")
 	private static class AmbiguousMethodBean {
 
-		private volatile Object lastArg = null;
+		private volatile Object lastArg;
 
 		AmbiguousMethodBean() {
 			super();
@@ -1417,7 +1417,7 @@ public class MethodInvokingMessageProcessorTests {
 
 		public String foo(int i) {
 			this.lastArg = i;
-			return Integer.valueOf(i).toString();
+			return Integer.toString(i);
 		}
 
 	}
@@ -1429,7 +1429,7 @@ public class MethodInvokingMessageProcessorTests {
 	@SuppressWarnings("unused")
 	private static class OverloadedMethodBean {
 
-		private volatile Object lastArg = null;
+		private volatile Object lastArg;
 
 		OverloadedMethodBean() {
 			super();
@@ -1449,7 +1449,7 @@ public class MethodInvokingMessageProcessorTests {
 
 	private static class IneligibleMethodBean {
 
-		private volatile Object lastArg = null;
+		private volatile Object lastArg;
 
 		IneligibleMethodBean() {
 			super();

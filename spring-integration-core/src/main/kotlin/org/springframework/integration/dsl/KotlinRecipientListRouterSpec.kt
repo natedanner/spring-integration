@@ -42,10 +42,11 @@ class KotlinRecipientListRouterSpec(override val delegate: RecipientListRouterSp
 	}
 
 	inline fun <reified P> recipient(channelName: String, crossinline selector: (P) -> Boolean) {
-		if (Message::class.java.isAssignableFrom(P::class.java))
-			this.delegate.recipientMessageSelector(channelName) { selector(it as P) }
-		else
-			this.delegate.recipient<P>(channelName) { selector(it) }
+        if (Message::class.java.isAssignableFrom(P::class.java)) {
+            this.delegate.recipientMessageSelector(channelName) { selector(it as P) }
+        } else {
+            this.delegate.recipient<P>(channelName) { selector(it) }
+        }
 	}
 
 	fun recipient(channel: MessageChannel, expression: String? = null) {
@@ -57,20 +58,22 @@ class KotlinRecipientListRouterSpec(override val delegate: RecipientListRouterSp
 	}
 
 	inline fun <reified P> recipient(channel: MessageChannel, crossinline selector: (P) -> Boolean) {
-		if (Message::class.java.isAssignableFrom(P::class.java))
-			this.delegate.recipientMessageSelector(channel) { selector(it as P) }
-		else
-			this.delegate.recipient<P>(channel) { selector(it) }
+        if (Message::class.java.isAssignableFrom(P::class.java)) {
+            this.delegate.recipientMessageSelector(channel) { selector(it as P) }
+        } else {
+            this.delegate.recipient<P>(channel) { selector(it) }
+        }
 	}
 
 	inline fun <reified P> recipientFlow(crossinline selector: (P) -> Boolean,
 										 crossinline subFlow: KotlinIntegrationFlowDefinition.() -> Unit) {
 
-		if (Message::class.java.isAssignableFrom(P::class.java))
-			this.delegate.recipientMessageSelectorFlow({ selector(it as P) })
-			{ subFlow(KotlinIntegrationFlowDefinition(it)) }
-		else
-			this.delegate.recipientFlow<P>({ selector(it) }) { subFlow(KotlinIntegrationFlowDefinition(it)) }
+        if (Message::class.java.isAssignableFrom(P::class.java)) {
+            this.delegate.recipientMessageSelectorFlow({ selector(it as P) })
+                { subFlow(KotlinIntegrationFlowDefinition(it)) }
+        } else {
+            this.delegate.recipientFlow<P>({ selector(it) }) { subFlow(KotlinIntegrationFlowDefinition(it)) }
+        }
 
 	}
 

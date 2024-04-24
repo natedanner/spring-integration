@@ -153,7 +153,7 @@ public class SimpleMessageConverter implements MessageConverter, BeanFactoryAwar
 
 		@Override
 		public Object fromMessage(@Nullable Message<?> message) {
-			return (message != null) ? message.getPayload() : null;
+			return message != null ? message.getPayload() : null;
 		}
 
 	}

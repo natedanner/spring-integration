@@ -44,7 +44,7 @@ public abstract class AbstractPooledBufferByteArraySerializer extends AbstractBy
 	 */
 	public void setPoolSize(int size) {
 		Assert.isNull(this.pool, "Cannot change pool size once set");
-		this.pool = new SimplePool<byte[]>(size, new PoolItemCallback<byte[]>() {
+		this.pool = new SimplePool<>(size, new PoolItemCallback<byte[]>() {
 
 			@Override
 			public byte[] createForPool() {

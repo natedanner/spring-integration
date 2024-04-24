@@ -36,7 +36,7 @@ public final class Consumer {
 
 	private static final Log logger = LogFactory.getLog(Consumer.class);
 
-	private static final BlockingQueue<Message<Collection<?>>> MESSAGES = new LinkedBlockingQueue<Message<Collection<?>>>();
+	private static final BlockingQueue<Message<Collection<?>>> MESSAGES = new LinkedBlockingQueue<>();
 
 	public synchronized void receive(Message<Collection<?>> message) {
 		logger.info("Service Activator received Message: " + message);

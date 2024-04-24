@@ -73,7 +73,7 @@ public class SimpleMessageStore extends AbstractMessageGroupStore
 
 	private LockRegistry lockRegistry;
 
-	private boolean copyOnGet = false;
+	private boolean copyOnGet;
 
 	private volatile boolean isUsed;
 
@@ -164,7 +164,7 @@ public class SimpleMessageStore extends AbstractMessageGroupStore
 
 	public void setLockRegistry(LockRegistry lockRegistry) {
 		Assert.notNull(lockRegistry, "The LockRegistry cannot be null");
-		Assert.isTrue(!(this.isUsed), "Cannot change the lock registry after the store has been used");
+		Assert.isTrue(!this.isUsed, "Cannot change the lock registry after the store has been used");
 		this.lockRegistry = lockRegistry;
 	}
 
@@ -196,7 +196,7 @@ public class SimpleMessageStore extends AbstractMessageGroupStore
 
 	@Override
 	public Message<?> getMessage(UUID key) {
-		return (key != null) ? this.idToMessage.get(key) : null;
+		return key != null ? this.idToMessage.get(key) : null;
 	}
 
 	@Override

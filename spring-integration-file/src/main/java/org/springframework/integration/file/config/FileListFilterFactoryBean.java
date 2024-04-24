@@ -112,7 +112,7 @@ public class FileListFilterFactoryBean implements FactoryBean<FileListFilter<Fil
 
 	@Override
 	public Class<?> getObjectType() {
-		return (this.result != null) ? this.result.getClass() : FileListFilter.class;
+		return this.result != null ? this.result.getClass() : FileListFilter.class;
 	}
 
 	@Override
@@ -128,7 +128,7 @@ public class FileListFilterFactoryBean implements FactoryBean<FileListFilter<Fil
 
 		validate();
 
-		final List<FileListFilter<File>> filtersNeeded = new ArrayList<FileListFilter<File>>();
+		final List<FileListFilter<File>> filtersNeeded = new ArrayList<>();
 
 		if (!Boolean.FALSE.equals(this.ignoreHidden)) {
 			filtersNeeded.add(new IgnoreHiddenFileListFilter());
@@ -156,7 +156,7 @@ public class FileListFilterFactoryBean implements FactoryBean<FileListFilter<Fil
 			createdFilter = filtersNeeded.get(0);
 		}
 		else {
-			createdFilter = new CompositeFileListFilter<File>(filtersNeeded);
+			createdFilter = new CompositeFileListFilter<>(filtersNeeded);
 		}
 
 		this.result = createdFilter;

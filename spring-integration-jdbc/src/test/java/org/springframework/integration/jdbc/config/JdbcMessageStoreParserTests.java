@@ -99,8 +99,7 @@ public class JdbcMessageStoreParserTests {
 		private final Deserializer<Object> targetDeserializer = new DefaultDeserializer();
 
 		public Object deserialize(InputStream inputStream) throws IOException {
-			Message<?> message = (Message<?>) targetDeserializer.deserialize(inputStream);
-			return message;
+			return (Message<?>) targetDeserializer.deserialize(inputStream);
 		}
 
 		public void serialize(Object object, OutputStream outputStream) throws IOException {

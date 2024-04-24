@@ -179,7 +179,7 @@ class GatewayMethodInboundMessageMapper implements InboundMessageMapper<Object[]
 	public Message<?> toMessage(Object[] arguments, @Nullable Map<String, Object> headers) {
 		Assert.notNull(arguments, "cannot map null arguments to Message");
 		if (arguments.length != this.parameterList.size()) {
-			String prefix = (arguments.length < this.parameterList.size()) ? "Not enough" : "Too many";
+			String prefix = arguments.length < this.parameterList.size() ? "Not enough" : "Too many";
 			throw new IllegalArgumentException(prefix + " parameters provided for method [" + this.method +
 					"], expected " + this.parameterList.size() + " but received " + arguments.length + ".");
 		}
@@ -412,7 +412,7 @@ class GatewayMethodInboundMessageMapper implements InboundMessageMapper<Object[]
 
 			MessageBuilderFactory msgBuilderFactory = GatewayMethodInboundMessageMapper.this.messageBuilderFactory;
 			AbstractIntegrationMessageBuilder<?> builder =
-					(messageOrPayload instanceof Message<?> msg)
+					messageOrPayload instanceof Message<?> msg
 							? msgBuilderFactory.fromMessage(msg)
 							: msgBuilderFactory.withPayload(messageOrPayload);
 			builder.copyHeadersIfAbsent(headers);

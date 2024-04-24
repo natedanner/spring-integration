@@ -44,7 +44,7 @@ public class DynamicPeriodicTrigger implements Trigger {
 
 	private Duration duration;
 
-	private boolean fixedRate = false;
+	private boolean fixedRate;
 
 	/**
 	 * Create a trigger with the given period in milliseconds.

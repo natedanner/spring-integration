@@ -106,9 +106,9 @@ public class SmbSessionFactoryWithCIFSContextTests extends AbstractBaseTests {
 				when(smbSession.remove(Mockito.anyString())).thenReturn(true);
 				when(smbSession.list(Mockito.anyString())).thenReturn(new SmbFile[0]);
 
-				doAnswer(_invocation -> {
-					String path = _invocation.getArgument(0);
-					OutputStream os = (OutputStream) _invocation.getArguments()[1];
+				doAnswer(invocation -> {
+					String path = invocation.getArgument(0);
+					OutputStream os = (OutputStream) invocation.getArguments()[1];
 					writeToFile((this.getClass().getSimpleName() + " : TEST : " + path).getBytes(), os);
 					return null;
 				}).when(smbSession).read(Mockito.anyString(), Mockito.any(OutputStream.class));

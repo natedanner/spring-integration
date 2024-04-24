@@ -50,7 +50,7 @@ public class MessageStoreTests {
 	public void shouldExpireMessageGroup() throws Exception {
 
 		TestMessageStore store = new TestMessageStore();
-		final List<String> list = new ArrayList<String>();
+		final List<String> list = new ArrayList<>();
 		store.registerMessageGroupExpiryCallback((messageGroupStore, group) -> {
 			list.add(group.getOne().getPayload().toString());
 			messageGroupStore.removeMessageGroup(group.getGroupId());
@@ -79,7 +79,7 @@ public class MessageStoreTests {
 		MessageGroup testMessages =
 				new SimpleMessageGroup(Collections.singletonList(new GenericMessage<String>("foo")), "bar");
 
-		private boolean removed = false;
+		private boolean removed;
 
 		TestMessageStore() {
 			super();

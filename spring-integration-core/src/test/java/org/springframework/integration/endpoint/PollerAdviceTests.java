@@ -119,7 +119,7 @@ public class PollerAdviceTests {
 	@Test
 	public void testSkipSimple() throws Exception {
 		SourcePollingChannelAdapter adapter = new SourcePollingChannelAdapter();
-		class LocalSource implements MessageSource<Object> {
+		final class LocalSource implements MessageSource<Object> {
 
 			private final CountDownLatch latch;
 

@@ -179,14 +179,14 @@ public class GatewayDslTests {
 			return IntegrationFlow.from("gatewayInput")
 					.gateway("gatewayRequest",
 							g -> g.errorChannel("gatewayError").replyTimeout(10L).errorOnTimeout(true))
-					.gateway((f) -> f.transform("From Gateway SubFlow: "::concat))
+					.gateway(f -> f.transform("From Gateway SubFlow: "::concat))
 					.get();
 		}
 
 		@Bean
 		public IntegrationFlow gatewayRequestFlow() {
 			return IntegrationFlow.from("gatewayRequest")
-					.filter("foo"::equals, (f) -> f.throwExceptionOnRejection(true))
+					.filter("foo"::equals, f -> f.throwExceptionOnRejection(true))
 					.<String, String>transform(String::toUpperCase)
 					.get();
 		}
@@ -199,10 +199,10 @@ public class GatewayDslTests {
 		@Bean
 		public IntegrationFlow nestedGatewayErrorPropagationFlow(TaskExecutor taskExecutor) {
 			return f -> f
-					.gateway((gatewayFlow) -> gatewayFlow
-							.channel((c) -> c.executor(taskExecutor))
-							.gateway((nestedGatewayFlow) -> nestedGatewayFlow
-									.transform((m) -> {
+					.gateway(gatewayFlow -> gatewayFlow
+							.channel(c -> c.executor(taskExecutor))
+							.gateway(nestedGatewayFlow -> nestedGatewayFlow
+									.transform(m -> {
 										throw new RuntimeException("intentional");
 									})));
 		}
@@ -210,7 +210,7 @@ public class GatewayDslTests {
 		@Bean
 		public IntegrationFlow functionGateway() {
 			return IntegrationFlow.from(MessageFunction.class,
-							(gateway) -> gateway
+							gateway -> gateway
 									.header("gatewayMethod", MethodArgsHolder::getMethod)
 									.header("gatewayArgs", MethodArgsHolder::getArgs)
 									.replyTimeout(10)
@@ -222,12 +222,12 @@ public class GatewayDslTests {
 		@Bean
 		public IntegrationFlow routingGatewayFlow() {
 			return IntegrationFlow.from(RoutingGateway.class,
-							(gateway) -> gateway.beanName("routingGateway").header("gatewayMethod", MethodArgsHolder::getMethod))
-					.route(Message.class, (message) ->
+							gateway -> gateway.beanName("routingGateway").header("gatewayMethod", MethodArgsHolder::getMethod))
+					.route(Message.class, message ->
 									message.getHeaders().get("gatewayMethod", Method.class).getName(),
-							(router) -> router
-									.subFlowMapping("route1", (subFlow) -> subFlow.transform((payload) -> "route1"))
-									.subFlowMapping("route2", (subFlow) -> subFlow.transform((payload) -> "route2")))
+							router -> router
+									.subFlowMapping("route1", subFlow -> subFlow.transform(payload -> "route1"))
+									.subFlowMapping("route2", subFlow -> subFlow.transform(payload -> "route2")))
 					.get();
 		}
 
@@ -244,7 +244,7 @@ public class GatewayDslTests {
 
 		default <V> Function<Object, V> andThen(Function<? super Message<?>, ? extends V> after) {
 			Objects.requireNonNull(after);
-			return (t) -> after.apply(apply(t));
+			return t -> after.apply(apply(t));
 		}
 
 		static <T> Function<T, T> identity() {

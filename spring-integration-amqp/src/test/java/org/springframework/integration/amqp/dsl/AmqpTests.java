@@ -251,7 +251,7 @@ public class AmqpTests {
 						.from(Amqp.inboundGateway(this.rabbitConnectionFactory, this.amqpQueue2)
 								.replyHeadersMappedLast(true))
 						.transform(Transformers.fromJson())
-						.enrich((enricher) -> enricher.property("REPLY_KEY", "REPLY_VALUE"))
+						.enrich(enricher -> enricher.property("REPLY_KEY", "REPLY_VALUE"))
 						.transform(Transformers.toJson())
 						.get();
 

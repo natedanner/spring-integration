@@ -60,13 +60,13 @@ public class JdbcPollingChannelAdapter extends AbstractMessageSource<Object> {
 
 	private SqlParameterSource sqlQueryParameterSource;
 
-	private boolean updatePerRow = false;
+	private boolean updatePerRow;
 
 	private SqlParameterSourceFactory sqlParameterSourceFactory = new ExpressionEvaluatingSqlParameterSourceFactory();
 
 	private boolean sqlParameterSourceFactorySet;
 
-	private int maxRows = 0;
+	private int maxRows;
 
 	private volatile String selectQuery;
 
@@ -194,7 +194,7 @@ public class JdbcPollingChannelAdapter extends AbstractMessageSource<Object> {
 	@Override
 	protected Object doReceive() {
 		List<?> payload = doPoll(this.sqlQueryParameterSource);
-		if (payload.size() < 1) {
+		if (payload.isEmpty()) {
 			payload = null;
 		}
 		if (payload != null && this.updateSql != null) {

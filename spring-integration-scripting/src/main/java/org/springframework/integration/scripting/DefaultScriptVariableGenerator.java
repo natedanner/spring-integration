@@ -37,7 +37,7 @@ public class DefaultScriptVariableGenerator implements ScriptVariableGenerator {
 	private final Map<String, Object> variableMap;
 
 	public DefaultScriptVariableGenerator() {
-		this.variableMap = Collections.<String, Object>emptyMap();
+		this.variableMap = Collections.emptyMap();
 	}
 
 	public DefaultScriptVariableGenerator(Map<String, Object> variableMap) {
@@ -45,7 +45,7 @@ public class DefaultScriptVariableGenerator implements ScriptVariableGenerator {
 	}
 
 	public Map<String, Object> generateScriptVariables(Message<?> message) {
-		Map<String, Object> scriptVariables = new HashMap<String, Object>();
+		Map<String, Object> scriptVariables = new HashMap<>();
 		// Add Message content
 		if (message != null) {
 			scriptVariables.put("payload", message.getPayload());

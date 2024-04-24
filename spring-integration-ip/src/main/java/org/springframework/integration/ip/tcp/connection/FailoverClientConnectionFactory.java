@@ -70,7 +70,7 @@ public class FailoverClientConnectionFactory extends AbstractClientConnectionFac
 		this.factories = new ArrayList<>(factories);
 		this.cachingDelegates =
 				factories.stream()
-						.anyMatch(factory -> factory instanceof CachingClientConnectionFactory);
+						.anyMatch(CachingClientConnectionFactory.class::isInstance);
 	}
 
 	/**

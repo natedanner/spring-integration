@@ -89,9 +89,9 @@ public abstract class AbstractStompSessionManager implements StompSessionManager
 
 	private final AtomicInteger epoch = new AtomicInteger();
 
-	private boolean autoStartup = false;
+	private boolean autoStartup;
 
-	private boolean running = false;
+	private boolean running;
 
 	private int phase = Integer.MAX_VALUE / 2;
 

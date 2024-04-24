@@ -81,7 +81,7 @@ public class InterceptedSharedConnectionTests {
 	void test1() throws Exception {
 		TestingUtilities.waitListening(this.server, null);
 		this.client.setPort(this.server.getPort());
-		this.ctx.getBeansOfType(ConsumerEndpointFactoryBean.class).values().forEach(c -> c.start());
+		this.ctx.getBeansOfType(ConsumerEndpointFactoryBean.class).values().forEach(ConsumerEndpointFactoryBean::start);
 		for (int i = 0; i < 5; i++) {
 			MessageChannel input = ctx.getBean("input", MessageChannel.class);
 			input.send(MessageBuilder.withPayload("Test").build());

@@ -47,7 +47,7 @@ import org.springframework.messaging.MessagingException;
  */
 public class UnZipTransformer extends AbstractZipTransformer {
 
-	private volatile boolean expectSingleResult = false;
+	private volatile boolean expectSingleResult;
 
 	/**
 	 *

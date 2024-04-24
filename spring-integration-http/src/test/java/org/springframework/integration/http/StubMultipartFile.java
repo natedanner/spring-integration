@@ -61,7 +61,7 @@ public class StubMultipartFile implements MultipartFile {
 	}
 
 	public String getContentType() {
-		return (this.text != null) ? "text" : null;
+		return this.text != null ? "text" : null;
 	}
 
 	public InputStream getInputStream() throws IOException {

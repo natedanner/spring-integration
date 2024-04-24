@@ -895,7 +895,7 @@ public class ImapMailReceiverTests {
 		final Message[] messages1 = new Message[] {null, null, message1};
 		final Message[] messages2 = new Message[] {message2};
 		final SearchTermStrategy searchTermStrategy = mock(SearchTermStrategy.class);
-		class TestReceiver extends ImapMailReceiver {
+		final class TestReceiver extends ImapMailReceiver {
 
 			private boolean firstDone;
 
@@ -909,7 +909,7 @@ public class ImapMailReceiverTests {
 				given(folder.isOpen()).willReturn(true);
 				try {
 					given(folder.getMessages())
-							.willReturn(!this.firstDone ? messages1 : messages2);
+							.willReturn(this.firstDone ? messages2 : messages1);
 				}
 				catch (MessagingException ignored) {
 				}

@@ -182,7 +182,7 @@ public class JmsOutboundGateway extends AbstractReplyProducingMessageHandler
 	 * @see jakarta.jms.DeliveryMode#NON_PERSISTENT
 	 */
 	public void setDeliveryPersistent(boolean deliveryPersistent) {
-		this.deliveryMode = (deliveryPersistent ? DeliveryMode.PERSISTENT : DeliveryMode.NON_PERSISTENT);
+		this.deliveryMode = deliveryPersistent ? DeliveryMode.PERSISTENT : DeliveryMode.NON_PERSISTENT;
 	}
 
 	/**
@@ -664,9 +664,9 @@ public class JmsOutboundGateway extends AbstractReplyProducingMessageHandler
 			if (this.replyContainerProperties.getTaskExecutor() == null) {
 				// set the beanName so the default TE threads get a meaningful name
 				String containerBeanName = this.getComponentName();
-				containerBeanName = ((!StringUtils.hasText(containerBeanName)
-						? "JMS_OutboundGateway@" + ObjectUtils.getIdentityHexString(this)
-						: containerBeanName) + ".replyListener");
+				containerBeanName = (StringUtils.hasText(containerBeanName)
+						? containerBeanName
+						: "JMS_OutboundGateway@" + ObjectUtils.getIdentityHexString(this)) + ".replyListener";
 				container.setBeanName(containerBeanName);
 			}
 		}
@@ -922,9 +922,9 @@ public class JmsOutboundGateway extends AbstractReplyProducingMessageHandler
 			messageProducer = session.createProducer(reqDestination);
 			Assert.state(this.correlationKey != null, "correlationKey must not be null");
 			String messageSelector;
-			if (!this.correlationKey.equals("JMSCorrelationID*") || jmsRequest.getJMSCorrelationID() == null) {
+			if (!"JMSCorrelationID*".equals(this.correlationKey) || jmsRequest.getJMSCorrelationID() == null) {
 				String correlation = UUID.randomUUID().toString().replaceAll("'", "''");
-				if (this.correlationKey.equals("JMSCorrelationID")) {
+				if ("JMSCorrelationID".equals(this.correlationKey)) {
 					jmsRequest.setJMSCorrelationID(correlation);
 					messageSelector = "JMSCorrelationID = '" + correlation + "'";
 				}
@@ -1079,7 +1079,7 @@ public class JmsOutboundGateway extends AbstractReplyProducingMessageHandler
 		try {
 			messageProducer = session.createProducer(reqDestination);
 			correlation = this.gatewayCorrelation + "_" + this.correlationId.incrementAndGet();
-			if (this.correlationKey.equals("JMSCorrelationID")) {
+			if ("JMSCorrelationID".equals(this.correlationKey)) {
 				jmsRequest.setJMSCorrelationID(correlation);
 			}
 			else {
@@ -1229,7 +1229,7 @@ public class JmsOutboundGateway extends AbstractReplyProducingMessageHandler
 	}
 
 	private jakarta.jms.Message receiveReplyMessage(MessageConsumer messageConsumer) throws JMSException {
-		return (this.receiveTimeout >= 0) ? messageConsumer.receive(this.receiveTimeout) : messageConsumer.receive();
+		return this.receiveTimeout >= 0 ? messageConsumer.receive(this.receiveTimeout) : messageConsumer.receive();
 	}
 
 	/**
@@ -1276,8 +1276,8 @@ public class JmsOutboundGateway extends AbstractReplyProducingMessageHandler
 		try {
 			logger.trace(() -> getComponentName() + " Received " + message);
 			if (this.correlationKey == null ||
-					this.correlationKey.equals("JMSCorrelationID") ||
-					this.correlationKey.equals("JMSCorrelationID*")) {
+					"JMSCorrelationID".equals(this.correlationKey) ||
+					"JMSCorrelationID*".equals(this.correlationKey)) {
 				correlation = message.getJMSCorrelationID();
 			}
 			else {

@@ -317,7 +317,7 @@ public class DefaultJmsHeaderMapperTests {
 
 			@Override
 			public void setObjectProperty(String name, Object value) throws JMSException {
-				if (name.equals("bad")) {
+				if ("bad".equals(name)) {
 					throw new JMSException("illegal property");
 				}
 				super.setObjectProperty(name, value);
@@ -345,7 +345,7 @@ public class DefaultJmsHeaderMapperTests {
 
 			@Override
 			public void setObjectProperty(String name, Object value) throws JMSException {
-				if (name.equals("bad")) {
+				if ("bad".equals(name)) {
 					throw new IllegalArgumentException("illegal property");
 				}
 				super.setObjectProperty(name, value);

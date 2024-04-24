@@ -30,9 +30,9 @@ public enum Gender {
 
 	MALE("M"), FEMALE("F");
 
-	private String identifier;
+	private final String identifier;
 
-	private static Map<String, Gender> identifierMap;
+	private static final Map<String, Gender> identifierMap;
 
 	Gender(String identifier) {
 		this.identifier = identifier;
@@ -44,7 +44,7 @@ public enum Gender {
 
 	static {
 		EnumSet<Gender> all = EnumSet.allOf(Gender.class);
-		identifierMap = new HashMap<String, Gender>();
+		identifierMap = new HashMap<>();
 		for (Gender gender : all) {
 			identifierMap.put(gender.getIdentifier(), gender);
 		}

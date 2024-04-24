@@ -285,7 +285,7 @@ public class JsonPropertyAccessor implements PropertyAccessor {
 		@Override
 		public Iterator<Object> iterator() {
 
-			return new Iterator<Object>() {
+			return new Iterator<>() {
 
 				private final Iterator<JsonNode> it = ArrayNodeAsList.this.delegate.iterator();
 

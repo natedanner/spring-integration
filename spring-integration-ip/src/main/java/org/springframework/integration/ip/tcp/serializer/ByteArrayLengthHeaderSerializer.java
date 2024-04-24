@@ -260,9 +260,6 @@ public class ByteArrayLengthHeaderSerializer extends AbstractByteArraySerializer
 					throw new IllegalArgumentException("Bad header size: " + this.headerSize);
 			}
 		}
-		catch (SoftEndOfStreamException e) { // NOSONAR catch and throw
-			throw e; // it's an IO exception and we don't want an event for this
-		}
 		catch (IOException | RuntimeException ex) {
 			publishEvent(ex, lengthPart, -1);
 			throw ex;

@@ -272,10 +272,10 @@ public class TcpOutboundGatewayTests {
 		Future<Integer>[] results = (Future<Integer>[]) new Future<?>[2];
 		for (int i = 0; i < 2; i++) {
 			final int j = i;
-			results[j] = (this.executor.submit(() -> {
+			results[j] = this.executor.submit(() -> {
 				gateway.handleMessage(MessageBuilder.withPayload("Test" + j).build());
 				return 0;
-			}));
+			});
 		}
 		Set<String> replies = new HashSet<>();
 		int timeouts = 0;
@@ -413,10 +413,10 @@ public class TcpOutboundGatewayTests {
 
 		for (int i = 0; i < 2; i++) {
 			final int j = i;
-			results[j] = (this.executor.submit(() -> {
+			results[j] = this.executor.submit(() -> {
 				gateway.handleMessage(MessageBuilder.withPayload("Test" + j).build());
 				return j;
-			}));
+			});
 
 		}
 		// wait until the server side has processed both requests

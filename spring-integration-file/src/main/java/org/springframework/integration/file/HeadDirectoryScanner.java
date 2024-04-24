@@ -49,7 +49,7 @@ public class HeadDirectoryScanner extends DefaultDirectoryScanner {
 			super.setFilter(filter);
 		}
 		else {
-			CompositeFileListFilter<File> compositeFilter = new CompositeFileListFilter<File>();
+			CompositeFileListFilter<File> compositeFilter = new CompositeFileListFilter<>();
 			compositeFilter.addFilter(filter).addFilter(this.headFilter);
 			super.setFilter(compositeFilter);
 		}

@@ -44,7 +44,7 @@ public class CharacterStreamWritingMessageHandler extends AbstractMessageHandler
 
 	private final BufferedWriter writer;
 
-	private volatile boolean shouldAppendNewLine = false;
+	private volatile boolean shouldAppendNewLine;
 
 	public CharacterStreamWritingMessageHandler(Writer writer) {
 		this(writer, -1);

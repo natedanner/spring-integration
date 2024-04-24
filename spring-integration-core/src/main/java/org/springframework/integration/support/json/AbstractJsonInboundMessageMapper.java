@@ -43,7 +43,7 @@ public abstract class AbstractJsonInboundMessageMapper<P> implements InboundMess
 			"JSON message is invalid.  Expected a message in the format of either " +
 					"{\"headers\":{...},\"payload\":{...}} or {\"payload\":{...}.\"headers\":{...}} but was ";
 
-	protected static final Map<String, Class<?>> DEFAULT_HEADER_TYPES = new HashMap<String, Class<?>>();
+	protected static final Map<String, Class<?>> DEFAULT_HEADER_TYPES = new HashMap<>();
 
 	static {
 		DEFAULT_HEADER_TYPES.put(IntegrationMessageHeaderAccessor.PRIORITY, Integer.class);
@@ -56,7 +56,7 @@ public abstract class AbstractJsonInboundMessageMapper<P> implements InboundMess
 
 	protected final Map<String, Class<?>> headerTypes = DEFAULT_HEADER_TYPES; // NOSONAR final
 
-	private boolean mapToPayload = false;
+	private boolean mapToPayload;
 
 	public AbstractJsonInboundMessageMapper(Type payloadType) {
 		Assert.notNull(payloadType, "payloadType must not be null");

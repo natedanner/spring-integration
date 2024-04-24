@@ -98,7 +98,7 @@ public class ThreadAffinityClientConnectionFactoryTests {
 		assertThat(replyC.getPayload()).isEqualTo(replyD.getPayload());
 		assertThat(replyC.getPayload()).isNotEqualTo(replyA.getPayload());
 		System.getProperties().remove(PORT);
-		await().atMost(Duration.ofSeconds(20)).until(() -> serverCF.getOpenConnectionIds().size() == 0);
+		await().atMost(Duration.ofSeconds(20)).until(() -> serverCF.getOpenConnectionIds().isEmpty());
 		client.close();
 		server.close();
 	}

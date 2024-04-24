@@ -85,7 +85,7 @@ public class RemoteFileTemplate<F> implements RemoteFileOperations<F>, Initializ
 
 	private String temporaryFileSuffix = ".writing";
 
-	private boolean autoCreateDirectory = false;
+	private boolean autoCreateDirectory;
 
 	private boolean useTemporaryFileName = true;
 
@@ -222,7 +222,7 @@ public class RemoteFileTemplate<F> implements RemoteFileOperations<F>, Initializ
 	 * @param fileNameGenerator the file name generator.
 	 */
 	public void setFileNameGenerator(FileNameGenerator fileNameGenerator) {
-		this.fileNameGenerator = (fileNameGenerator != null) ? fileNameGenerator : new DefaultFileNameGenerator();
+		this.fileNameGenerator = fileNameGenerator != null ? fileNameGenerator : new DefaultFileNameGenerator();
 		this.fileNameGeneratorSet = fileNameGenerator != null;
 	}
 

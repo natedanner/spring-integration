@@ -52,7 +52,7 @@ public class ReactiveMongoDbStoringMessageHandler extends AbstractReactiveMessag
 
 	private Expression collectionNameExpression = new LiteralExpression("data");
 
-	private volatile boolean initialized = false;
+	private volatile boolean initialized;
 
 	/**
 	 * Construct this instance using a provided {@link ReactiveMongoDatabaseFactory}.

@@ -22,13 +22,13 @@ public class AvroTestClass1 extends org.apache.avro.specific.SpecificRecordBase 
 		return SCHEMA$;
 	}
 
-	private static SpecificData MODEL$ = new SpecificData();
+	private static SpecificData model$ = new SpecificData();
 
 	private static final BinaryMessageEncoder<AvroTestClass1> ENCODER =
-			new BinaryMessageEncoder<AvroTestClass1>(MODEL$, SCHEMA$);
+			new BinaryMessageEncoder<>(model$, SCHEMA$);
 
 	private static final BinaryMessageDecoder<AvroTestClass1> DECODER =
-			new BinaryMessageDecoder<AvroTestClass1>(MODEL$, SCHEMA$);
+			new BinaryMessageDecoder<>(model$, SCHEMA$);
 
 	/**
 	 * Return the BinaryMessageDecoder instance used by this class.
@@ -42,7 +42,7 @@ public class AvroTestClass1 extends org.apache.avro.specific.SpecificRecordBase 
 	 * @param resolver a {@link SchemaStore} used to find schemas by fingerprint
 	 */
 	public static BinaryMessageDecoder<AvroTestClass1> createDecoder(SchemaStore resolver) {
-		return new BinaryMessageDecoder<AvroTestClass1>(MODEL$, SCHEMA$, resolver);
+		return new BinaryMessageDecoder<>(model$, SCHEMA$, resolver);
 	}
 
 	/** Serializes this AvroTestClass1 to a ByteBuffer. */
@@ -170,7 +170,7 @@ public class AvroTestClass1 extends org.apache.avro.specific.SpecificRecordBase 
 	/**
 	 * RecordBuilder for AvroTestClass1 instances.
 	 */
-	public static class Builder extends org.apache.avro.specific.SpecificRecordBuilderBase<AvroTestClass1>
+	public static final class Builder extends org.apache.avro.specific.SpecificRecordBuilderBase<AvroTestClass1>
 			implements org.apache.avro.data.RecordBuilder<AvroTestClass1> {
 
 		private java.lang.String bar;
@@ -308,7 +308,7 @@ public class AvroTestClass1 extends org.apache.avro.specific.SpecificRecordBase 
 
 	@SuppressWarnings("unchecked")
 	private static final org.apache.avro.io.DatumWriter<AvroTestClass1>
-			WRITER$ = (org.apache.avro.io.DatumWriter<AvroTestClass1>) MODEL$.createDatumWriter(SCHEMA$);
+			WRITER$ = (org.apache.avro.io.DatumWriter<AvroTestClass1>) model$.createDatumWriter(SCHEMA$);
 
 	@Override
 	public void writeExternal(java.io.ObjectOutput out)
@@ -318,7 +318,7 @@ public class AvroTestClass1 extends org.apache.avro.specific.SpecificRecordBase 
 
 	@SuppressWarnings("unchecked")
 	private static final org.apache.avro.io.DatumReader<AvroTestClass1>
-			READER$ = (org.apache.avro.io.DatumReader<AvroTestClass1>) MODEL$.createDatumReader(SCHEMA$);
+			READER$ = (org.apache.avro.io.DatumReader<AvroTestClass1>) model$.createDatumReader(SCHEMA$);
 
 	@Override
 	public void readExternal(java.io.ObjectInput in)

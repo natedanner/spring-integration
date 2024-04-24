@@ -58,7 +58,7 @@ public abstract class MessageHandlerSupport extends IntegrationObjectSupport
 
 	private final Set<TimerFacade> timers = ConcurrentHashMap.newKeySet();
 
-	private boolean shouldTrack = false;
+	private boolean shouldTrack;
 
 	private boolean loggingEnabled = true;
 

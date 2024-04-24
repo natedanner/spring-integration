@@ -49,7 +49,7 @@ public class PartialSequencesWithGapsTests {
 	SubscribableChannel out;
 
 	@SuppressWarnings("rawtypes")
-	Queue<Message> received = new ArrayBlockingQueue<Message>(10);
+	Queue<Message> received = new ArrayBlockingQueue<>(10);
 
 	@Before
 	public void collectOutput() {

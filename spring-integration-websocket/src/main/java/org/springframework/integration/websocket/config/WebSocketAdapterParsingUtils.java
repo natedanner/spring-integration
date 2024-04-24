@@ -48,7 +48,7 @@ abstract class WebSocketAdapterParsingUtils {
 		boolean hasDefaultProtocolHandler = StringUtils.hasText(defaultProtocolHandler);
 
 		if (hasProtocolHandlers || hasDefaultProtocolHandler) {
-			List<BeanReference> protocolHandlerList = new ManagedList<BeanReference>();
+			List<BeanReference> protocolHandlerList = new ManagedList<>();
 			String[] ids = StringUtils.commaDelimitedListToStringArray(protocolHandlers);
 			for (String id : ids) {
 				protocolHandlerList.add(new RuntimeBeanReference(id));
@@ -64,7 +64,7 @@ abstract class WebSocketAdapterParsingUtils {
 
 		String messageConverters = element.getAttribute("message-converters");
 		if (StringUtils.hasText(messageConverters)) {
-			List<BeanReference> messageConverterList = new ManagedList<BeanReference>();
+			List<BeanReference> messageConverterList = new ManagedList<>();
 			String[] ids = StringUtils.commaDelimitedListToStringArray(messageConverters);
 			for (String id : ids) {
 				messageConverterList.add(new RuntimeBeanReference(id));

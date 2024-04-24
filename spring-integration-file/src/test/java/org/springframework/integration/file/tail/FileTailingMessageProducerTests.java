@@ -279,7 +279,7 @@ public class FileTailingMessageProducerTests {
 		waitForField(adapter, "stdOutReader");
 
 		FileOutputStream fos = new FileOutputStream(file);
-		fos.write(("hello foobar\n").getBytes());
+		fos.write("hello foobar\n".getBytes());
 		fos.close();
 
 		Message<?> message = outputChannel.receive(10000);

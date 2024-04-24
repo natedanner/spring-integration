@@ -81,7 +81,7 @@ public class MBeanRegistrationTests {
 	@Ignore // re-instate this if Spring decides to look for @ManagedResource on super classes
 	public void testServiceActivatorMBeanHasTrackableComponent() throws Exception {
 		Set<ObjectName> names = server.queryNames(new ObjectName("test.MBeanRegistration:type=ServiceActivatingHandler,name=service,*"), null);
-		Map<String, MBeanOperationInfo> infos = new HashMap<String, MBeanOperationInfo>();
+		Map<String, MBeanOperationInfo> infos = new HashMap<>();
 		for (MBeanOperationInfo info : server.getMBeanInfo(names.iterator().next()).getOperations()) {
 			infos.put(info.getName(), info);
 		}

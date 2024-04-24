@@ -108,7 +108,7 @@ public class DatatypeChannelTests {
 	@Test
 	public void conversionServiceBeanUsedByDefault() {
 		GenericApplicationContext context = new GenericApplicationContext();
-		Converter<Boolean, Integer> converter = new Converter<Boolean, Integer>() {
+		Converter<Boolean, Integer> converter = new Converter<>() {
 
 			@Override
 			public Integer convert(Boolean source) {
@@ -142,7 +142,7 @@ public class DatatypeChannelTests {
 	@Test
 	public void conversionServiceReferenceOverridesDefault() {
 		GenericApplicationContext context = new GenericApplicationContext();
-		Converter<Boolean, Integer> defaultConverter = new Converter<Boolean, Integer>() {
+		Converter<Boolean, Integer> defaultConverter = new Converter<>() {
 
 			@Override
 			public Integer convert(Boolean source) {
@@ -261,7 +261,7 @@ public class DatatypeChannelTests {
 
 		@Override
 		public Set<ConvertiblePair> getConvertibleTypes() {
-			Set<ConvertiblePair> pairs = new HashSet<ConvertiblePair>();
+			Set<ConvertiblePair> pairs = new HashSet<>();
 			pairs.add(new ConvertiblePair(String.class, Foo.class));
 			pairs.add(new ConvertiblePair(String.class, Bar.class));
 			return pairs;
@@ -282,7 +282,7 @@ public class DatatypeChannelTests {
 
 		@Override
 		public Set<ConvertiblePair> getConvertibleTypes() {
-			Set<ConvertiblePair> pairs = new HashSet<ConvertiblePair>();
+			Set<ConvertiblePair> pairs = new HashSet<>();
 			pairs.add(new ConvertiblePair(Integer.class, Foo.class));
 			pairs.add(new ConvertiblePair(Integer.class, Baz.class));
 			return pairs;

@@ -31,7 +31,7 @@ public class TestHandler {
 
 	private CountDownLatch latch;
 
-	private String replyMessageText = null;
+	private String replyMessageText;
 
 	public TestHandler() {
 		this(1);

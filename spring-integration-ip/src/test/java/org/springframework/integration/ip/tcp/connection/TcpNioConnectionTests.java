@@ -542,7 +542,7 @@ public class TcpNioConnectionTests {
 				.build();
 		outboundConnection.send(message);
 
-		final AtomicReference<Message<?>> inboundMessage = new AtomicReference<Message<?>>();
+		final AtomicReference<Message<?>> inboundMessage = new AtomicReference<>();
 		final CountDownLatch latch = new CountDownLatch(1);
 		TcpListener listener = new TcpListener() {
 
@@ -570,7 +570,7 @@ public class TcpNioConnectionTests {
 
 		factory.setSoTimeout(1000);
 		factory.setTaskExecutor(compositeExec);
-		final AtomicReference<String> threadName = new AtomicReference<String>();
+		final AtomicReference<String> threadName = new AtomicReference<>();
 		final CountDownLatch latch = new CountDownLatch(1);
 		factory.registerListener(new TcpListener() {
 
@@ -658,11 +658,11 @@ public class TcpNioConnectionTests {
 		}
 		Thread.sleep(1);
 		for (int i = 0; i < numberOfSockets; i++) {
-			sockets[i].getOutputStream().write(("...foo2\r\nbar1 and...").getBytes());
+			sockets[i].getOutputStream().write("...foo2\r\nbar1 and...".getBytes());
 			sockets[i].getOutputStream().flush();
 		}
 		for (int i = 0; i < numberOfSockets; i++) {
-			sockets[i].getOutputStream().write(("...bar2\r\n").getBytes());
+			sockets[i].getOutputStream().write("...bar2\r\n".getBytes());
 			sockets[i].getOutputStream().flush();
 		}
 		for (int i = 0; i < numberOfSockets; i++) {
@@ -671,11 +671,11 @@ public class TcpNioConnectionTests {
 		}
 		Thread.sleep(1);
 		for (int i = 0; i < numberOfSockets; i++) {
-			sockets[i].getOutputStream().write(("...foo4\r\nbar3 and...").getBytes());
+			sockets[i].getOutputStream().write("...foo4\r\nbar3 and...".getBytes());
 			sockets[i].getOutputStream().flush();
 		}
 		for (int i = 0; i < numberOfSockets; i++) {
-			sockets[i].getOutputStream().write(("...bar4\r\n").getBytes());
+			sockets[i].getOutputStream().write("...bar4\r\n".getBytes());
 			sockets[i].close();
 		}
 
@@ -724,7 +724,7 @@ public class TcpNioConnectionTests {
 
 		});
 		final CountDownLatch assemblerLatch = new CountDownLatch(1);
-		final AtomicReference<Thread> assembler = new AtomicReference<Thread>();
+		final AtomicReference<Thread> assembler = new AtomicReference<>();
 		factory.registerListener(new TcpListener() {
 
 			@Override

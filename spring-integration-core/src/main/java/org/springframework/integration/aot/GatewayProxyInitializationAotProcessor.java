@@ -42,13 +42,13 @@ class GatewayProxyInitializationAotProcessor implements BeanFactoryInitializatio
 	public BeanFactoryInitializationAotContribution processAheadOfTime(ConfigurableListableBeanFactory beanFactory) {
 		Stream<? extends Class<?>> gatewayProxyInterfaces =
 				Arrays.stream(beanFactory.getBeanDefinitionNames())
-						.map((beanName) -> RegisteredBean.of(beanFactory, beanName))
-						.filter((bean) -> GatewayProxyFactoryBean.class.isAssignableFrom(bean.getBeanClass()))
-						.flatMap((bean) -> Stream.ofNullable(bean.getBeanType().getGeneric(0).resolve()));
+						.map(beanName -> RegisteredBean.of(beanFactory, beanName))
+						.filter(bean -> GatewayProxyFactoryBean.class.isAssignableFrom(bean.getBeanClass()))
+						.flatMap(bean -> Stream.ofNullable(bean.getBeanType().getGeneric(0).resolve()));
 
 		return (generationContext, beanFactoryInitializationCode) -> {
 			ProxyHints proxyHints = generationContext.getRuntimeHints().proxies();
-			gatewayProxyInterfaces.forEach((gatewayInterface) ->
+			gatewayProxyInterfaces.forEach(gatewayInterface ->
 					proxyHints.registerJdkProxy(AopProxyUtils.completeJdkProxyInterfaces(gatewayInterface)));
 		};
 	}

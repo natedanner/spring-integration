@@ -34,7 +34,7 @@ public abstract class AbstractFileListFilter<F> implements FileListFilter<F> {
 
 	@Override
 	public final List<F> filterFiles(F[] files) {
-		List<F> accepted = new ArrayList<F>();
+		List<F> accepted = new ArrayList<>();
 		if (files != null) {
 			for (F file : files) {
 				if (this.accept(file)) {

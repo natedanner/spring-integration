@@ -116,7 +116,7 @@ public class HttpRequestExecutingMessageHandler extends AbstractHttpRequestExecu
 	public HttpRequestExecutingMessageHandler(Expression uriExpression, @Nullable RestTemplate restTemplate) {
 		super(uriExpression);
 		this.restTemplateExplicitlySet = restTemplate != null;
-		this.restTemplate = (this.restTemplateExplicitlySet ? restTemplate : new RestTemplate());
+		this.restTemplate = this.restTemplateExplicitlySet ? restTemplate : new RestTemplate();
 		if (!this.restTemplateExplicitlySet) {
 			this.restTemplate.setUriTemplateHandler(this.uriFactory);
 		}
@@ -124,7 +124,7 @@ public class HttpRequestExecutingMessageHandler extends AbstractHttpRequestExecu
 
 	@Override
 	public String getComponentType() {
-		return (isExpectReply() ? "http:outbound-gateway" : "http:outbound-channel-adapter");
+		return isExpectReply() ? "http:outbound-gateway" : "http:outbound-channel-adapter";
 	}
 
 	private void assertLocalRestTemplate(String option) {

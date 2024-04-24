@@ -34,7 +34,7 @@ public class TestService {
 
 	private static final Log log = LogFactory.getLog(TestService.class);
 
-	private Map<String, String> seen = new ConcurrentHashMap<String, String>();
+	private Map<String, String> seen = new ConcurrentHashMap<>();
 
 	private AtomicInteger duplicateMessagesCount = new AtomicInteger(0);
 

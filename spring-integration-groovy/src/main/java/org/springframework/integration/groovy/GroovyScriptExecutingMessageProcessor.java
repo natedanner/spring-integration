@@ -163,7 +163,7 @@ public class GroovyScriptExecutingMessageProcessor extends AbstractScriptExecuti
 		Assert.notNull(scriptSource, "scriptSource must not be null");
 		parseScriptIfNecessary(scriptSource);
 		Object result = execute(variables);
-		return (result instanceof GString) ? result.toString() : result;
+		return result instanceof GString ? result.toString() : result;
 	}
 
 	private void parseScriptIfNecessary(ScriptSource scriptSource) {

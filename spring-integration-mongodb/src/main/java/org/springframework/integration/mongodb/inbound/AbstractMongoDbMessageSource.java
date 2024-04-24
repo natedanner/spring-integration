@@ -67,13 +67,13 @@ public abstract class AbstractMongoDbMessageSource<T> extends AbstractMessageSou
 
 	private Class<?> entityClass = DBObject.class;
 
-	private boolean expectSingleResult = false;
+	private boolean expectSingleResult;
 
 	private Expression updateExpression;
 
 	private ApplicationContext applicationContext;
 
-	private volatile boolean initialized = false;
+	private volatile boolean initialized;
 
 	protected AbstractMongoDbMessageSource(Expression queryExpression) {
 		Assert.notNull(queryExpression, "'queryExpression' must not be null");
@@ -189,7 +189,7 @@ public abstract class AbstractMongoDbMessageSource<T> extends AbstractMessageSou
 			query = new BasicQuery((String) value);
 		}
 		else if (value instanceof Query) {
-			query = ((Query) value);
+			query = (Query) value;
 		}
 		else {
 			throw new IllegalStateException("'queryExpression' must evaluate to String " +
@@ -248,7 +248,7 @@ public abstract class AbstractMongoDbMessageSource<T> extends AbstractMessageSou
 				update = new BasicUpdate((String) value);
 			}
 			else if (value instanceof Update) {
-				update = ((Update) value);
+				update = (Update) value;
 			}
 			else {
 				throw new IllegalStateException("'updateExpression' must evaluate to String " +

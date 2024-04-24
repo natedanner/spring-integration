@@ -126,7 +126,7 @@ public class SourcePollingChannelAdapter extends AbstractPollingEndpoint
 
 	@Override
 	public String getComponentType() {
-		return (this.source instanceof NamedComponent) ?
+		return this.source instanceof NamedComponent ?
 				((NamedComponent) this.source).getComponentType() : "inbound-channel-adapter";
 	}
 

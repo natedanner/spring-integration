@@ -122,7 +122,7 @@ public class MethodInvokingHeaderEnricherTests {
 	public static class TestBean {
 
 		public Map<String, Object> process(@Payload("toUpperCase()") String s) {
-			Map<String, Object> map = new HashMap<String, Object>();
+			Map<String, Object> map = new HashMap<>();
 			map.put("foo", s);
 			map.put("bar", "ABC");
 			return map;

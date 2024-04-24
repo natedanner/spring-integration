@@ -42,7 +42,7 @@ public class MessageProcessingHeaderValueMessageProcessor extends AbstractHeader
 	}
 
 	public MessageProcessingHeaderValueMessageProcessor(Object targetObject, String method) {
-		this.targetProcessor = new MethodInvokingMessageProcessor<Object>(targetObject, method);
+		this.targetProcessor = new MethodInvokingMessageProcessor<>(targetObject, method);
 	}
 
 	@Override

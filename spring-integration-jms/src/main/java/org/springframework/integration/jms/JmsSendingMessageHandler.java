@@ -79,7 +79,7 @@ public class JmsSendingMessageHandler extends AbstractMessageHandler {
 	public void setDestinationExpression(Expression destinationExpression) {
 		Assert.isTrue(this.destination == null && this.destinationName == null,
 				"The 'destination', 'destinationName', and 'destinationExpression' properties are mutually exclusive.");
-		this.destinationExpressionProcessor = new ExpressionEvaluatingMessageProcessor<Object>(destinationExpression);
+		this.destinationExpressionProcessor = new ExpressionEvaluatingMessageProcessor<>(destinationExpression);
 		setPrimaryExpression(destinationExpression);
 	}
 
@@ -159,7 +159,7 @@ public class JmsSendingMessageHandler extends AbstractMessageHandler {
 
 	@Override
 	protected void handleMessageInternal(final Message<?> message) {
-		Object objectToSend = (this.extractPayload) ? message.getPayload() : message;
+		Object objectToSend = this.extractPayload ? message.getPayload() : message;
 		MessagePostProcessor messagePostProcessor = new HeaderMappingMessagePostProcessor(message, this.headerMapper);
 
 		if (this.jmsTemplate instanceof DynamicJmsTemplate && this.jmsTemplate.isExplicitQosEnabled()) {

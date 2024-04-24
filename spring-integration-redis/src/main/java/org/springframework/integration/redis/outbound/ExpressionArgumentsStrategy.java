@@ -56,7 +56,7 @@ public class ExpressionArgumentsStrategy implements ArgumentsStrategy, BeanFacto
 	public ExpressionArgumentsStrategy(String[] argumentExpressions, boolean useCommandVariable) {
 		Assert.notNull(argumentExpressions, "'argumentExpressions' must not be null");
 		Assert.noNullElements(argumentExpressions, "'argumentExpressions' cannot have null values.");
-		List<Expression> expressions = new LinkedList<Expression>();
+		List<Expression> expressions = new LinkedList<>();
 		for (String argumentExpression : argumentExpressions) {
 			expressions.add(PARSER.parseExpression(argumentExpression));
 		}
@@ -89,7 +89,7 @@ public class ExpressionArgumentsStrategy implements ArgumentsStrategy, BeanFacto
 			evaluationContextToUse.setVariable("cmd", command);
 		}
 
-		List<Object> arguments = new ArrayList<Object>();
+		List<Object> arguments = new ArrayList<>();
 		for (Expression argumentExpression : this.argumentExpressions) {
 			Object argument = argumentExpression.getValue(evaluationContextToUse, message);
 			if (argument != null) {

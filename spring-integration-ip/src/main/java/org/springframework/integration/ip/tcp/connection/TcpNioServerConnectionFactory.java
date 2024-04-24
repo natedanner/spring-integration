@@ -185,7 +185,7 @@ public class TcpNioServerConnectionFactory extends AbstractServerConnectionFacto
 			int selectionCount;
 			try {
 				long timeout = Math.max(soTimeout, 0);
-				if (getDelayedReads().size() > 0 && (timeout == 0 || getReadDelay() < timeout)) {
+				if (!getDelayedReads().isEmpty() && (timeout == 0 || getReadDelay() < timeout)) {
 					timeout = getReadDelay();
 				}
 				long timeoutToLog = timeout;

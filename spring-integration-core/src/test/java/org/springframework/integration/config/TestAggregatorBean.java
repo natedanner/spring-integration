@@ -34,7 +34,7 @@ import org.springframework.messaging.support.GenericMessage;
  */
 public class TestAggregatorBean {
 
-	private final ConcurrentMap<Object, Message<?>> aggregatedMessages = new ConcurrentHashMap<Object, Message<?>>();
+	private final ConcurrentMap<Object, Message<?>> aggregatedMessages = new ConcurrentHashMap<>();
 
 	@Aggregator
 	public Message<?> createSingleMessageFromGroup(List<Message<?>> messages) {

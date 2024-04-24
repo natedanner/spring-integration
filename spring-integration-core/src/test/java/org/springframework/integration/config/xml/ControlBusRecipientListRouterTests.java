@@ -141,11 +141,11 @@ public class ControlBusRecipientListRouterTests {
 		MessagingTemplate messagingTemplate = new MessagingTemplate();
 		messagingTemplate.setReceiveTimeout(1000);
 
-		Map<String, String> map = new HashMap<String, String>();
+		Map<String, String> map = new HashMap<>();
 		map.put("channel6", "true");
 		Message<?> message = MessageBuilder.withPayload("@'simpleRouter.handler'.setRecipientMappings(headers.recipientMap)").setHeader("recipientMap", map).build();
 		this.input.send(message);
-		message = new GenericMessage<Integer>(1);
+		message = new GenericMessage<>(1);
 		channel.send(message);
 		PollableChannel chanel6 = (PollableChannel) context.getBean("channel6");
 		assertThat(chanel6.receive(0).getPayload().equals(1)).isTrue();

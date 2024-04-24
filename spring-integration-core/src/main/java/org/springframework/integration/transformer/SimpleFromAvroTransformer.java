@@ -51,7 +51,7 @@ public class SimpleFromAvroTransformer extends AbstractTransformer implements Be
 	private final DecoderFactory decoderFactory = new DecoderFactory();
 
 	private Expression typeIdExpression =
-			new FunctionExpression<Message<?>>((message) -> message.getHeaders().get(AvroHeaders.TYPE));
+			new FunctionExpression<Message<?>>(message -> message.getHeaders().get(AvroHeaders.TYPE));
 
 	private EvaluationContext evaluationContext;
 

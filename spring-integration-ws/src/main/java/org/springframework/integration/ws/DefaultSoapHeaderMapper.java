@@ -58,7 +58,7 @@ import org.springframework.xml.transform.TransformerHelper;
  */
 public class DefaultSoapHeaderMapper extends AbstractHeaderMapper<SoapMessage> implements SoapHeaderMapper {
 
-	protected static final List<String> STANDARD_HEADER_NAMES = new ArrayList<String>();
+	protected static final List<String> STANDARD_HEADER_NAMES = new ArrayList<>();
 
 	static {
 		STANDARD_HEADER_NAMES.add(WebServiceHeaders.SOAP_ACTION);
@@ -74,7 +74,7 @@ public class DefaultSoapHeaderMapper extends AbstractHeaderMapper<SoapMessage> i
 	protected Map<String, Object> extractStandardHeaders(SoapMessage source) {
 		final String soapAction = source.getSoapAction();
 		if (StringUtils.hasText(soapAction)) {
-			Map<String, Object> headers = new HashMap<String, Object>(1);
+			Map<String, Object> headers = new HashMap<>(1);
 			headers.put(WebServiceHeaders.SOAP_ACTION, soapAction);
 			return headers;
 		}
@@ -85,7 +85,7 @@ public class DefaultSoapHeaderMapper extends AbstractHeaderMapper<SoapMessage> i
 
 	@Override
 	protected Map<String, Object> extractUserDefinedHeaders(SoapMessage source) {
-		Map<String, Object> headers = new HashMap<String, Object>();
+		Map<String, Object> headers = new HashMap<>();
 		SoapHeader soapHeader = source.getSoapHeader();
 		if (soapHeader != null) {
 			Iterator<?> attributeIter = soapHeader.getAllAttributes();

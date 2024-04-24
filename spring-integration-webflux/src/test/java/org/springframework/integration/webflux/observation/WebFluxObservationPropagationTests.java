@@ -174,7 +174,7 @@ public class WebFluxObservationPropagationTests {
 		IntegrationFlow webFluxFlow() {
 			return IntegrationFlow
 					.from(WebFlux.inboundChannelAdapter("/test")
-							.requestMapping((mapping) -> mapping.methods(HttpMethod.POST))
+							.requestMapping(mapping -> mapping.methods(HttpMethod.POST))
 							.requestPayloadType(String.class)
 							.id("webFluxInbound"))
 					.channel(c -> c.flux("requestChannel"))

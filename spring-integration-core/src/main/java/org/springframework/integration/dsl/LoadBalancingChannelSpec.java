@@ -49,7 +49,7 @@ public abstract class LoadBalancingChannelSpec<S extends MessageChannelSpec<S, C
 	}
 
 	public S failover(boolean failoverToSet) {
-		return failoverStrategy((exception) -> failoverToSet);
+		return failoverStrategy(exception -> failoverToSet);
 	}
 
 	/**

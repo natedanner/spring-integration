@@ -48,7 +48,7 @@ public class RedisOutboundGateway extends AbstractReplyProducingMessageHandler {
 
 	private EvaluationContext evaluationContext;
 
-	private volatile RedisSerializer<Object> argumentsSerializer = new GenericToStringSerializer<Object>(Object.class);
+	private volatile RedisSerializer<Object> argumentsSerializer = new GenericToStringSerializer<>(Object.class);
 
 	private volatile Expression commandExpression = PARSER.parseExpression("headers[" + RedisHeaders.COMMAND + "]");
 
@@ -61,7 +61,7 @@ public class RedisOutboundGateway extends AbstractReplyProducingMessageHandler {
 
 	public RedisOutboundGateway(RedisConnectionFactory connectionFactory) {
 		Assert.notNull(connectionFactory, "'connectionFactory' must not be null");
-		this.redisTemplate = new RedisTemplate<Object, Object>();
+		this.redisTemplate = new RedisTemplate<>();
 		this.redisTemplate.setConnectionFactory(connectionFactory);
 		this.redisTemplate.afterPropertiesSet();
 	}

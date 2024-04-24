@@ -81,8 +81,8 @@ public class LambdaMessageProcessor implements MessageProcessor<Object>, BeanFac
 				MethodIntrospector.selectMethods(target.getClass(),
 						(ReflectionUtils.MethodFilter) methodCandidate ->
 								methodCandidate.getDeclaringClass() != Object.class &&
-										!methodCandidate.getDeclaringClass().getName()
-												.equals("kotlin.jvm.internal.Lambda") &&
+										!"kotlin.jvm.internal.Lambda"
+												.equals(methodCandidate.getDeclaringClass().getName()) &&
 										!methodCandidate.isDefault() &&
 										!Modifier.isStatic(methodCandidate.getModifiers()));
 

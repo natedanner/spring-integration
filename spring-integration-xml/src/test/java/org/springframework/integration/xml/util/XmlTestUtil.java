@@ -36,7 +36,7 @@ import org.springframework.xml.transform.StringResult;
  * @author Jonas Partner
  * @author Artem Bilan
  */
-public class XmlTestUtil {
+public final class XmlTestUtil {
 
 	private static final TransformerFactory TRANSFORMER_FACTORY = TransformerFactory.newInstance();
 

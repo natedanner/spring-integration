@@ -58,7 +58,7 @@ public class ServiceActivatingHandler extends AbstractReplyProducingMessageHandl
 
 	@Override
 	public IntegrationPatternType getIntegrationPatternType() {
-		return (this.processor instanceof IntegrationPattern)
+		return this.processor instanceof IntegrationPattern
 				? ((IntegrationPattern) this.processor).getIntegrationPatternType()
 				: IntegrationPatternType.service_activator;
 	}

@@ -18,8 +18,6 @@ package org.springframework.integration.channel;
 
 import java.util.concurrent.SynchronousQueue;
 
-import org.springframework.messaging.Message;
-
 /**
  * A zero-capacity version of {@link QueueChannel} that delegates to a
  * {@link SynchronousQueue} internally. This accommodates "handoff" scenarios
@@ -30,7 +28,7 @@ import org.springframework.messaging.Message;
 public class RendezvousChannel extends QueueChannel {
 
 	public RendezvousChannel() {
-		super(new SynchronousQueue<Message<?>>());
+		super(new SynchronousQueue<>());
 	}
 
 }

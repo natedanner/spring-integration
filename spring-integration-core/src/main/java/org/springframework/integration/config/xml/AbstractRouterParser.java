@@ -61,7 +61,7 @@ public abstract class AbstractRouterParser extends AbstractConsumerEndpointParse
 			// check if mapping is provided otherwise returned values will be treated as channel names
 			List<Element> mappingElements = DomUtils.getChildElementsByTagName(element, "mapping");
 			if (!CollectionUtils.isEmpty(mappingElements)) {
-				ManagedMap<String, String> channelMappings = new ManagedMap<String, String>();
+				ManagedMap<String, String> channelMappings = new ManagedMap<>();
 				for (Element mappingElement : mappingElements) {
 					String key = mappingElement.getAttribute(this.getMappingKeyAttributeName());
 					channelMappings.put(key, mappingElement.getAttribute("channel"));

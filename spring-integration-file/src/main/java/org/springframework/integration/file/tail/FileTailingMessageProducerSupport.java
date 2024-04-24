@@ -61,7 +61,7 @@ public abstract class FileTailingMessageProducerSupport extends MessageProducerS
 
 	private long tailAttemptsDelay = DEFAULT_TAIL_ATTEMPTS_DELAY;
 
-	private long idleEventInterval = 0;
+	private long idleEventInterval;
 
 	private volatile long lastProduce = System.currentTimeMillis();
 

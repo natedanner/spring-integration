@@ -105,7 +105,7 @@ public class IntegrationFlowExtensionTests {
 	public static class CustomAggregatorSpec extends AggregatorSpec {
 
 		CustomAggregatorSpec() {
-			outputProcessor((group) ->
+			outputProcessor(group ->
 					group.getMessages()
 							.stream()
 							.map(Message::getPayload)

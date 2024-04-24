@@ -270,7 +270,7 @@ public class IntegrationGraphServerTests {
 		IntegrationNode myFilter =
 				graph.getNodes()
 						.stream()
-						.filter(node -> node.getName().equals("myFilter"))
+						.filter(node -> "myFilter".equals(node.getName()))
 						.findFirst()
 						.get();
 

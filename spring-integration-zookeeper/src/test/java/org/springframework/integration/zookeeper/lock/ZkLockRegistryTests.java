@@ -342,17 +342,17 @@ public class ZkLockRegistryTests extends ZookeeperTestSupport {
 
 	@Test
 	public void concurrentObtainCapacityTest() throws InterruptedException {
-		final int KEY_CNT = 50;
-		final int CAPACITY_CNT = 17;
-		final int THREAD_CNT = 4;
+		final int keyCnt = 50;
+		final int capacityCnt = 17;
+		final int threadCnt = 4;
 
-		final CountDownLatch maincountDownLatch = new CountDownLatch(KEY_CNT);
-		final CountDownLatch countDownLatch = new CountDownLatch(THREAD_CNT);
+		final CountDownLatch maincountDownLatch = new CountDownLatch(keyCnt);
+		final CountDownLatch countDownLatch = new CountDownLatch(threadCnt);
 		final ZookeeperLockRegistry registry = new ZookeeperLockRegistry(this.client);
-		registry.setCacheCapacity(CAPACITY_CNT);
-		final ExecutorService executorService = Executors.newFixedThreadPool(THREAD_CNT);
+		registry.setCacheCapacity(capacityCnt);
+		final ExecutorService executorService = Executors.newFixedThreadPool(threadCnt);
 
-		for (int i = 0; i < KEY_CNT; i++) {
+		for (int i = 0; i < keyCnt; i++) {
 			int finalI = i;
 			executorService.submit(() -> {
 				countDownLatch.countDown();
@@ -374,7 +374,7 @@ public class ZkLockRegistryTests extends ZookeeperTestSupport {
 		executorService.awaitTermination(5, TimeUnit.SECONDS);
 
 		//capacity limit test
-		assertThat(getRegistryLocks(registry)).hasSize(CAPACITY_CNT);
+		assertThat(getRegistryLocks(registry)).hasSize(capacityCnt);
 
 		registry.expireUnusedOlderThan(-1000);
 		assertThat(getRegistryLocks(registry)).isEmpty();
@@ -383,25 +383,25 @@ public class ZkLockRegistryTests extends ZookeeperTestSupport {
 
 	@Test
 	public void concurrentObtainRemoveOrderTest() throws InterruptedException {
-		final int THREAD_CNT = 2;
-		final int DUMMY_LOCK_CNT = 3;
+		final int threadCnt = 2;
+		final int dummyLockCnt = 3;
 
-		final int CAPACITY_CNT = THREAD_CNT;
+		final int capacityCnt = threadCnt;
 
-		final CountDownLatch countDownLatch = new CountDownLatch(THREAD_CNT);
+		final CountDownLatch countDownLatch = new CountDownLatch(threadCnt);
 		final ZookeeperLockRegistry registry = new ZookeeperLockRegistry(this.client);
-		registry.setCacheCapacity(CAPACITY_CNT);
-		final ExecutorService executorService = Executors.newFixedThreadPool(THREAD_CNT);
+		registry.setCacheCapacity(capacityCnt);
+		final ExecutorService executorService = Executors.newFixedThreadPool(threadCnt);
 		final Queue<String> remainLockCheckQueue = new LinkedBlockingQueue<>();
 
 		//Removed due to capcity limit
-		for (int i = 0; i < DUMMY_LOCK_CNT; i++) {
+		for (int i = 0; i < dummyLockCnt; i++) {
 			Lock obtainLock0 = registry.obtain("foo:" + i);
 			obtainLock0.lock();
 			obtainLock0.unlock();
 		}
 
-		for (int i = DUMMY_LOCK_CNT; i < THREAD_CNT + DUMMY_LOCK_CNT; i++) {
+		for (int i = dummyLockCnt; i < threadCnt + dummyLockCnt; i++) {
 			int finalI = i;
 			executorService.submit(() -> {
 				countDownLatch.countDown();
@@ -429,31 +429,31 @@ public class ZkLockRegistryTests extends ZookeeperTestSupport {
 
 	@Test
 	public void concurrentObtainAccessRemoveOrderTest() throws InterruptedException {
-		final int THREAD_CNT = 2;
-		final int DUMMY_LOCK_CNT = 3;
+		final int threadCnt = 2;
+		final int dummyLockCnt = 3;
 
-		final int CAPACITY_CNT = THREAD_CNT + 1;
-		final String REMAIN_DUMMY_LOCK_KEY = "foo:1";
+		final int capacityCnt = threadCnt + 1;
+		final String remainDummyLockKey = "foo:1";
 
-		final CountDownLatch countDownLatch = new CountDownLatch(THREAD_CNT);
+		final CountDownLatch countDownLatch = new CountDownLatch(threadCnt);
 		final ZookeeperLockRegistry registry = new ZookeeperLockRegistry(this.client);
-		registry.setCacheCapacity(CAPACITY_CNT);
-		final ExecutorService executorService = Executors.newFixedThreadPool(THREAD_CNT);
+		registry.setCacheCapacity(capacityCnt);
+		final ExecutorService executorService = Executors.newFixedThreadPool(threadCnt);
 		final Queue<String> remainLockCheckQueue = new LinkedBlockingQueue<>();
 
 		//Removed due to capcity limit
-		for (int i = 0; i < DUMMY_LOCK_CNT; i++) {
+		for (int i = 0; i < dummyLockCnt; i++) {
 			Lock obtainLock0 = registry.obtain("foo:" + i);
 			obtainLock0.lock();
 			obtainLock0.unlock();
 		}
 
-		Lock obtainLock0 = registry.obtain(REMAIN_DUMMY_LOCK_KEY);
+		Lock obtainLock0 = registry.obtain(remainDummyLockKey);
 		obtainLock0.lock();
 		obtainLock0.unlock();
-		remainLockCheckQueue.offer(toKey(REMAIN_DUMMY_LOCK_KEY));
+		remainLockCheckQueue.offer(toKey(remainDummyLockKey));
 
-		for (int i = DUMMY_LOCK_CNT; i < THREAD_CNT + DUMMY_LOCK_CNT; i++) {
+		for (int i = dummyLockCnt; i < threadCnt + dummyLockCnt; i++) {
 			int finalI = i;
 			executorService.submit(() -> {
 				countDownLatch.countDown();
@@ -481,16 +481,16 @@ public class ZkLockRegistryTests extends ZookeeperTestSupport {
 
 	@Test
 	public void setCapacityTest() {
-		final int CAPACITY_CNT = 4;
+		final int capacityCnt = 4;
 		final ZookeeperLockRegistry registry = new ZookeeperLockRegistry(this.client);
-		registry.setCacheCapacity(CAPACITY_CNT);
+		registry.setCacheCapacity(capacityCnt);
 
 		registry.obtain("foo:1");
 		registry.obtain("foo:2");
 		registry.obtain("foo:3");
 
 		//capacity 4->3
-		registry.setCacheCapacity(CAPACITY_CNT - 1);
+		registry.setCacheCapacity(capacityCnt - 1);
 
 		registry.obtain("foo:4");
 
@@ -498,7 +498,7 @@ public class ZkLockRegistryTests extends ZookeeperTestSupport {
 		assertThat(getRegistryLocks(registry)).containsKeys(toKey("foo:2"), toKey("foo:3"), toKey("foo:4"));
 
 		//capacity 3->4
-		registry.setCacheCapacity(CAPACITY_CNT);
+		registry.setCacheCapacity(capacityCnt);
 		registry.obtain("foo:5");
 		assertThat(getRegistryLocks(registry)).hasSize(4);
 		assertThat(getRegistryLocks(registry)).containsKeys(toKey("foo:3"), toKey("foo:4"), toKey("foo:5"));
@@ -511,8 +511,8 @@ public class ZkLockRegistryTests extends ZookeeperTestSupport {
 	}
 
 	private static String toKey(String path) {
-		final String DEFAULT_ROOT = "/SpringIntegration-LockRegistry";
-		return DEFAULT_ROOT + "/" + path;
+		final String defaultRoot = "/SpringIntegration-LockRegistry";
+		return defaultRoot + "/" + path;
 	}
 
 }

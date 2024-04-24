@@ -66,7 +66,7 @@ public class SftpTestSupport extends RemoteFileTestSupport {
 		server.setPort(0);
 		server.setKeyPairProvider(new SimpleGeneratorHostKeyProvider(new File("hostkey.ser").toPath()));
 		SftpSubsystemFactory sftpFactory = new SftpSubsystemFactory();
-		EVENT_LISTENER.setApplicationEventPublisher((ev) -> {
+		EVENT_LISTENER.setApplicationEventPublisher(ev -> {
 			// no-op
 		});
 		sftpFactory.addSftpEventListener(EVENT_LISTENER);

@@ -109,7 +109,7 @@ public class ReturnAddressTests {
 				"returnAddressTests.xml", this.getClass());
 		MessageChannel channel3 = (MessageChannel) context.getBean("channel3");
 		context.start();
-		GenericMessage<String> message = new GenericMessage<String>("*");
+		GenericMessage<String> message = new GenericMessage<>("*");
 		try {
 			channel3.send(message);
 		}
@@ -126,7 +126,7 @@ public class ReturnAddressTests {
 		MessageChannel channel4 = (MessageChannel) context.getBean("channel4");
 		PollableChannel replyChannel = (PollableChannel) context.getBean("replyChannel");
 		context.start();
-		GenericMessage<String> message = new GenericMessage<String>("*");
+		GenericMessage<String> message = new GenericMessage<>("*");
 		channel4.send(message);
 		Message<?> response = replyChannel.receive(3000);
 		assertThat(response).isNotNull();

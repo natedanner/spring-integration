@@ -278,9 +278,8 @@ class MessageSourceTests {
 		given(consumerFactory.createConsumer(isNull(), anyString(), isNull(), any())).willReturn(consumer);
 		ConsumerProperties consumerProperties = new ConsumerProperties("foo");
 		AtomicInteger callbackCount = new AtomicInteger();
-		OffsetCommitCallback commitCallback = (offsets, ex) -> {
+		OffsetCommitCallback commitCallback = (offsets, ex) ->
 			callbackCount.incrementAndGet();
-		};
 		if (!sync) {
 			consumerProperties.setSyncCommits(false);
 			consumerProperties.setCommitCallback(commitCallback);

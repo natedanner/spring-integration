@@ -72,7 +72,7 @@ public class XsltPayloadTransformerParser extends AbstractTransformerParser {
 		}
 		List<Element> xslParameterElements = DomUtils.getChildElementsByTagName(element, "xslt-param");
 		if (!CollectionUtils.isEmpty(xslParameterElements)) {
-			Map<String, Object> xslParameterMappings = new ManagedMap<String, Object>();
+			Map<String, Object> xslParameterMappings = new ManagedMap<>();
 			for (Element xslParameterElement : xslParameterElements) {
 				String name = xslParameterElement.getAttribute("name");
 				String expression = xslParameterElement.getAttribute("expression");

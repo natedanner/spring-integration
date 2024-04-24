@@ -51,7 +51,7 @@ public class HeaderEnricher extends IntegrationObjectSupport implements Transfor
 
 	private volatile MessageProcessor<?> messageProcessor;
 
-	private volatile boolean defaultOverwrite = false;
+	private volatile boolean defaultOverwrite;
 
 	private volatile boolean shouldSkipNulls = true;
 

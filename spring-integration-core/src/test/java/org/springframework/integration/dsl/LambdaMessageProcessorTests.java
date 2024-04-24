@@ -129,7 +129,7 @@ public class LambdaMessageProcessorTests {
 		@Bean
 		@IntegrationConverter
 		public Converter<String, TestPojo> testPojoConverter() {
-			return new Converter<String, TestPojo>() { // Cannot be lambda for explicit generic types
+			return new Converter<>() { // Cannot be lambda for explicit generic types
 
 				@Override
 				public TestPojo convert(String source) {

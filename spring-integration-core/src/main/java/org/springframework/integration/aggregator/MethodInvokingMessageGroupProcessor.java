@@ -50,7 +50,7 @@ public class MethodInvokingMessageGroupProcessor extends AbstractAggregatingMess
 	 * @param target the object to wrap
 	 */
 	public MethodInvokingMessageGroupProcessor(Object target) {
-		this.processor = new MethodInvokingMessageListProcessor<Object>(target, Aggregator.class);
+		this.processor = new MethodInvokingMessageListProcessor<>(target, Aggregator.class);
 	}
 
 	/**
@@ -61,7 +61,7 @@ public class MethodInvokingMessageGroupProcessor extends AbstractAggregatingMess
 	 * @param methodName the name of the method to invoke
 	 */
 	public MethodInvokingMessageGroupProcessor(Object target, String methodName) {
-		this.processor = new MethodInvokingMessageListProcessor<Object>(target, methodName);
+		this.processor = new MethodInvokingMessageListProcessor<>(target, methodName);
 	}
 
 	/**
@@ -71,7 +71,7 @@ public class MethodInvokingMessageGroupProcessor extends AbstractAggregatingMess
 	 * @param method the method to invoke
 	 */
 	public MethodInvokingMessageGroupProcessor(Object target, Method method) {
-		this.processor = new MethodInvokingMessageListProcessor<Object>(target, method);
+		this.processor = new MethodInvokingMessageListProcessor<>(target, method);
 	}
 
 	public void setConversionService(ConversionService conversionService) {
